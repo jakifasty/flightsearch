@@ -11,3 +11,7 @@ CTestTestfile.cmake
 _deps
 **/node_modules
 **/*~
+dist
+package-lock.json
+**/*solved*
+**/*Config.js*
