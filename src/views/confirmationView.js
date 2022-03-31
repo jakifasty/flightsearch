@@ -10,7 +10,7 @@ function confirmationView(props) {
 					<div className="div-row confDate"> {props.flightData.date} </div>
 					<div className="div-row confRoute"> {props.flightData.route} </div>
 					<div className="div-row confNumber"> {props.flightData.confirmationNumber} </div>
-					<div className="div-row confText"> Mobile check-in is not available for this route.</div>
+					<div className="div-row confText"> Mobile check-in is not available for this route. </div>
 	
 					<div className="div-row>
 						<div className="div-row confButton"> <button onclick={printPageACB}>Print This Page</button> </div>
