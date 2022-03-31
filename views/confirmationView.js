@@ -1,5 +1,8 @@
 function confirmationView(props) {
 
+	function printPageACB() {
+		window.print();
+	}
 
 	return (
         <div className="confirmation">
@@ -10,8 +13,8 @@ function confirmationView(props) {
 					<div className="div-row confText"> Mobile check-in is not available for this route.</div>
 	
 					<div className="div-row>
-						<div className="div-row confButton"> <button onclick="window.print()">Print This Page</button> </div>
-						<div className="div-row conf Button"><button>Email confirmation</button></div>			
+						<div className="div-row confButton"> <button onclick={printPageACB}>Print This Page</button> </div>
+						<div className="div-row confButton"><button>Email confirmation</button></div>			
 					</div>   
 			</div>
 		</div>
