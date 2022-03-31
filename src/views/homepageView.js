@@ -10,8 +10,13 @@ function HomepageView(props){
         props.onFromTextChange(event.target.value)
     }
     function fromSelectTripTypeACB(event){
-        console.log("In ACB")
         props.onSelectTripType(event.target.value)
+    }
+    function sendMail(){
+        console.log("In ACB")
+
+        props.sendMail()
+
     }
 
     var date = new Date()
@@ -56,8 +61,9 @@ function HomepageView(props){
                 </div>
                 <div className="outsideBox"></div>
                 {console.log(props.amountOfPeople)}
-                <button disabled={props.amountOfPeople === 0}>Search</button>
+                <button disabled={false/*!props.validRequest*/} onClick={sendMail}>Search</button>
             </div>
+            
     );
 
 }

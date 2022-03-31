@@ -1,5 +1,6 @@
 import React from "react"
 import HomepageView from "../views/homepageView";
+//import sendMail from "../testFIle";
 export default
 function Homepage(props){
     const [, setFrom]=React.useState(null);
@@ -7,6 +8,29 @@ function Homepage(props){
     const [, setYouths]=React.useState(null);
     const [, setTripType]=React.useState(null);
 
+    function mailSetupACB(){
+        /*
+        let transporter = nodemailer.createTransport({
+            host: "smtp.gmail.com",
+            port: 465,
+            secure: false, // true for 465, false for other ports
+            auth: {
+              user: 'testmailforemail3@gmail.com', // generated ethereal user
+              pass: 'dvorgrisegdmghga', // generated ethereal password
+            },
+          });
+          console.log(transporter)
+         transporter.sendMail({
+            from: 'testmailforemail3@gmail.com', // sender address
+            to: "marco.godow98@gmail.com", // list of receivers
+            subject: "Hello ✔", // Subject line
+            text: "Hello world?", // plain text body
+            html: "<b>Hello world?</b>", // html body
+          })
+          
+       // console.log("Message sent: %s", info.messageId);
+          */
+        }
 
 
 
@@ -30,14 +54,23 @@ function Homepage(props){
         props.model.setFromAirport(from)
     }
     function onSelectTripTypeACB(type){
-        console.log("Setting type")
-        console.log(type)
-
         props.model.setTripType(type)
     }
+    function isReadyForSearchACB(){
+        if(props.model.amountOfAdults + props.model.amountOfYouths >0){
+            if(props.model.tripType === 'One'){
+                if(props.model.fromAirport !== ''){
+                    
+                }
+            }else if(props.model.tripType === 'Round'){
+
+            } else{
+                return false;
+            }
+        }
+    }
+
     function onChangeAmountPeopleACB(params){
-        console.log(params)
-        console.log(props.model.amountOfAdults)
         switch (params) {
             case 'Adult +' :
                 props.model.setAmountAdults(props.model.amountOfAdults + 1)
@@ -64,6 +97,8 @@ function Homepage(props){
         amountOfAdults={props.model.amountOfAdults}
         amountOfYouths={props.model.amountOfYouths}
         tripType={props.model.tripType}
-        dontKnowWhyThisWorkButItDoes={2}
+        dontKnowWhyThisWorkButItDoes={7}
+        validRequest={isReadyForSearchACB}
+        sendMail={mailSetupACB}
         />;
 }
