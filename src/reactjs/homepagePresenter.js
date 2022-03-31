@@ -8,44 +8,20 @@ function Homepage(props){
     const [, setYouths]=React.useState(null);
     const [, setTripType]=React.useState(null);
 
-    function mailSetupACB(){
-        /*
-        let transporter = nodemailer.createTransport({
-            host: "smtp.gmail.com",
-            port: 465,
-            secure: false, // true for 465, false for other ports
-            auth: {
-              user: 'testmailforemail3@gmail.com', // generated ethereal user
-              pass: 'dvorgrisegdmghga', // generated ethereal password
-            },
-          });
-          console.log(transporter)
-         transporter.sendMail({
-            from: 'testmailforemail3@gmail.com', // sender address
-            to: "marco.godow98@gmail.com", // list of receivers
-            subject: "Hello ✔", // Subject line
-            text: "Hello world?", // plain text body
-            html: "<b>Hello world?</b>", // html body
-          })
-          
-       // console.log("Message sent: %s", info.messageId);
-          */
-        }
-
 
 
     function observerACB(){
         setFrom(props.model.fromAirport);
         setAdults(props.model.amountOfAdults);
         setYouths(props.model.amountOfYouths);
-        setTripType(props.model.tripType)
-
+        setTripType(props.model.tripType);
     }
 
     function wasCreatedACB(){
         observerACB();
         props.model.addObserver(observerACB);
-        return function isTakenDownACB(){props.model.removeObserver(observerACB);}
+        return function isTakenDownACB(){         
+            props.model.removeObserver(observerACB);}
     }
 
     React.useEffect(wasCreatedACB, []);
@@ -56,6 +32,7 @@ function Homepage(props){
     function onSelectTripTypeACB(type){
         props.model.setTripType(type)
     }
+
     function isReadyForSearchACB(){
         if(props.model.amountOfAdults + props.model.amountOfYouths >0){
             if(props.model.tripType === 'One'){
@@ -97,8 +74,7 @@ function Homepage(props){
         amountOfAdults={props.model.amountOfAdults}
         amountOfYouths={props.model.amountOfYouths}
         tripType={props.model.tripType}
-        dontKnowWhyThisWorkButItDoes={7}
+        dontKnowWhyThisWorkButItDoes={4}
         validRequest={isReadyForSearchACB}
-        sendMail={mailSetupACB}
         />;
 }

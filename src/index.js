@@ -8,10 +8,12 @@ const App=require("./App.js").default;
 function ReactRoot(){
   const [model, setModel]= React.useState(new FlightModel());
   //setModel(new FlightModel())
-  React.useEffect(function onStartACB(){
-    setModel(new FlightModel())
+ /*React.useEffect(function onStartACB(){
+    setModel()
       //bigPromise.then(function initModelACB(data){setModel(data)}).catch(function errACB(data){console.log(data)})
   }, []);
+  */
+  
   return  <App model={model}/>;
 }
 render(

@@ -28,10 +28,9 @@ class FlightModel{
 
     setAmountAdults(nr){
         this.amountOfAdults = nr
-        console.log("Set amount adults to")
-        console.log(this.amountOfAdults)
         var payload = {amountAdults: nr}
         this.notifyObservers(payload)
+
     }
     setAmountYouths(nr){
         this.amountOfYouths = nr
@@ -59,11 +58,9 @@ class FlightModel{
        }
      }
      addObserver(callback){
-       this.observers = [...this.observers, callback];
+       this.observers.push(callback);
      }
      removeObserver(callback){
-        console.log(callback)
-        console.log(this.observers)
         this.observers = this.observers.filter(function(x){
             if(x === callback){
                 return false
