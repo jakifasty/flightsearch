@@ -1,7 +1,6 @@
 /* Functional JSX component. Name starts with capital letter */
 function HomepageView(props){
 
-    
     function fromChangeAmountPeopleACB(event){
         props.onChangeAmountPeople(event.target.value)
     }
@@ -17,6 +16,7 @@ function HomepageView(props){
     var date = new Date()
     var today = date.getFullYear()+'-'+(date.getMonth()+1)+'-'+date.getDate()
     var twoYearsAfterToday = (parseInt(today.split("-")[0])+2)+today.slice(today.indexOf("-"),today.length)
+    window.location.hash="homepage";
     return (
 
             <div className="mainBackground">
@@ -56,13 +56,10 @@ function HomepageView(props){
                 </div>
                 <div className="outsideBox"></div>
                 {console.log(props.amountOfPeople)}
-                <button disabled={props.amountOfPeople === 0}>Search</button>
+                <button onclick={function setToSearch(event){window.location.hash="#details"}}disabled={props.amountOfPeople === 0}>Search</button>
             </div>
     );
 
 }
 
-    /*
-     
-    */
 export default HomepageView;

@@ -1,5 +1,6 @@
 import React from "react"
 import HomepageView from "../views/homepageView";
+
 export default
 function Homepage(props){
     const [, setFrom]=React.useState(null);
@@ -7,15 +8,11 @@ function Homepage(props){
     const [, setYouths]=React.useState(null);
     const [, setTripType]=React.useState(null);
 
-
-
-
     function observerACB(){
         setFrom(props.model.fromAirport);
         setAdults(props.model.amountOfAdults);
         setYouths(props.model.amountOfYouths);
         setTripType(props.model.tripType)
-
     }
 
     function wasCreatedACB(){
@@ -28,6 +25,9 @@ function Homepage(props){
 
     function onFromTextChangeACB(from){
         props.model.setFromAirport(from)
+    }
+    function onToTextChangeACB(from){
+        props.model.setToAirport(from)
     }
     function onSelectTripTypeACB(type){
         console.log("Setting type")
@@ -58,8 +58,10 @@ function Homepage(props){
     return < HomepageView 
         onChangeAmountPeople={onChangeAmountPeopleACB}
         onFromTextChange={onFromTextChangeACB}
+        onToFromTextChnage={onToTextChangeACB}
         onSelectTripType={onSelectTripTypeACB}
-        fromAirport= {props.model.fromAirport}
+        fromAirport={props.model.fromAirport}
+        toAirport={props.model.toAirport}
         amountOfPeople={props.model.amountOfAdults + props.model.amountOfYouths}
         amountOfAdults={props.model.amountOfAdults}
         amountOfYouths={props.model.amountOfYouths}
