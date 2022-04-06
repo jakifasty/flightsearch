@@ -1,11 +1,11 @@
 /* Functional JSX component. Name starts with capital letter */
 function HomepageView(props){
 
-    
+
     function fromChangeAmountPeopleACB(event){
         props.onChangeAmountPeople(event.target.value)
     }
-    
+
     function fromTextInputACB(event){
         props.onFromTextChange(event.target.value)
     }
@@ -56,14 +56,14 @@ function HomepageView(props){
                     </input>
                 </div>
                 <div className="outsideBox"></div>
-                <button disabled={false/*!props.validRequest*/} onClick={sendMail}>Search</button>
+                <button disabled={false/*!props.validRequest*/} onClick={function clickACB(event){props.onSearch();}}>Search</button>
             </div>
-            
+
     );
 
 }
 
     /*
-     
+
     */
 export default HomepageView;

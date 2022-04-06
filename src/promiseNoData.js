@@ -4,7 +4,7 @@ function promiseNoData(props){
   function render (promise, data, error){
     if(!promise){
 
-      return <div>no data</div>
+      return <div></div>
     }else if(promise && !data && !error){
       return  <img height="200" src={loading_gif}></img>
     }else if(error){

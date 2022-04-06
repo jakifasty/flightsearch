@@ -5,13 +5,32 @@ import resolvePromise from "./resolvePromise.js";
 
 class FlightModel{
     constructor(){
-        this.fromAirport = "";
+        this.fromAirport = "LHR";
+        this.destAirport = "JFK";
         this.observers = [];
         this.searchResultsPromiseState = {};
         this.searchParams = {query: "", type: ""};
         this.amountOfAdults = 1
         this.amountOfYouths = 0
         this.tripType = "One"
+        this.data = {slices:
+                      [
+                        {
+                          origin: this.fromAirport,
+                          destination: this.destAirport,
+                          departure_date: '2022-04-24',
+                        },
+                      ],
+                      passengers: [
+                        {
+                          type: 'adult',
+                        },
+                        {
+                          age: 14,
+                        },
+                      ],
+                    cabin_class: 'economy',
+                  };
     }
 
     setTripType(type){
