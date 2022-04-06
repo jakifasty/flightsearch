@@ -1,4 +1,4 @@
-import {API_URL, API_TOKEN, API_MARKER} from "./apiConfig"
+import {API_URL, API_TOKEN, API_MARKER, API_ACCESS_TOKEN} from "./apiConfig"
 
 function treatHTTPResponseACB(response){
    /*TODO throw if the HTTP response is not 200, otherwise return response.json()*/
@@ -37,7 +37,7 @@ function getOffer(data) {
     "Accept" : "application/json",
     "Accept-Encoding": "gzip",
     "Duffel-Version": "beta",
-    "Authorization": "Bearer duffel_test_2Pc9oQR0lZs-IskErm63tVSdMIS1d_EpHLmfoTXIxBL"
+    "Authorization": "Bearer " + API_ACCESS_TOKEN
   };
 
   let body = JSON.stringify({
