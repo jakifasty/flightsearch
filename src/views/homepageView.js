@@ -2,55 +2,50 @@
 function HomepageView(props){
 
     
-    function fromChangeAmountPeopleACB(event){
+    function changeAmountPeopleACB(event){
         props.onChangeAmountPeople(event.target.value)
     }
     
-    function fromTextInputACB(event){
-        props.onFromTextChange(event.target.value)
-    }
+
     function fromSelectTripTypeACB(event){
         props.onSelectTripType(event.target.value)
     }
+
     function sendMail(){
+        console.log("TODO")
     }
+
+    function fromTextInputACB(event){
+        if(event.target.value.length>3){
+            if(event.target.list.options.namedItem(event.target.value) !== null){
+                props.onFromAirportSelect(event.target.value)
+            }
+            return
+        }
+        props.onSearchForAirport(event.target.value)
+    }
+
+    function changeReturnDateACB(event){
+        props.onSelectReturnDate(event.target.value)
+    }
+
     function toTextInputACB(event){
-        props.searchForAirport(event.target.value)
+        if(event.target.value.length>3){
+            if(event.target.list.options.namedItem(event.target.value) !== null){
+                props.onToAirportSelect(event.target.value)
+            }
+            return
+        }
+        props.onSearchForAirport(event.target.value)
     }
 
-    function getListACB(e){
-        var k = Object.keys(e)[0]
+    
 
-        if(k== undefined){
-            console.log("UnDEFINDEDFS")
-            return <datalist id="listID"></datalist>
-        }
-
-        e = e[k]
-
-        if (k.length == 2){
-            console.log("OOOOOO")
-           
-          return <datalist className="textOverflow" id="listID">
-              { e.map(function (airport){
-                var key = Object.keys(airport)
-                airport = airport[key]
-                 return <option className="textOverflow">{airport.airportName + "("+key+")"}</option>
-             }
-             )}
-          </datalist> 
-        }
-        
-        console.log("Returng last")
-
-        return <datalist className="textOverflow" id="listID" >
-            <option className="textOverflow"> {e.airportName + "("+k+")"} </option>
-        </datalist>
-    }
-
+    //TODO move this (Date) to apropriate place(Most likely model)
     var date = new Date()
     var today = date.getFullYear()+'-'+(date.getMonth()+1)+'-'+date.getDate()
     var twoYearsAfterToday = (parseInt(today.split("-")[0])+2)+today.slice(today.indexOf("-"),today.length)
+
     return (
 
             <div className="mainBackground">
@@ -67,53 +62,62 @@ function HomepageView(props){
                     </select>
                     <div className="dropdown-content">
                         <div>Adults 18+ :
-                            <button disabled={props.amountOfAdults <1} onClick={fromChangeAmountPeopleACB} value="Adult -">-</button>
+                            <button disabled={props.amountOfAdults <1} onClick={changeAmountPeopleACB} value="Adult -">-</button>
                             {props.amountOfAdults}
-                            <button  disabled={props.amountOfPeople >=9} onClick={fromChangeAmountPeopleACB} value="Adult +">+</button>
+                            <button  disabled={props.amountOfPeople >=9} onClick={changeAmountPeopleACB} value="Adult +">+</button>
                         </div>
                         <div>Youths 1-18 :
-                            <button disabled={props.amountOfYouths <1} onClick={fromChangeAmountPeopleACB} value="Youth -">-</button>
+                            <button disabled={props.amountOfYouths <1} onClick={changeAmountPeopleACB} value="Youth -">-</button>
                             {props.amountOfYouths}
-                            <button disabled={props.amountOfPeople >=9} onClick={fromChangeAmountPeopleACB} value="Youth +">+</button>
+                            <button disabled={props.amountOfPeople >=9} onClick={changeAmountPeopleACB} value="Youth +">+</button>
                         </div>
                     </div>
                 </div>
                 <div className="outsideBox">
-                    <input className="center" type="search" list="listID" name="From" placeholder="From" onChange={fromTextInputACB}></input>
-                    <input className={props.tripType ==="One"? "hidden": "center"} type="text"  list="Airports" name="Destination" placeholder="Destination" onChange={toTextInputACB}></input>
+                    <input className="center" type="search" list="listID" name="From" placeholder="From..." onChange={fromTextInputACB}></input>
+                    <input className="center" type="search"  list="listID" name="Destination" placeholder="Pick a destination..." onChange={toTextInputACB}></input>
                     <input className="center" placeholder="test" type="date" name="trip-start"
                             min={today} max={twoYearsAfterToday}>
                     </input>
-                    <input className={props.tripType ==="One"? "hidden": "center"}type="date" name="trip-back"
-                            min={today} max={twoYearsAfterToday}>
+                    <input className={props.tripType ==="One"? "hidden": "center"}type="date" name="returnDate"
+                            min={today} max={twoYearsAfterToday} onChange={changeReturnDateACB}>
                     </input>
                 </div>
                 <div className="outsideBox"></div>
-                <button disabled={false/*!props.validRequest*/} onClick={sendMail}>Search</button>
-                <input type="search" list="listID" placeholder="Pick a destination..." onChange={toTextInputACB} onSelect={console.log("Selected")}></input>
-                {getListACB(props.airportResults)}
+                <button disabled={false/* TODO !props.isValidRequest*/} onClick={sendMail}>Search</button>
+                {getAirportList(props.airportResults)}
             </div>
             
     );
 
 }
 
+function getAirportList(e){
+    if(e == undefined){
+        return <datalist id="listID"></datalist>
+    }
+    var k = Object.keys(e)[0]
 
+    if(k== undefined){
+                    return <datalist id="listID"></datalist>
+    }
 
-    /*
-    
-<input type="search" list="languages" placeholder="Pick a programming language..">
+    e = e[k]
 
-<datalist id="languages">
-  <option value="PHP" />
-  <option value="C++" />
-  <option value="Java" />
-  <option value="Ruby" />
-  <option value="Python" />
-  <option value="Go" />
-  <option value="Perl" />
-  <option value="Erlang" />
-</datalist>
-     
-    */
+    if (k.length === 2){           
+      return <datalist className="textOverflow" id="listID">
+          { e.map(function (airport){
+            var key = Object.keys(airport)
+            airport = airport[key]
+             return <option id ={airport.airportName} value ={airport.airportName} className="textOverflow">{airport.country + ", "+ airport.region+ " ("+key+")"}</option>
+         }
+         )}
+      </datalist> 
+    }
+    return <datalist className="textOverflow" id="listID">
+        <option id ={e.airportName} value ={e.airportName} className="textOverflow"> {e.country + ", "+ e.region+" ("+k+")"} </option>
+    </datalist>
+}
+
+   
 export default HomepageView;
