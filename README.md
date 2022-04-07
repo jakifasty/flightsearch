@@ -1,5 +1,30 @@
 # Flightsearch
-Basic web application to search, (book) and get information about schedule passenger flights.
+Basic web application to search, (book) and get information about schedule passenger flights.  
+## Basic Layout planned  
+This is the initially planned layout with features of the website. Some things might be subject to change.  
+**HomePage:**  
+Search : From, To , Dates , Amount people ,Search button  [Maybe: Return and connection flights]   
+Background: Some Picture or colors  
+**SummaryView**  
+Search: Same as Homepage  
+View:   
+1.Flight Options in bars  
+Buttons to: select inbound flight, select outbound flights  
+props: flightCode, from, to, departureTime, arrivalTime, duration, price, airline  
+**DetailsView**  
+Present chosen flight Details.  
+From: Airline, AirPort, TimeStart , TimeLand, FlightDuration , Individual Price  
+To: Airline, AirPort, TimeStart , TimeLand, FlightDuration , Individual Price  
+Confirm Booking button  
+**Booking user information**  
+UserInfo: Name, Age , Mail , Phone  
+Confirm Booking button  
+**Confirmed Booking**  
+SomeText  
+Booking Number:  
+MailConfirmation: JavaMail, smtp.gmail.com  
+**See my Bookings**  
+All saved flight in firebase  
 
 ## What we have done
 ### Homepage
