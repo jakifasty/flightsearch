@@ -11,8 +11,9 @@ View:
 1.Flight Options in bars  
 Buttons to: select inbound flight, select outbound flights  
 props: flightCode, from, to, departureTime, arrivalTime, duration, price, airline 
-We have started implementing duffel api to do flight searches. This code is in [new-api-feat](https://gits-15.sys.kth.se/javierre/flightsearch/tree/new-api-feat) branch.
-In this branch the api searches is kept in a file called flightSearches. A mock promise is resolved in [homepagePresenter.js](https://gits-15.sys.kth.se/javierre/flightsearch/blob/new-api-feat/src/reactjs/homepagePresenter.js) is made when search button is clickd. The results as of now is just printed in the console.
+We have started implementing duffel api to do flight searches. The code for searching available flight based on the user input is in [new-api-feat](https://gits-15.sys.kth.se/javierre/flightsearch/tree/new-api-feat) branch. In this branch the api code is kept in a file called flightSearches. A mock promise is resolved in [homepagePresenter.js](https://gits-15.sys.kth.se/javierre/flightsearch/blob/new-api-feat/src/reactjs/homepagePresenter.js) when the search button in homePage/summary is clicked. The results as of now is just printed in the console.
+- [x] #8
+- [ ] https://gits-15.sys.kth.se/javierre/flightsearch/issues/8
 **DetailsView**  
 Present chosen flight Details.  
 From: Airline, AirPort, TimeStart , TimeLand, FlightDuration , Individual Price  
