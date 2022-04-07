@@ -57,14 +57,14 @@ export default
     }
     React.useEffect(wasCreatedACB, []);
 
-    function onFromAirportSelect(from) {
+    function onFromAirportSelectACB(from) {
         props.model.setFromAirport(from)
     }
 
     
 
-    function onToAirportSelectACB(from) {
-        props.model.setToAirport(from)
+    function onToAirportSelectACB(to) {
+        props.model.setToAirport(to)
     }
 
     function onChangeAmountPeopleACB(params) {
@@ -86,12 +86,32 @@ export default
         }
     }
 
-    function onSelectFromDateACB(type) {
-        props.model.setFromDate(type)
+    function compareDates(date1,date2){
+        var date1Split = date1.split("-")
+        var date2Split = date2.split("-")
+        if(parseInt(date1Split[0])>parseInt(date2Split[0])){
+            return false
+        }
+        if(parseInt(date1Split[1])>parseInt(date2Split[1])){
+            return false
+            
+        }
+        if(parseInt(date1Split[2])>parseInt(date2Split[2])){
+            return false
+        }
+        return true
     }
 
-    function onSelectReturnDateACB(type) {
-        props.model.setReturnDate(type)
+    function onSelectFromDateACB(date) {
+        if(compareDates(date,props.model.returnDate) || props.model.tripType == 'One'){
+            props.model.setFromDate(date)
+        }
+    }
+
+    function onSelectReturnDateACB(date) {
+        if(compareDates(props.model.fromDate,date)){
+            props.model.setReturnDate(date)
+        }
     }
 
     function onSelectTripTypeACB(type) {
@@ -100,8 +120,13 @@ export default
 
 
 
-
+    //TODO
     function isReadyForSearchACB() {
+
+        function checkRest(){
+            
+        }
+
         if (props.model.amountOfAdults + props.model.amountOfYouths > 0) {
             if (props.model.tripType === 'One') {
                 if (props.model.fromAirport !== '') {
@@ -119,7 +144,7 @@ export default
 
     return < HomepageView
         onChangeAmountPeople={onChangeAmountPeopleACB}
-        onFromTextChange={onFromAirportSelect}
+        onFromAirportSelect={onFromAirportSelectACB}
         onToAirportSelect={onToAirportSelectACB}
         onSelectTripType={onSelectTripTypeACB}
         onSelectFromDate={onSelectFromDateACB}

@@ -1,8 +1,6 @@
 import resolvePromise from "./resolvePromise.js";
-/* This is an example of a JavaScript class.
-   The Model keeps only abstract data and has no notions of graohics or interaction
-*/
 
+//TODO check if how information is saved in model should be changed
 class FlightModel {
   constructor() {
 
@@ -20,8 +18,15 @@ class FlightModel {
     this.searchResultsPromiseState = {};
     this.observers = [];
     this.searchParams = { query: "", type: "" };
+
+
+    var date = new Date()
+    this.fromDate= date.getFullYear()+'-'+(date.getMonth()+1)+'-'+date.getDate()
+    this.returnDate = (parseInt(this.fromDate.split("-")[0])+2)+this.fromDate.slice(this.fromDate.indexOf("-"),this.fromDate.length)
+
   }
-  //TODO add return airports
+
+  //TODO add airports for returing flights
 
   setFromAirport(airport) {
     this.fromAirport = airport

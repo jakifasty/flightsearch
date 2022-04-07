@@ -1,9 +1,10 @@
 import Homepage from "./reactjs/homepagePresenter.js"
-
+const Show=require("./show.js").default;
+require("./navigation.js")
 function App(props) {
   return (
     <div>
-        <Homepage model= {props.model}/>
+        <Show hash="#homepage"><Homepage model= {props.model}/></Show>
     </div>
   );
 }

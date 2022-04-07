@@ -25,6 +25,9 @@ function HomepageView(props){
         props.onSearchForAirport(event.target.value)
     }
 
+    function changeFromDateACB(event){
+        props.onSelectFromDate(event.target.value)
+    }
     function changeReturnDateACB(event){
         props.onSelectReturnDate(event.target.value)
     }
@@ -77,7 +80,7 @@ function HomepageView(props){
                     <input className="center" type="search" list="listID" name="From" placeholder="From..." onChange={fromTextInputACB}></input>
                     <input className="center" type="search"  list="listID" name="Destination" placeholder="Pick a destination..." onChange={toTextInputACB}></input>
                     <input className="center" placeholder="test" type="date" name="trip-start"
-                            min={today} max={twoYearsAfterToday}>
+                            min={today} max={twoYearsAfterToday} onChange={changeFromDateACB}>
                     </input>
                     <input className={props.tripType ==="One"? "hidden": "center"}type="date" name="returnDate"
                             min={today} max={twoYearsAfterToday} onChange={changeReturnDateACB}>
