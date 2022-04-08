@@ -13,5 +13,7 @@ _deps
 **/*~
 dist
 package-lock.json
-**/*solved*
-**/*Config.js*
+**/labfiles
+**/src/NotChanged
+**/images
+**/Config.js*
