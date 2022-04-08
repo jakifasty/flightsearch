@@ -1,6 +1,7 @@
 import Globe from 'react-globe.gl';
 import ReactDOM from 'react-dom';
 import {Helmet} from "react-helmet";
+import { SizeMe } from 'react-sizeme'
 
 
 function GlobeView(props) {
@@ -10,14 +11,15 @@ function GlobeView(props) {
 
   <div>
     <Helmet>
-      
+
 
 
 
     </ Helmet>
 
-    <div id="globeViz">
-      <Globe
+    <div id="globeViz" >
+    <SizeMe>{({ size: { width } }) => (
+      <Globe  width={width} height={100}
         globeImageUrl="//unpkg.com/three-globe/example/img/earth-night.jpg"
         arcsData={[...Array(20).keys()].map(() => ({
                     startLat: (Math.random() - 0.5) * 180,
@@ -32,6 +34,7 @@ function GlobeView(props) {
         arcDashAnimateTime={() => Math.random() * 4000 + 500}
 
         />
+        )}</SizeMe>
     </div>
   </div>
   );
