@@ -3,7 +3,7 @@ import HomepageView from "../views/homepageView";
 import SearchResultsView from "../views/searchResultsView";
 import resolvePromise from "../resolvePromise"
 import promiseNoData from "../promiseNoData"
-import  {getAirportsInCity, getOffer} from "../fligthSearches.js";
+import  {getAirportsInCity, getOffers} from "../fligthSearches.js";
 //import sendMail from "../testFIle";
 export default
 function Homepage(props){
@@ -88,7 +88,7 @@ function Homepage(props){
 
     function searchOneWayACB(){
       props.model.makeData();
-      resolveFlight(getOffer(props.model.data));
+      resolveFlight(getOffers(props.model.data));
       props.model.clearData();
     }
     return <div>
@@ -106,6 +106,6 @@ function Homepage(props){
                 onSearch={searchOneWayACB}
                 />
             {promiseNoData({promise: flightPromiseState.promise, data: flightPromiseState.data, error: flightPromiseState.error})
-            || <SearchResultsView results={flightPromiseState.data.data}/>}
+            || <SearchResultsView results={flightPromiseState.data.data.offers}/>}
           </div>
 }

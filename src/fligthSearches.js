@@ -31,7 +31,7 @@ function getAirportsInCity(params) {
     .then(transformResultsACB)
 }/* end of second fetch parameter, object */
 
-function getOffer(data) {
+function getOffers(data) {
   let headers = {
     "Content-Type": "application/json",
     "Accept" : "application/json",
@@ -47,7 +47,7 @@ function getOffer(data) {
         });
   let method = 'POST'
   let compress = true;
-  let url = 'https://api.duffel.com/air/offer_requests?return_offers=false';
+  let url = 'https://api.duffel.com/air/offer_requests?return_offers=true';
   return fetch(url,{
       method : method,
       headers : headers,
@@ -58,4 +58,4 @@ function getOffer(data) {
     .catch(err => console.error(err));
 }
 
-export {getAirportsInCity, getOffer};
+export {getAirportsInCity, getOffers};
