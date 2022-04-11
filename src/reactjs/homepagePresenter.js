@@ -87,7 +87,9 @@ function Homepage(props){
     }
 
     function searchOneWayACB(){
+      props.model.makeData();
       resolveFlight(getOffer(props.model.data));
+      props.model.clearData();
     }
     return <div>
             <HomepageView
