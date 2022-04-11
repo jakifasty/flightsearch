@@ -46,7 +46,7 @@ function Homepage(props){
     function onFromTextChangeACB(from){
         props.model.setFromAirport(from)
     }
-    function onFromTextChangeACB(from){
+    function onToTextChangeACB(from){
         props.model.setDestAirport(from)
     }
     function onSelectTripTypeACB(type){
@@ -93,6 +93,7 @@ function Homepage(props){
             <HomepageView
                 onChangeAmountPeople={onChangeAmountPeopleACB}
                 onFromTextChange={onFromTextChangeACB}
+                onToTextChnage={onToTextChangeACB}
                 onSelectTripType={onSelectTripTypeACB}
                 fromAirport= {props.model.fromAirport}
                 amountOfPeople={props.model.amountOfAdults + props.model.amountOfYouths}

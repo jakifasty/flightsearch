@@ -47,7 +47,9 @@ function HomepageView(props){
                 </div>
                 <div className="outsideBox">
                     <input className="center" type="text" name="From" placeholder="From" onChange={fromTextInputACB}></input>
-                    <input className={props.tripType ==="One"? "hidden": "center"} type="text" name="Destination" placeholder="Destination"></input>
+                    {/*<input className={props.tripType ==="One"? "hidden": "center"} type="text" name="Origin" placeholder="Origin"></input>*/}
+                    <input className="center" type="text" name="To" placeholder="To" onChange={fromTextInputACB}></input>
+                    {/*<input className={props.tripType ==="Round"? "hidden": "center"} type="text" name="Destination" placeholder="Destination"></input>*/}
                     <input className="center" placeholder="test" type="date" name="trip-start"
                             min={today} max={twoYearsAfterToday}>
                     </input>
