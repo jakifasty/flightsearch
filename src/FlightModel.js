@@ -1,5 +1,5 @@
 import resolvePromise from "./resolvePromise.js";
-import {createPassengers} from "./utils.js"
+import {createPassenger, createPassengers} from "./utils.js"
 /* This is an example of a JavaScript class.
    The Model keeps only abstract data and has no notions of graohics or interaction
 */
@@ -105,6 +105,9 @@ class FlightModel{
      }
 
      makeData(){
+       if(this.amountOfAdults < 1 && this.amountOfYouths < 1){
+         throw new Error ('number of people is zero');
+       }
        this.makePassengers();
      }
 

@@ -10,4 +10,4 @@ function createPassengers(numberOfPassengers, type){
     passengers.push({type: type});
   return passengers;
 }
-export {createPassengers};
+export {createPassengers, createPassenger};
