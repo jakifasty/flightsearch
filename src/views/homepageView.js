@@ -9,9 +9,15 @@ function HomepageView(props){
     function fromTextInputACB(event){
         props.onFromTextChange(event.target.value)
     }
+
+    function toTextInputACB(event){
+        props.onToTextChange(event.target.value)
+    }
+
     function fromSelectTripTypeACB(event){
         props.onSelectTripType(event.target.value)
     }
+
     function sendMail(){
     }
 
@@ -47,9 +53,7 @@ function HomepageView(props){
                 </div>
                 <div className="outsideBox">
                     <input className="center" type="text" name="From" placeholder="From" onChange={fromTextInputACB}></input>
-                    {/*<input className={props.tripType ==="One"? "hidden": "center"} type="text" name="Origin" placeholder="Origin"></input>*/}
-                    <input className="center" type="text" name="To" placeholder="To" onChange={fromTextInputACB}></input>
-                    {/*<input className={props.tripType ==="Round"? "hidden": "center"} type="text" name="Destination" placeholder="Destination"></input>*/}
+                    <input className="center" type="text" name="To" placeholder="To" onChange={toTextInputACB}></input>
                     <input className="center" placeholder="test" type="date" name="trip-start"
                             min={today} max={twoYearsAfterToday}>
                     </input>
@@ -65,7 +69,4 @@ function HomepageView(props){
 
 }
 
-    /*
-
-    */
 export default HomepageView;

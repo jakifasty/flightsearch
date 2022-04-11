@@ -48,7 +48,6 @@
   }
   .center {
 
-      border: 1px solid #DA291CFF;
       margin: 2px;
     }
 
@@ -64,9 +63,6 @@
   red: #DA291CFF
 
   */
-
-
-
 
   body{
     margin: 0;
@@ -89,4 +85,14 @@
 .mainContent {
    flex: 0.9;
    overflow: auto;
+}
+
+.outsideBoxResults {
+  padding-top: 2px;
+  padding-bottom: 2px;
+  background: rgb(240, 241, 241);
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+
 }
