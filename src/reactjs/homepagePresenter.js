@@ -56,11 +56,11 @@ function Homepage(props){
 
     function isReadyForSearchACB(){
         if(props.model.amountOfAdults + props.model.amountOfYouths >0){
-            if(props.model.tripType === 'One'){
+            if(props.model.tripType === this.model.oneWay){
                 if(props.model.fromAirport !== ''){
 
                 }
-            }else if(props.model.tripType === 'Round'){
+            }else if(props.model.tripType === this.model.roundTrip){
 
             } else{
                 return false;
@@ -87,9 +87,13 @@ function Homepage(props){
         }
     }
 
-    function searchOneWayACB(){
-      resolveFlight(getOffer(props.model.data));
+    function searchACB(){
+      if(props.model.tripType == props.model.oneWay)
+        resolveFlight(getOffer(props.model.data));
+      else if(props.model.tripType == props.model.roundTrip)
+        resolveFlight(getOffer(props.model.roundtripData));
     }
+
     return <div>
             <HomepageView
                 onChangeAmountPeople={onChangeAmountPeopleACB}
@@ -103,7 +107,7 @@ function Homepage(props){
                 tripType={props.model.tripType}
                 dontKnowWhyThisWorkButItDoes={4}
                 validRequest={isReadyForSearchACB}
-                onSearch={searchOneWayACB}
+                onSearch={searchACB}
                 />
             {promiseNoData({promise: flightPromiseState.promise, data: flightPromiseState.data, error: flightPromiseState.error})
             || <SearchResultsView results={flightPromiseState.data.data}/>}
