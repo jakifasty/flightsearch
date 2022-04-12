@@ -1,16 +1,14 @@
 import resolvePromise from "./resolvePromise.js";
-import {createPassenger, createPassengers} from "./utils.js"
 /* This is an example of a JavaScript class.
    The Model keeps only abstract data and has no notions of graohics or interaction
 */
 
 class FlightModel{
     constructor(){
+        this.oneWay = "One";
+        this.roundTrip = "Round";
         this.fromAirport = "LHR";
         this.destAirport = "JFK";
-        this.deptDate = "2022-04-24"
-        this.passengers = [];
-        this.cabin_class = "economy";
         this.observers = [];
         this.searchResultsPromiseState = {};
         this.searchParams = {query: "", type: ""};
@@ -22,12 +20,35 @@ class FlightModel{
                         {
                           origin: this.fromAirport,
                           destination: this.destAirport,
-                          departure_date: this.deptDate,
+                          departure_date: '2022-04-24',
                         },
                       ],
-                      passengers: this.passengers,
-                    cabin_class: this.cabin_class,
+                      passengers: [
+                        {
+                          type: 'adult',
+                        },
+                        {
+                          age: 14,
+                        },
+                      ],
+                    cabin_class: 'economy',
                   };
+        this.roundtripData = {slices:
+                  [
+                    {
+                      origin: 'LHR',
+                      destination: 'JFK',
+                      departure_date: "2022-10-10T17:22:07.481Z"
+                    },
+                    {
+                      origin: 'JFK',
+                      destination: 'LHR',
+                      departure_date: "2022-10-18T17:22:07.481Z"
+                    },
+                  ],
+                  passengers: [{ "type": "adult" }],
+                  cabin_class: null
+                }
     }
 
     setTripType(type){
@@ -37,30 +58,17 @@ class FlightModel{
     }
 
     setFromAirport(airport){
-        this.fromAirport = airport;
-        var payload = {fromAirport: airport};
-        this.notifyObservers(payload);
-    }
-
-    setDestAirport(airport){
-        this.destAirport = airport;
-        var payload = {destAirport: airport};
-        this.notifyObservers(payload);
-    }
-
-    setDeptDate(date){
-        this.deptDate = date;
-        var payload = {deptDate: date};
-        this.notifyObservers(payload);
+        this.fromAirport = airport
+        var payload = {fromAirport: airport}
+        this.notifyObservers(payload)
     }
 
     setAmountAdults(nr){
-        this.amountOfAdults = nr;
-        var payload = {amountAdults: nr};
-        this.notifyObservers(payload);
+        this.amountOfAdults = nr
+        var payload = {amountAdults: nr}
+        this.notifyObservers(payload)
 
     }
-
     setAmountYouths(nr){
         this.amountOfYouths = nr
         var payload = {amountYouths: nr}
@@ -72,50 +80,10 @@ class FlightModel{
        this.searchParams.query = q;
        this.notifyObservers();
      }
-
      setSearchType(t){
        this.searchParams.type = t;
        this.notifyObservers();
      }
-
-     addPassenger(passenger){
-       this.passengers = this.passengers.push(passenger)//TODO: check passenger structure
-     }
-
-     addPassengers(passengers){
-       this.passengers = this.passengers.concat(passengers);//TODO: check passenger structure
-     }
-
-     makePassengers(){
-       let childPassengers = createPassengers(this.amountOfYouths, "child");
-       let adultPassengers = createPassengers(this.amountOfAdults, "adult");
-       this.addPassengers(childPassengers);
-       this.addPassengers(adultPassengers);
-       this.data.passengers = this.passengers;
-     }
-
-     addChildToData(amount){
-       let childPassengers = createPassengers((amount? amount : 1), "child");
-       this.addPassengers(childPassengers);
-     }
-
-     addAdultToData(amount){
-       let adultPassengers = createPassengers((amount? amount : 1), "adult");
-       this.addPassengers(adultPassengers);
-     }
-
-     makeData(){
-       if(this.amountOfAdults < 1 && this.amountOfYouths < 1){
-         throw new Error ('number of people is zero');
-       }
-       this.makePassengers();
-     }
-
-     clearData(){
-       this.passengers = [];
-       this.data.passengers = this.passengers;
-     }
-
      doSearch(params){
        const theModel = this;
        function notifyACB() {theModel.notifyObservers(null);};
