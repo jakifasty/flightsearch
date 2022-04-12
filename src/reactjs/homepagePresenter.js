@@ -19,7 +19,7 @@ export default
     const [airportsPromiseState]=React.useState({});
     const [flightPromiseState]=React.useState({});
     const [, reRender]=React.useState();
-    
+
     const data = require('../data/airports.json')
 
 
@@ -85,6 +85,7 @@ export default
 
     function onToAirportSelectACB(to) {
         props.model.setToAirport(to)
+
     }
 
     function onChangeAmountPeopleACB(params) {
@@ -105,7 +106,6 @@ export default
                 break;
         }
     }
-
 
     function compareDates(date1,date2){
         var date1Split = date1.split("-")
@@ -161,8 +161,11 @@ export default
         }
     }
 
-    function searchOneWayACB(){
-        resolveFlight(getOffer(props.model.data));
+    function searchACB(){
+        if(props.model.tripType == props.model.oneWay)
+          resolveFlight(getOffer(props.model.data));
+        else if(props.model.tripType == props.model.roundTrip)
+          resolveFlight(getOffer(props.model.roundtripData));
     }
 
     return <div> < HomepageView
@@ -174,7 +177,7 @@ export default
         onSelectReturnDate={onSelectReturnDateACB}
         isValidRequest={isReadyForSearchACB}
         onSearchForAirport={searchAirportACB}
-        onSearch={searchOneWayACB}
+        onSearch={searchACB}
         fromAirport={props.model.fromAirport}
         amountOfPeople={props.model.amountAdults + props.model.amountYouths}
         amountOfAdults={props.model.amountAdults}
@@ -187,4 +190,5 @@ export default
         || <HomepageResultsView results={flightPromiseState.data.data}/>
     };
     </div>
+
 }

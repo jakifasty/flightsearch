@@ -4,6 +4,10 @@ import resolvePromise from "./resolvePromise.js";
 class FlightModel {
   constructor() {
 
+    //Not sure why these were added
+    this.oneWay = "One";
+    this.roundTrip = "Round";
+
     this.fromAirport = "";
     this.toAirport = "";
 
@@ -21,28 +25,50 @@ class FlightModel {
 
 
     var date = new Date()
-    this.fromDate= date.getFullYear()+'-'+(date.getMonth()+1)+'-'+date.getDate()
-    this.returnDate = (parseInt(this.fromDate.split("-")[0])+2)+this.fromDate.slice(this.fromDate.indexOf("-"),this.fromDate.length)
+    this.fromDate = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate()
+    this.returnDate = (parseInt(this.fromDate.split("-")[0]) + 2) + this.fromDate.slice(this.fromDate.indexOf("-"), this.fromDate.length)
 
-    this.data = {slices:
-      [
-        {
-          origin: this.fromAirport,
-          destination: this.destAirport,
-          departure_date: this.fromDate,
-        },
-      ],
+    this.data = {
+      slices:
+        [
+          {
+            origin: this.fromAirport,
+            destination: this.destAirport,
+            departure_date: '2022-04-24',
+          },
+        ],
       passengers: [
         {
           type: 'adult',
         },
+        {
+          age: 14,
+        },
       ],
-      cabin_class: 'economy'
+      cabin_class: 'economy',
     };
+    this.roundtripData = {
+      slices:
+        [
+          {
+            origin: 'LHR',
+            destination: 'JFK',
+            departure_date: "2022-10-10T17:22:07.481Z"
+          },
+          {
+            origin: 'JFK',
+            destination: 'LHR',
+            departure_date: "2022-10-18T17:22:07.481Z"
+          },
+        ],
+      passengers: [{ "type": "adult" }],
+      cabin_class: null
+    }
+  }
 
-}
 
-  
+
+
 
   //TODO add airports for returing flights
 
