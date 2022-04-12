@@ -39,13 +39,8 @@ function HomepageResultsView(props){
             Depart Date
             </th>
             </thead>
-            <tbody>
-            YAY
-            {//props.results.prices.map(listCB)}
-            }
-
-            </tbody>
             </table>
+            See offers in console
           </div>
   );
 }

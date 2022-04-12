@@ -3,7 +3,7 @@ import HomepageFormView from "../views/homepageFormView";
 import HomepageResultsView from "../views/homepageResultsView";
 import resolvePromise from "../resolvePromise"
 import promiseNoData from "../promiseNoData"
-import  {getAirportsInCity, getOffer} from "../fligthSearches.js";
+import  {getAirportsInCity, getOffers} from "../fligthSearches.js";
 //import sendMail from "../testFIle";
 
 export default
@@ -105,7 +105,7 @@ export default
             default:
                 break;
         }
-    }
+      }
 
     function compareDates(date1,date2){
         var date1Split = date1.split("-")
@@ -138,8 +138,6 @@ export default
     function onSelectTripTypeACB(type) {
         props.model.setTripType(type)
     }
-
-
 
     //TODO
     function isReadyForSearchACB() {
