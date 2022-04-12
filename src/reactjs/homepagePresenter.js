@@ -124,7 +124,7 @@ export default
     }
 
     function onSelectFromDateACB(date) {
-        if(compareDates(date,props.model.returnDate) || props.model.tripType == 'One'){
+        if(compareDates(date,props.model.returnDate) || props.model.tripType == props.model.oneWay){
             props.model.setFromDate(date)
         }
     }
@@ -147,11 +147,11 @@ export default
         }
 
         if (props.model.amountOfAdults + props.model.amountOfYouths > 0) {
-            if (props.model.tripType === 'One') {
+            if (props.model.tripType === props.model.oneWay) {
                 if (props.model.fromAirport !== '') {
 
                 }
-            } else if (props.model.tripType === 'Round') {
+            } else if (props.model.tripType === props.model.roundTrip) {
 
             } else {
                 return false;
