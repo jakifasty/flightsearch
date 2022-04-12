@@ -24,7 +24,25 @@ class FlightModel {
     this.fromDate= date.getFullYear()+'-'+(date.getMonth()+1)+'-'+date.getDate()
     this.returnDate = (parseInt(this.fromDate.split("-")[0])+2)+this.fromDate.slice(this.fromDate.indexOf("-"),this.fromDate.length)
 
-  }
+    this.data = {slices:
+      [
+        {
+          origin: this.fromAirport,
+          destination: this.destAirport,
+          departure_date: this.fromDate,
+        },
+      ],
+      passengers: [
+        {
+          type: 'adult',
+        },
+      ],
+      cabin_class: 'economy'
+    };
+
+}
+
+  
 
   //TODO add airports for returing flights
 

@@ -1,7 +1,11 @@
 import React from "react"
-import HomepageView from "../views/homepageView";
-import { fetchAirports } from "../util";
+import HomepageFormView from "../views/homepageFormView";
+import HomepageResultsView from "../views/homepageResultsView";
+import resolvePromise from "../resolvePromise"
+import promiseNoData from "../promiseNoData"
+import  {getAirportsInCity, getOffer} from "../fligthSearches.js";
 //import sendMail from "../testFIle";
+
 export default
     function Homepage(props) {
     const [, setFrom] = React.useState(null);
@@ -12,11 +16,29 @@ export default
     const [, setYouths] = React.useState(null);
     const [, setTripType] = React.useState(null);
     const [choosenAirport, setAirport] = React.useState([]);
+    const [airportsPromiseState]=React.useState({});
+    const [flightPromiseState]=React.useState({});
+    const [, reRender]=React.useState();
+    
     const data = require('../data/airports.json')
+
 
     //TODO add return airports functionality
 
-    function observerACB() {
+    
+
+    function resolveAirports(promise){
+      resolvePromise(promise, airportsPromiseState,
+        function promiseStateChangedACB(){reRender(new Object());})
+    }
+
+    function resolveFlight(promise){
+      resolvePromise(promise, flightPromiseState,
+        function promiseStateChangedACB(){
+          reRender(new Object());})
+    }
+
+    function observerACB(){
         setFrom(props.model.fromAirport);
         setTo(props.model.toAirport)
         setFromDate(props.model.fromDate)
@@ -61,8 +83,6 @@ export default
         props.model.setFromAirport(from)
     }
 
-    
-
     function onToAirportSelectACB(to) {
         props.model.setToAirport(to)
     }
@@ -85,6 +105,7 @@ export default
                 break;
         }
     }
+
 
     function compareDates(date1,date2){
         var date1Split = date1.split("-")
@@ -140,9 +161,11 @@ export default
         }
     }
 
+    function searchOneWayACB(){
+        resolveFlight(getOffer(props.model.data));
+    }
 
-
-    return < HomepageView
+    return <div> < HomepageView
         onChangeAmountPeople={onChangeAmountPeopleACB}
         onFromAirportSelect={onFromAirportSelectACB}
         onToAirportSelect={onToAirportSelectACB}
@@ -151,12 +174,17 @@ export default
         onSelectReturnDate={onSelectReturnDateACB}
         isValidRequest={isReadyForSearchACB}
         onSearchForAirport={searchAirportACB}
+        onSearch={searchOneWayACB}
         fromAirport={props.model.fromAirport}
         amountOfPeople={props.model.amountAdults + props.model.amountYouths}
         amountOfAdults={props.model.amountAdults}
         amountOfYouths={props.model.amountYouths}
         tripType={props.model.tripType}
-
         airportResults={choosenAirport}
-    />;
+    />
+    {
+        promiseNoData({promise: flightPromiseState.promise, data: flightPromiseState.data, error: flightPromiseState.error})
+        || <HomepageResultsView results={flightPromiseState.data.data}/>
+    };
+    </div>
 }

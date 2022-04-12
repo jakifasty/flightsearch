@@ -1,16 +1,24 @@
-function promiseNoData(props){
-  let loading_gif = "https://i.stack.imgur.com/kOnzy.gif";
-  let lama = "https://www.icegif.com/wp-content/uploads/icegif-30.gif";
+function promiseNoData(promiseState){
+  
+  let loading_gif = "https://traveloptionsng.com/wp-content/uploads/2019/09/gogo-loader-plane-transparent.gif";
+  
   function render (promise, data, error){
     if(!promise){
-
-      return <div>no data</div>
-    }else if(promise && !data && !error){
-      return  <img height="200" src={loading_gif}></img>
+      return <div></div>
+    }else if( !data && !error ){
+      return(
+              <div className="outsideBoxResults">
+                <img class="center" height="200" src={loading_gif}></img>
+              </div>
+            );
     }else if(error){
-      return <div>{error}</div>
-    }else return ""
+      return (
+                <div>{error}</div>
+            );
+    }else 
+      return false;
   }
-  return render(props.promise, props.data, props.error);
+  return render(promiseState.promise, promiseState.data, promiseState.error);
+
 }
 export default promiseNoData;
