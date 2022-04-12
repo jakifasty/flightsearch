@@ -161,9 +161,9 @@ export default
 
     function searchACB(){
         if(props.model.tripType == props.model.oneWay)
-          resolveFlight(getOffer(props.model.data));
+          resolveFlight(getOffers(props.model.data));
         else if(props.model.tripType == props.model.roundTrip)
-          resolveFlight(getOffer(props.model.roundtripData));
+          resolveFlight(getOffers(props.model.roundtripData));
     }
 
     return <div> < HomepageFormView
