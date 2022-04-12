@@ -25,7 +25,7 @@ export default
 
     //TODO add return airports functionality
 
-    
+
 
     function resolveAirports(promise){
       resolvePromise(promise, airportsPromiseState,
@@ -115,7 +115,7 @@ export default
         }
         if(parseInt(date1Split[1])>parseInt(date2Split[1])){
             return false
-            
+
         }
         if(parseInt(date1Split[2])>parseInt(date2Split[2])){
             return false
@@ -145,7 +145,7 @@ export default
     function isReadyForSearchACB() {
 
         function checkRest(){
-            
+
         }
 
         if (props.model.amountOfAdults + props.model.amountOfYouths > 0) {
@@ -168,7 +168,7 @@ export default
           resolveFlight(getOffer(props.model.roundtripData));
     }
 
-    return <div> < HomepageView
+    return <div> < HomepageFormView
         onChangeAmountPeople={onChangeAmountPeopleACB}
         onFromAirportSelect={onFromAirportSelectACB}
         onToAirportSelect={onToAirportSelectACB}
