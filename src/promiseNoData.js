@@ -12,8 +12,11 @@ function promiseNoData(promiseState){
               </div>
             );
     }else if(error){
-      return <div>{error}</div>
-    }else return false
+      return (
+                <div>{error}</div>
+            );
+    }else 
+      return false;
   }
   return render(promiseState.promise, promiseState.data, promiseState.error);
 

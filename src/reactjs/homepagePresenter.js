@@ -1,6 +1,6 @@
 import React from "react"
-import HomepageView from "../views/homepageView";
-import SearchResultsView from "../views/searchResultsView";
+import HomepageFormView from "../views/homepageFormView";
+import HomepageResultsView from "../views/homepageResultsView";
 import resolvePromise from "../resolvePromise"
 import promiseNoData from "../promiseNoData"
 import  {getAirportsInCity, getOffer} from "../fligthSearches.js";
@@ -91,7 +91,7 @@ function Homepage(props){
       resolveFlight(getOffer(props.model.data));
     }
     return <div>
-            <HomepageView
+            <HomepageFormView
                 onChangeAmountPeople={onChangeAmountPeopleACB}
                 onFromTextChange={onFromTextChangeACB}
                 onToTextChnage={onToTextChangeACB}
@@ -106,6 +106,6 @@ function Homepage(props){
                 onSearch={searchOneWayACB}
                 />
             {promiseNoData({promise: flightPromiseState.promise, data: flightPromiseState.data, error: flightPromiseState.error})
-            || <SearchResultsView results={flightPromiseState.data.data}/>}
+            || <HomepageResultsView results={flightPromiseState.data.data}/>}
           </div>
 }

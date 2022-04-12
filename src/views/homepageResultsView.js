@@ -1,4 +1,4 @@
-function SearchResultsView(props){
+function HomepageResultsView(props){
   console.log(props.results);
   function listCB(dish){
     return <tr>
@@ -49,4 +49,4 @@ function SearchResultsView(props){
           </div>
   );
 }
-export default SearchResultsView;
+export default HomepageResultsView;

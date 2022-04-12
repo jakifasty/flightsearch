@@ -1,5 +1,5 @@
 /* Functional JSX component. Name starts with capital letter */
-function HomepageView(props){
+function HomepageFormView(props){
 
 
     function fromChangeAmountPeopleACB(event){
@@ -69,4 +69,4 @@ function HomepageView(props){
 
 }
 
-export default HomepageView;
+export default HomepageFormView;
