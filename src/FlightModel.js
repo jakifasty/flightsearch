@@ -5,6 +5,8 @@ import resolvePromise from "./resolvePromise.js";
 
 class FlightModel{
     constructor(){
+        this.oneWay = "One";
+        this.roundTrip = "Round";
         this.fromAirport = "LHR";
         this.destAirport = "JFK";
         this.observers = [];
@@ -31,6 +33,22 @@ class FlightModel{
                       ],
                     cabin_class: 'economy',
                   };
+        this.roundtripData = {slices:
+                  [
+                    {
+                      origin: 'LHR',
+                      destination: 'JFK',
+                      departure_date: "2022-10-10T17:22:07.481Z"
+                    },
+                    {
+                      origin: 'JFK',
+                      destination: 'LHR',
+                      departure_date: "2022-10-18T17:22:07.481Z"
+                    },
+                  ],
+                  passengers: [{ "type": "adult" }],
+                  cabin_class: null
+                }
     }
 
     setTripType(type){
