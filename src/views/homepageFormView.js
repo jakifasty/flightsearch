@@ -29,7 +29,7 @@ function HomepageFormView(props) {
     function changeFromDateACB(event) {
         props.onSelectFromDate(event.target.value)
     }
-    
+
     function changeReturnDateACB(event) {
         props.onSelectReturnDate(event.target.value)
     }
@@ -81,17 +81,16 @@ function HomepageFormView(props) {
                     </div>
                 </div>
             </div>
-            <div className="outsideBox">
-                <input className="center" type="search" list="listID" name="From" placeholder="From..." onChange={fromTextInputACB}></input>
-                <input className="center" type="search" list="listID" name="Destination" placeholder="Pick a destination..." onChange={toTextInputACB}></input>
-                <input className="center" placeholder="test" type="date" name="trip-start"
-                    min={today} max={twoYearsAfterToday} onChange={changeFromDateACB}>
-                </input>
-                <input className={props.tripType === "One" ? "hidden" : "center"} type="date" name="returnDate"
-                    min={today} max={twoYearsAfterToday} onChange={changeReturnDateACB}>
-                </input>
+            <div className="input-flex-container">
+              <input className="center" type="search" list="listID" name="From" placeholder="From..." onChange={fromTextInputACB}></input>
+              <input className="center" type="search" list="listID" name="Destination" placeholder="Pick a destination..." onChange={toTextInputACB}></input>
+              <input className="center" placeholder="test" type="date" name="trip-start"
+                  min={today} max={twoYearsAfterToday} onChange={changeFromDateACB}>
+              </input>
+              <input className={props.tripType === "One" ? "hidden" : "center"} type="date" name="returnDate"
+                  min={today} max={twoYearsAfterToday} onChange={changeReturnDateACB}>
+              </input>
             </div>
-            <div className="outsideBox"></div>
             <button disabled={false/*!props.isValidRequest*/} onClick={clickSearchACB}>Search</button>
             {getAirportList(props.airportResults)}
         </div>
