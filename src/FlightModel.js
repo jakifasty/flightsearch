@@ -15,6 +15,8 @@ class FlightModel{
         this.fromAirport = "LHR";
         this.destAirport = "JFK";
         this.observers = [];
+
+        this.currentFlightPromiseState = {};
         this.searchResultsPromiseState = {};
         this.searchParams = {query: "", type: ""};
         this.amountOfAdults = 1
@@ -115,10 +117,10 @@ class FlightModel{
        const theModel = this;
        function notifyACB() {theModel.notifyObservers(null);};
        if(params){
-         resolvePromise(null, this.searchResultsPromiseState, notifyACB);
+         resolvePromise(searchFlights(this.searchParams), this.searchResultsPromiseState, notifyACB);
        }
        else{
-         resolvePromise(null, this.searchResultsPromiseState, notifyACB);
+         resolvePromise(searchFlights(params), this.searchResultsPromiseState, notifyACB);
        }
      }
      addObserver(callback){
@@ -133,16 +135,31 @@ class FlightModel{
             }
         )
     }
-     notifyObservers(payload){
-        function invokeObserverCB(obs){
-          try{
-            obs(payload);
-          }catch (err){
-            console.log(err);
-          }
-        }
-        this.observers.forEach(invokeObserverCB);
+    setCurrentFlight(id){
+      let myModel = this;
+
+      function notifyACB(){
+        myModel.notifyObservers(null);
       }
+
+      if(!id || id === this.currentFlight || !isValid(id)) return;
+
+      resolvePromise(getFlightDetails(id), this.currentFlightPromiseState, notifyACB);
+
+      this.currentFlight = id;
+
+      this.notifyObservers({setcurrentFlight: id});
+    }
+    notifyObservers(payload){
+      function invokeObserverCB(obs){
+        try{
+          obs(payload);
+        }catch (err){
+          console.log(err);
+        }
+      }
+      this.observers.forEach(invokeObserverCB);
+    }
 
 }
 

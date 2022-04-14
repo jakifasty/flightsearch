@@ -181,7 +181,7 @@ export default
         amountOfPeople={props.model.amountAdults + props.model.amountYouths}
         amountOfAdults={props.model.amountAdults}
         amountOfYouths={props.model.amountYouths}
-        tripType={props.model.tripType}
+        tripType={props.model.tripType} 
         airportResults={choosenAirport}
     />
     {
