@@ -1,6 +1,7 @@
 import {API_URL, API_TOKEN, API_MARKER, API_ACCESS_TOKEN} from "./apiConfig"
 
 function treatHTTPResponseACB(response){
+  console.log(response)
    /*TODO throw if the HTTP response is not 200, otherwise return response.json()*/
    if(response.status !== 200){
      throw new Error (response.status);
@@ -31,7 +32,7 @@ function getAirportsInCity(params) {
     .then(transformResultsACB)
 }/* end of second fetch parameter, object */
 
-function getOffers(data) {
+function getOffers(dataa) {
   let headers = {
     "Content-Type": "application/json",
     "Accept" : "application/json",
@@ -42,7 +43,7 @@ function getOffers(data) {
 
   let body = JSON.stringify({
           data: {
-            ...data,
+            ...dataa,
           },
         });
   let method = 'POST'
@@ -54,8 +55,8 @@ function getOffers(data) {
       body : body,
       compress : compress,
     })
-    .then(response => response.json())
-    .catch(err => console.error(err));
+    .then(response => console.log(response))
+    .catch(err => console.log(err));
 }
 
 export {getAirportsInCity, getOffers};
