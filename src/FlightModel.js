@@ -84,6 +84,12 @@ class FlightModel{
         this.notifyObservers(payload)
     }
 
+    setToAirport(airport){
+      this.toAirport = airport
+      var payload = {toAirport: airport}
+      this.notifyObservers(payload)
+  }
+
     setAmountAdults(nr){
         this.amountOfAdults = nr
         var payload = {amountAdults: nr}

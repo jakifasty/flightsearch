@@ -4,15 +4,30 @@ function HomepageResultsView(props){
 
   function listResultsCB(flight){
     return (
-      <span key={flight.id} onClick={function (event){window.location.hash="#details"; props.onChooseFlight(flight)}}>
-
-
-
+      <span key={flight.id} onClick={function (event){window.location.hash="#details"; props.onChooseFlight(flight)}} className="flightResults">
+        <tr className="infoSquare">
+            <td>
+              {flight.id}
+            </td>
+            <tr></tr>
+            <td>{flight.total_amount}</td>
+            <td>{flight.total_currency}</td>
+            <tr></tr>
+            <td>
+              {flight.origin}
+            </td>
+            <td>
+              {flight.destination}
+            </td>
+            <tr></tr>
+            <td>
+              {flight.departure_date}
+            </td>
+            <td>
+              {flight.main_airline}
+            </td>
+        </tr>
       </span>
-
-
-
-
     );
     /*<tr>
           <td>
@@ -30,13 +45,12 @@ function HomepageResultsView(props){
           <td>
           {flight.departure_date}
           </td>
-          </tr>*/
+      </tr>*/
   }
 
   return (
           <div>
-            {props.flightResults.map(listResultsCB)}
-
+            {props.results.map(listResultsCB)}
           </div>
           /*<div>
             <table>
