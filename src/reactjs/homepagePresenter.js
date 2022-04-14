@@ -3,7 +3,7 @@ import HomepageFormView from "../views/homepageFormView";
 import HomepageResultsView from "../views/homepageResultsView";
 import resolvePromise from "../resolvePromise"
 import promiseNoData from "../promiseNoData"
-import  {getAirportsInCity, getOffers} from "../fligthSearches.js";
+import  {getAirportsInCity, getOffers} from "../flightSearches.js";
 //import sendMail from "../testFIle";
 
 export default
@@ -24,9 +24,6 @@ export default
 
 
     //TODO add return airports functionality
-
-
-
     function resolveAirports(promise){
       resolvePromise(promise, airportsPromiseState,
         function promiseStateChangedACB(){reRender(new Object());})
@@ -166,6 +163,10 @@ export default
           resolveFlight(getOffers(props.model.roundtripData));
     }
 
+    function changeFlightOnClickACB(flight){
+        //props.model.setCurrentFlight(flight.id);
+    }
+
     return <div> < HomepageFormView
         onChangeAmountPeople={onChangeAmountPeopleACB}
         onFromAirportSelect={onFromAirportSelectACB}
@@ -185,7 +186,7 @@ export default
     />
     {
         promiseNoData({promise: flightPromiseState.promise, data: flightPromiseState.data, error: flightPromiseState.error})
-        || <HomepageResultsView results={flightPromiseState.data.data}/>
+        || <HomepageResultsView results={flightPromiseState.data} onChooseFlight={changeFlightOnClickACB}/>
     };
     </div>
 

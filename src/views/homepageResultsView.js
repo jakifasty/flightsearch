@@ -1,47 +1,65 @@
 function HomepageResultsView(props){
+
   console.log(props.results);
-  function listCB(dish){
-    return <tr>
+
+  function listResultsCB(flight){
+    return (
+      <span key={flight.id} onClick={function (event){window.location.hash="#details"; props.onChooseFlight(flight)}}>
+
+
+
+      </span>
+
+
+
+
+    );
+    /*<tr>
           <td>
-          {dish.origin}
+          {flight.origin}
           </td>
           <td>
-          {dish.destination}
+          {flight.destination}
           </td>
           <td>
-          {dish.price}
+          {flight.price}
           </td>
           <td>
-          {dish.main_airline}
+          {flight.main_airline}
           </td>
           <td>
-          {dish.depart_date}
+          {flight.departure_date}
           </td>
-          </tr>
+          </tr>*/
   }
+
   return (
           <div>
+            {props.flightResults.map(listResultsCB)}
+
+          </div>
+          /*<div>
             <table>
-            <thead>
-            <th>
-            From
-            </th>
-            <th>
-            To
-            </th>
-            <th>
-            Price
-            </th>
-            <th>
-            Airline
-            </th>
-            <th>
-            Depart Date
-            </th>
-            </thead>
+              <thead>
+                <th>
+                  From
+                </th>
+                <th>
+                  To
+                </th>
+                <th>
+                  Price
+                </th>
+                <th>
+                  Airline
+                </th>
+                <th>
+                  Depart Date
+                </th>
+              </thead>
             </table>
             See offers in console
-          </div>
+          </div>*/
   );
 }
 export default HomepageResultsView;

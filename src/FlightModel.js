@@ -1,7 +1,12 @@
 import resolvePromise from "./resolvePromise.js";
+//import {getFlightDetails} from "./flightSearches"
 /* This is an example of a JavaScript class.
    The Model keeps only abstract data and has no notions of graohics or interaction
 */
+
+function isValid(id){
+  return (typeof(id) == "number")
+}
 
 class FlightModel{
     constructor(){
@@ -50,6 +55,22 @@ class FlightModel{
                   cabin_class: null
                 }
     }
+
+    /*setCurrentFlight(id){
+      let myModel = this;
+
+      function notifyACB() {
+        myModel.notifyObservers(null);
+      }
+
+      if(!id || id==this.currentDish || !isValid(id)) return;
+
+      resolvePromise(getFlightDetails(id), this.currentFlightPromiseState, notifyACB);
+
+      this.currentFlight = id;
+
+      this.notifyObservers({setCurrentFlight: id})
+    }*/
 
     setTripType(type){
         this.tripType = type

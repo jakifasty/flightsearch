@@ -1,4 +1,4 @@
-import {API_URL, API_TOKEN, API_MARKER, API_ACCESS_TOKEN} from "./apiConfig"
+import {API_URL, API_TOKEN, API_MARKER, API_ACCESS_TOKEN, API_KEY} from "./apiConfig"
 
 function treatHTTPResponseACB(response){
    /*TODO throw if the HTTP response is not 200, otherwise return response.json()*/
@@ -30,6 +30,17 @@ function getAirportsInCity(params) {
     .then(treatHTTPResponseACB)
     .then(transformResultsACB)
 }/* end of second fetch parameter, object */
+
+/*function getFlightDetails(id){ //taken from GET Get Recipe Information
+
+	const endpoint = 'recipes/' + id + '/information';
+	return fetch(BASE_URL + endpoint, {
+		"method": "GET",
+		"headers":  {
+			'X-Mashape-Key': API_KEY,
+			"x-rapidapi-url": BASE_URL,
+		}}).then(treatHTTPResponseACB);
+}*/
 
 function getOffers(data) {
   let headers = {
