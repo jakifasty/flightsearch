@@ -1,7 +1,11 @@
 import React from "react"
-import HomepageView from "../views/homepageView";
-import { fetchAirports } from "../util";
+import HomepageFormView from "../views/homepageFormView";
+import HomepageResultsView from "../views/homepageResultsView";
+import resolvePromise from "../resolvePromise"
+import promiseNoData from "../promiseNoData"
+import  {getAirportsInCity, getOffers} from "../fligthSearches.js";
 //import sendMail from "../testFIle";
+
 export default
     function Homepage(props) {
     const [, setFrom] = React.useState(null);
@@ -12,11 +16,29 @@ export default
     const [, setYouths] = React.useState(null);
     const [, setTripType] = React.useState(null);
     const [choosenAirport, setAirport] = React.useState([]);
+    const [airportsPromiseState]=React.useState({});
+    const [flightPromiseState]=React.useState({});
+    const [, reRender]=React.useState();
+
     const data = require('../data/airports.json')
+
 
     //TODO add return airports functionality
 
-    function observerACB() {
+
+
+    function resolveAirports(promise){
+      resolvePromise(promise, airportsPromiseState,
+        function promiseStateChangedACB(){reRender(new Object());})
+    }
+
+    function resolveFlight(promise){
+      resolvePromise(promise, flightPromiseState,
+        function promiseStateChangedACB(){
+          reRender(new Object());})
+    }
+
+    function observerACB(){
         setFrom(props.model.fromAirport);
         setTo(props.model.toAirport)
         setFromDate(props.model.fromDate)
@@ -61,10 +83,9 @@ export default
         props.model.setFromAirport(from)
     }
 
-    
-
     function onToAirportSelectACB(to) {
         props.model.setToAirport(to)
+
     }
 
     function onChangeAmountPeopleACB(params) {
@@ -84,7 +105,7 @@ export default
             default:
                 break;
         }
-    }
+      }
 
     function compareDates(date1,date2){
         var date1Split = date1.split("-")
@@ -94,7 +115,7 @@ export default
         }
         if(parseInt(date1Split[1])>parseInt(date2Split[1])){
             return false
-            
+
         }
         if(parseInt(date1Split[2])>parseInt(date2Split[2])){
             return false
@@ -103,7 +124,7 @@ export default
     }
 
     function onSelectFromDateACB(date) {
-        if(compareDates(date,props.model.returnDate) || props.model.tripType == 'One'){
+        if(compareDates(date,props.model.returnDate) || props.model.tripType == props.model.oneWay){
             props.model.setFromDate(date)
         }
     }
@@ -118,21 +139,19 @@ export default
         props.model.setTripType(type)
     }
 
-
-
     //TODO
     function isReadyForSearchACB() {
 
         function checkRest(){
-            
+
         }
 
         if (props.model.amountOfAdults + props.model.amountOfYouths > 0) {
-            if (props.model.tripType === 'One') {
+            if (props.model.tripType === props.model.oneWay) {
                 if (props.model.fromAirport !== '') {
 
                 }
-            } else if (props.model.tripType === 'Round') {
+            } else if (props.model.tripType === props.model.roundTrip) {
 
             } else {
                 return false;
@@ -140,9 +159,14 @@ export default
         }
     }
 
+    function searchACB(){
+        if(props.model.tripType == props.model.oneWay)
+          resolveFlight(getOffers(props.model.data));
+        else if(props.model.tripType == props.model.roundTrip)
+          resolveFlight(getOffers(props.model.roundtripData));
+    }
 
-
-    return < HomepageView
+    return <div> < HomepageFormView
         onChangeAmountPeople={onChangeAmountPeopleACB}
         onFromAirportSelect={onFromAirportSelectACB}
         onToAirportSelect={onToAirportSelectACB}
@@ -151,12 +175,18 @@ export default
         onSelectReturnDate={onSelectReturnDateACB}
         isValidRequest={isReadyForSearchACB}
         onSearchForAirport={searchAirportACB}
+        onSearch={searchACB}
         fromAirport={props.model.fromAirport}
         amountOfPeople={props.model.amountAdults + props.model.amountYouths}
         amountOfAdults={props.model.amountAdults}
         amountOfYouths={props.model.amountYouths}
         tripType={props.model.tripType}
-
         airportResults={choosenAirport}
-    />;
+    />
+    {
+        promiseNoData({promise: flightPromiseState.promise, data: flightPromiseState.data, error: flightPromiseState.error})
+        || <HomepageResultsView results={flightPromiseState.data.data}/>
+    };
+    </div>
+
 }
