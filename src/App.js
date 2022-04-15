@@ -9,11 +9,11 @@ require("./navigation.js")
 function App(props) {
   return (
     <div className="flexParent">
-      <div className="sidebar"> 
+      <div className="flexible-sidebar-right"> 
         <Globe/>
         {/*<Show hash="#sidebar"><Sidebar model={props.model}/></Show>*/}
       </div>
-      <div className="mainContent">
+      <div className="flexible-items-left">
       <Show hash="#homepage"><Homepage model={props.model}/></Show>
       {/*<Show hash="#details"><Details model={props.model}/></Show>*/}
       {/*<Show hash="#summary"><Summary model={props.model}/></Show>*/}

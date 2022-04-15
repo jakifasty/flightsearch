@@ -188,7 +188,7 @@ function Homepage(props) {
     //props.model.setCurrentFlight(flight.id);
   }
 
-  return <div > < HomepageFormView
+  return <div> < HomepageFormView
   onChangeAmountPeople = {
     onChangeAmountPeopleACB
   }
@@ -247,7 +247,6 @@ function Homepage(props) {
       changeFlightOnClickACB
     }
     />
-  }; <
-  /div>
+  }; </div>
 
 }
