@@ -50,7 +50,7 @@ function HomepageResultsView(props){
 
   return (
           <div>
-            {props.results.map(listResultsCB)}
+            {props.results.data.offers.map(listResultsCB)}
           </div>
           /*<div>
             <table>
