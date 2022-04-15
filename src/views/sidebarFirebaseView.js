@@ -30,15 +30,12 @@ function renderFlights(onCurrentFlight, onRemove, flights){
         return (
                 <tr key={flight.id}>
                     <td>
-                        <button onclick={function clickButtonACB(event){onRemove(dish);}}>x</button>
+                        <button onclick={function clickButtonACB(event){onRemove(flight);}}>x</button>
                     </td>
 
                     <td>
-                        <a onClick={function clickButtonACB(event){setCurrentFlight(flight);}} href='#details'>{flight.orgin}
+                        <a onClick={function clickButtonACB(event){onCurrentFlight(flight);}} href='#details'>{flight.orgin}
                         {flight.destination}</a>
-                    </td>
-                    <td>
-                        {dishType(dish)}
                     </td>
                 </tr>
         );
@@ -46,7 +43,7 @@ function renderFlights(onCurrentFlight, onRemove, flights){
     return(
             <table>
                 <tbody>
-                    {map(flightsTableRowCB)}
+                    {/*map(flightsTableRowCB)*/}
                     {/*props.results.data.offers.map(listResultsCB)*/}
                 </tbody>
             </table>

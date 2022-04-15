@@ -1,5 +1,5 @@
 import React from "react";
-import SIdebarFirebase from "../views/sidebarFirebase.js"
+import SidebarFirebaseView from "../views/sidebarFirebaseView.js"
 
 export default
 function SidebarFirebase(props){
@@ -10,7 +10,7 @@ function SidebarFirebase(props){
         setFlights(props.model.flights);
     }
 
-    function observerItWasCreated(){
+    function observerItWasCreatedACB(){
         observerACB();
         props.model.addObserver(observerACB); //add the observer to the model
 
@@ -21,13 +21,13 @@ function SidebarFirebase(props){
     React.useEffect(observerItWasCreatedACB, []);
 
     function setCurrentFlightACB(flight){
-        props.model.setCurrentDish(dish.id);
+        props.model.setCurrentFlight(flight.id);
     }
 
     function removeFlightACB(flight){
-        props.model.setCurrentDish(dish.id);
+        props.model.setCurrentFlight(flight.id);
     }
 
     return <SidebarFirebaseView flights={props.model.flights} onCurrentFlight={setCurrentFlightACB} onRemove={removeFlightACB}/>;
-    
+
 }
