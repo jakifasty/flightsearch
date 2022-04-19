@@ -1,47 +1,79 @@
 function HomepageResultsView(props){
+
   console.log(props.results);
-  function listCB(dish){
-    return <tr>
+
+  function listResultsCB(flight){
+    return (
+      <span key={flight.id} onClick={function (event){window.location.hash="#details"; props.onChooseFlight(flight)}} className="flightResults">
+        <tr className="infoSquare">
+            <td>
+              {flight.id}
+            </td>
+            <tr></tr>
+            <td>{flight.total_amount}</td>
+            <td>{flight.total_currency}</td>
+            <tr></tr>
+            <td>
+              {flight.origin}
+            </td>
+            <td>
+              {flight.destination}
+            </td>
+            <tr></tr>
+            <td>
+              {flight.departure_date}
+            </td>
+            <td>
+              {flight.main_airline}
+            </td>
+        </tr>
+      </span>
+    );
+    /*<tr>
           <td>
-          {dish.origin}
+          {flight.origin}
           </td>
           <td>
-          {dish.destination}
+          {flight.destination}
           </td>
           <td>
-          {dish.price}
+          {flight.price}
           </td>
           <td>
-          {dish.main_airline}
+          {flight.main_airline}
           </td>
           <td>
-          {dish.depart_date}
+          {flight.departure_date}
           </td>
-          </tr>
+      </tr>*/
   }
+
   return (
           <div>
+            {props.results.data.offers.map(listResultsCB)}
+          </div>
+          /*<div>
             <table>
-            <thead>
-            <th>
-            From
-            </th>
-            <th>
-            To
-            </th>
-            <th>
-            Price
-            </th>
-            <th>
-            Airline
-            </th>
-            <th>
-            Depart Date
-            </th>
-            </thead>
+              <thead>
+                <th>
+                  From
+                </th>
+                <th>
+                  To
+                </th>
+                <th>
+                  Price
+                </th>
+                <th>
+                  Airline
+                </th>
+                <th>
+                  Depart Date
+                </th>
+              </thead>
             </table>
             See offers in console
-          </div>
+          </div>*/
   );
 }
 export default HomepageResultsView;

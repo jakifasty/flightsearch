@@ -109,3 +109,37 @@
   align-items: stretch;
 
 }
+
+.flightResults{
+  text-align:  center;
+  vertical-align:   baseline;
+  display: inline-block;
+
+  padding-top: 50px;
+  padding-right: 30px;
+  padding-bottom: 50px;
+  padding-left: 80px;
+}
+
+.infoSquare{
+  text-align: left;
+
+  background-color: lightgray;
+  width: 300px;
+  border: 15px solid green;
+  padding: 50px;
+  margin: 20px;
+}
+
+.flexible-sidebar-right {
+  background-color: dodgerblue;
+  padding: 10px;
+  flex: 70%;
+}
+
+.flexible-items-left {
+  display: inline-block;
+  background-color: #f1f1f1;
+  padding: 10px;
+  flex: 30%;
+}

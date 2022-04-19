@@ -70,14 +70,14 @@ function HomepageFormView(props) {
                 </select>
                 <div className="dropdown-content">
                     <div>Adults 18+ :
-                        <button disabled={props.amountOfAdults < 1} onClick={changeAmountPeopleACB} value="Adult -">-</button>
-                        {props.amountOfAdults}
-                        <button disabled={props.amountOfPeople >= 9} onClick={changeAmountPeopleACB} value="Adult +">+</button>
+                        <button disabled={props.amountAdults < 1} onClick={changeAmountPeopleACB} value="Adult -">-</button>
+                        {props.amountAdults}
+                        <button disabled={props.amountPeople >= 9} onClick={changeAmountPeopleACB} value="Adult +">+</button>
                     </div>
                     <div>Youths 1-18 :
-                        <button disabled={props.amountOfYouths < 1} onClick={changeAmountPeopleACB} value="Youth -">-</button>
-                        {props.amountOfYouths}
-                        <button disabled={props.amountOfPeople >= 9} onClick={changeAmountPeopleACB} value="Youth +">+</button>
+                        <button disabled={props.amountYouths < 1} onClick={changeAmountPeopleACB} value="Youth -">-</button>
+                        {props.amountYouths}
+                        <button disabled={props.amountPeople >= 9} onClick={changeAmountPeopleACB} value="Youth +">+</button>
                     </div>
                 </div>
             </div>
