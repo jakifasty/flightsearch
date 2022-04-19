@@ -34,7 +34,7 @@ function getAirportsInCity(params) {
 
 function getOffers(dataa) {
   let headers = {
-    "Target-URL" : "https://api.duffel.com/air/offer_requests",
+    "Api-Url" : "https://api.duffel.com/air/offer_requests?return_offers=true",
     "Content-Type": "application/json",
     "Accept" : "application/json",
     "Accept-Encoding": "gzip",
@@ -49,7 +49,7 @@ function getOffers(dataa) {
         });
   let method = 'POST'
   let compress = true;
-  let url = 'http://192.168.1.206:3000';//https://api.duffel.com/air/offer_requests?return_offers=true
+  let url = 'http://81.232.10.252:3000/CORS';//https://api.duffel.com/air/offer_requests?return_offers=true
   return fetch(url,{
       method : method,
       headers : headers,

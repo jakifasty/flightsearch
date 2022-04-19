@@ -4,38 +4,42 @@ var express = require('express'),
     app = express();
 
 var myLimit = typeof('100kb');
-//console.log('Using limit: ', myLimit);
-
 app.use(bodyParser.json({limit: myLimit}));
 
-app.all('*', function (req, res, next) {
+app.all('/CORS', function (req, res, next) {
     // Set CORS headers: allow all origins, methods, and headers: you may want to lock this down in a production environment
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Methods", "GET, PUT, POST");
     res.header("Access-Control-Allow-Headers", req.header('access-control-request-headers'));
-
     if (req.method === 'OPTIONS') {
-        // CORS Preflight
-        res.send();
+        //Preflight
+        if(req.headers['access-control-request-headers'] === ('api-url,authorization,content-type,duffel-version')){
+            res.send();
+        }
+        else{
+            res.status(500).send({error: 'Inavlid request headers'})
+        }
     } else {
-        var targetURL = req.header('Target-URL'); // Target-URL ie. https://example.com or http://example.com
-        if (!targetURL) {
-            res.send(500, { error: 'There is no Target-Endpoint header in the request' });
+        var apiURL = req.header('Api-Url');
+        if (!apiURL) {
+            res.status(500).send({error: 'There is no Target-Endpoint header in the request' });
             return;
         }
-        request({ url: targetURL + req.url, method: req.method, json: req.body, headers: {'Authorization': req.header('Authorization')} },
+        if (apiURL.trimStart().startsWith('https://api.duffel.com/air/')){
+        request({ url: apiURL, method: req.method, json: req.body, headers: {'Authorization': req.header('Authorization'),'Duffel-version': req.header('Duffel-version'),} },
             function (error, response, body) {
                 if (error) {
                     console.error('error: ' + response.statusCode)
                 }
-                //console.log(body);
             }).pipe(res);
-            //console.log(res)
+        }
+        else{
+            res.status(500).send({error: 'Inavlid Target-Endpoint'})
+        }
     }
 });
 
 app.set('port', process.env.PORT || 3000);
 
 app.listen(app.get('port'), function () {
-    console.log('Proxy server listening on port ' + app.get('port'));
 });
