@@ -1,6 +1,7 @@
 import {API_URL, API_TOKEN, API_MARKER, API_ACCESS_TOKEN, API_KEY} from "./apiConfig"
 
 function treatHTTPResponseACB(response){
+  console.log(response)
    /*TODO throw if the HTTP response is not 200, otherwise return response.json()*/
    if(response.status !== 200){
      throw new Error (response.status);
@@ -44,6 +45,7 @@ function getAirportsInCity(params) {
 
 function getOffers(data) {
   let headers = {
+    "Api-Url" : "https://api.duffel.com/air/offer_requests?return_offers=true",
     "Content-Type": "application/json",
     "Accept" : "application/json",
     "Accept-Encoding": "gzip",
@@ -58,7 +60,7 @@ function getOffers(data) {
         });
   let method = 'POST'
   let compress = true;
-  let url = 'https://api.duffel.com/air/offer_requests?return_offers=true';
+  let url = 'http://81.232.10.252:3000/CORS';//https://api.duffel.com/air/offer_requests?return_offers=true
   return fetch(url,{
       method : method,
       headers : headers,
@@ -66,7 +68,7 @@ function getOffers(data) {
       compress : compress,
     })
     .then(response => response.json())
-    .catch(err => console.error(err));
+    .catch(err => console.log(err));
 }
 
 export {getAirportsInCity, getOffers};
