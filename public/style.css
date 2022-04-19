@@ -130,3 +130,16 @@
   padding: 50px;
   margin: 20px;
 }
+
+.flexible-sidebar-right {
+  background-color: dodgerblue;
+  padding: 10px;
+  flex: 70%;
+}
+
+.flexible-items-left {
+  display: inline-block;
+  background-color: #f1f1f1;
+  padding: 10px;
+  flex: 30%;
+}
