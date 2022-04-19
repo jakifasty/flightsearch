@@ -34,6 +34,7 @@ function getAirportsInCity(params) {
 
 function getOffers(dataa) {
   let headers = {
+    "Target-URL" : "https://api.duffel.com/air/offer_requests",
     "Content-Type": "application/json",
     "Accept" : "application/json",
     "Accept-Encoding": "gzip",
@@ -48,14 +49,14 @@ function getOffers(dataa) {
         });
   let method = 'POST'
   let compress = true;
-  let url = 'https://api.duffel.com/air/offer_requests?return_offers=true';
+  let url = 'http://192.168.1.206:3000';//https://api.duffel.com/air/offer_requests?return_offers=true
   return fetch(url,{
       method : method,
       headers : headers,
       body : body,
       compress : compress,
     })
-    .then(response => console.log(response))
+    .then(response => response.json())
     .catch(err => console.log(err));
 }
 
