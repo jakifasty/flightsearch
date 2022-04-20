@@ -29,5 +29,4 @@ function SidebarFirebase(props){
     }
 
     return <SidebarFirebaseView flights={props.model.flights} onCurrentFlight={setCurrentFlightACB} onRemove={removeFlightACB}/>;
-
 }
