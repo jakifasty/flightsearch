@@ -17,7 +17,6 @@ class FlightModel {
     //Not sure why these were added
     this.oneWay = "One";
     this.roundTrip = "Round";
-    this.deptDate = "2022-04-24"
     this.passengers = [];
     this.cabin_class = "economy";
     this.fromAirport = "";
@@ -37,8 +36,9 @@ class FlightModel {
 
 
     var date = new Date()
-    this.fromDate = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate()
-    this.returnDate = (parseInt(this.fromDate.split("-")[0]) + 2) + this.fromDate.slice(this.fromDate.indexOf("-"), this.fromDate.length)
+    this.deptDate = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate()
+    this.returnDate = (parseInt(this.deptDate.split("-")[0]) + 2) + this.deptDate.slice(this.deptDate.indexOf("-"), this.deptDate.length)
+    
 
     this.data = {
       slices: [{
@@ -49,7 +49,7 @@ class FlightModel {
       passengers: this.passengers,
       cabin_class: this.cabin_class,
     };
-    this.roundtripData = {
+    this.roundTripData = {
       slices: [{
           origin: 'LHR',
           destination: 'JFK',
@@ -67,11 +67,10 @@ class FlightModel {
   }
 
 
-
-  setFromDate(date) {
-    this.fromDate = date
+  setDeptDate(date) {
+    this.deptDate = date
     var payload = {
-      fromDate: date
+      deptDate: date
     }
     this.notifyObservers(payload)
   }
@@ -153,12 +152,28 @@ class FlightModel {
   addPassengers(passengers) {
     this.passengers = this.passengers.concat(passengers); //TODO: check passenger structure
   }
-  makePassengers() {
+  makeDataPassengers() {
     let childPassengers = createPassengers(this.amountYouths, "child");
     let adultPassengers = createPassengers(this.amountAdults, "adult");
     this.addPassengers(childPassengers);
     this.addPassengers(adultPassengers);
     this.data.passengers = this.passengers;
+  }
+
+  setDataDates() {
+    this.data.slices[0].departure_date = this.deptDate
+
+    //TODO
+    if(this.tripType === "Round"){
+      this.roundTripData.returnDate = this.deptDate
+    }
+  }
+
+  //TODO set return data
+  setDataAirports(){
+    this.data.slices[0].origin = this.fromAirport
+    this.data.slices[0].destination = this.toAirport
+    
   }
 
   addChildToData(amount) {
@@ -175,8 +190,11 @@ class FlightModel {
     if (this.amountOfAdults < 1 && this.amountOfYouths < 1) {
       throw new Error('number of people is zero');
     }
-    this.makePassengers();
+    this.makeDataPassengers();
+    this.setDataDates();
+    this.setDataAirports()
   }
+
 
   clearData() {
     this.passengers = [];
