@@ -84,10 +84,12 @@ function Homepage(props) {
   React.useEffect(wasCreatedACB, []);
 
   function onFromAirportSelectACB(from) {
+    from = from.substring(from.indexOf("(")+1,from.indexOf(")"))
     props.model.setFromAirport(from)
   }
 
   function onToAirportSelectACB(to) {
+    to = to.substring(to.indexOf("(")+1,to.indexOf(")"))
     props.model.setToAirport(to)
 
   }
@@ -129,7 +131,7 @@ function Homepage(props) {
 
   function onSelectFromDateACB(date) {
     if (compareDates(date, props.model.returnDate) || props.model.tripType == props.model.oneWay) {
-      props.model.setFromDate(date)
+      props.model.setDeptDate(date)
     }
   }
 
