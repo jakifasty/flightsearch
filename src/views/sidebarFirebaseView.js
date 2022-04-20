@@ -15,8 +15,8 @@ function sidebarFirebaseView(props){
                         <td width="10px">
                         </td>
                         <td class="right">
-                            {props.total_amount.toFixed(2)}
-                            {props.total_currency.toFixed(2)}
+                            {props.total_amount}
+                            {props.total_currency}
                         </td>
                     </tr>
                 </table>
@@ -43,8 +43,9 @@ function renderFlights(onCurrentFlight, onRemove, flights){
     return(
             <table>
                 <tbody>
+                    {console.log("print content here")}
                     {/*map(flightsTableRowCB)*/}
-                    {/*props.results.data.offers.map(listResultsCB)*/}
+                    {flights.map(flightsTableRowCB)}
                 </tbody>
             </table>
     );
