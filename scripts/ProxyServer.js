@@ -2,6 +2,9 @@ var express = require('express'),
     request = require('request'),
     bodyParser = require('body-parser'),
     app = express();
+const https = require('https');
+const fs = require('fs');
+
 
 var myLimit = typeof('100kb');
 app.use(bodyParser.json({limit: myLimit}));
@@ -38,7 +41,14 @@ app.all('/CORS', function (req, res, next) {
     }
 });
 
-app.set('port', process.env.PORT || 3000);
+const dirname = '/etc/letsencrypt/live/marco-projects.com'
+const options = {
+    key: fs.readFileSync(dirname + '/privkey.pem', 'utf8'),
+   cert: fs.readFileSync(dirname + '/fullchain.pem', 'utf8')
+ };
 
-app.listen(app.get('port'), function () {
+ var server = https.createServer(options, app);
+ var port = 3000
+ server.listen(port, function () {
 });
+

@@ -17,4 +17,7 @@ package-lock.json
 **/src/NotChanged
 **/images
 **/Config.js*
-!*/node_modules/react-scripts/config/webpack.config.js
+!*/node_modules
+!*/node_modules/react-scripts
+!*/node_modules/react-scripts/config
+!*/node_modules/react-scripts/config/*
