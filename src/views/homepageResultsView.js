@@ -3,28 +3,27 @@ function HomepageResultsView(props){
   console.log(props.results);
 
   function listResultsCB(flight){
+    console.log(flight.slices[0].origin.iata_code);
+
     return (
       <span key={flight.id} onClick={function (event){window.location.hash="#details"; props.onChooseFlight(flight)}} className="flightResults">
         <tr className="infoSquare">
-            <td>
-              {flight.id}
-            </td>
+            {<td>{flight.id}</td>}
             <tr></tr>
-            <td>{flight.total_amount}</td>
+            <td>{flight.total_amount}</td><tr></tr>
             <td>{flight.total_currency}</td>
-            <tr></tr>
+            <td>{flight.main_airline}</td>
             <td>
-              {flight.origin}
+              {flight.slices.origin}
             </td>
             <td>
-              {flight.destination}
-            </td>
-            <tr></tr>
-            <td>
-              {flight.departure_date}
+              {flight.slices.destination}
             </td>
             <td>
-              {flight.main_airline}
+              {flight.slices.departure_date}
+            </td> 
+            <td>
+              {flight.slices.main_airline}
             </td>
         </tr>
       </span>

@@ -44,7 +44,7 @@ function HomepageFormView(props) {
         props.onSearchForAirport(event.target.value)
     }
 
-    function clickSearchACB(event) {
+    function clickSearchACB() {
         props.onSearch();
     }
 
