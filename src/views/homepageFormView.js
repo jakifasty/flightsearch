@@ -16,9 +16,10 @@ function HomepageFormView(props) {
         console.log("TODO")
     }
 
+    //TODO Move or rewrite these logic checks if possible
     function fromTextInputACB(event) {
         if (event.target.value.length > 3) {
-            if (event.target.list.options.namedItem(event.target.value) !== null) {
+            if (event.target.list.options.namedItem(event.target.value.substring(0,event.target.value.indexOf("(")-1)) !== null && event.target.value.endsWith(")")) {
                 props.onFromAirportSelect(event.target.value)
             }
             return
@@ -34,9 +35,10 @@ function HomepageFormView(props) {
         props.onSelectReturnDate(event.target.value)
     }
 
+    //TODO Move or rewrite these logic checks if possible
     function toTextInputACB(event) {
         if (event.target.value.length > 3) {
-            if (event.target.list.options.namedItem(event.target.value) !== null) {
+            if (event.target.list.options.namedItem(event.target.value.substring(0,event.target.value.indexOf("(")-1)) !== null && event.target.value.endsWith(")")) {
                 props.onToAirportSelect(event.target.value)
             }
             return
@@ -117,13 +119,13 @@ function getAirportList(e) {
             {e.map(function (airport) {
                 var key = Object.keys(airport)
                 airport = airport[key]
-                return <option id={airport.airportName} value={airport.airportName} className="textOverflow">{airport.country + ", " + airport.region + " (" + key + ")"}</option>
+                return <option id={airport.airportName} value={airport.airportName + " ("+key+")"} className="textOverflow">{airport.country + ", " + airport.region + " (" + key + ")"}</option>
             }
             )}
         </datalist>
     }
     return <datalist className="textOverflow" id="listID">
-        <option id={e.airportName} value={e.airportName} className="textOverflow"> {e.country + ", " + e.region + " (" + k + ")"} </option>
+        <option id={e.airportName} value={e.airportName+ " ("+k+")"} className="textOverflow"> {e.country + ", " + e.region + " (" + k + ")"} </option>
     </datalist>
 }
 
