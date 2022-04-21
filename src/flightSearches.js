@@ -1,7 +1,5 @@
 import {API_URL, API_TOKEN, API_MARKER, API_ACCESS_TOKEN, API_KEY} from "./apiConfig"
-var https = require('https');
-var test = require('./data/public.json')
-test = test.data
+
 function treatHTTPResponseACB(response){
   console.log(response)
    /*TODO throw if the HTTP response is not 200, otherwise return response.json()*/
@@ -62,18 +60,6 @@ function getOffers(data) {
         });
   let method = 'POST'
   let compress = true;
-  const options = {
-    rejectUnauthorized: false,
-    ca : test
-  }
-  
-  let httpsAgent = new https.Agent(options);
-  /*console.log(httpsAgent.options.rejectUnauthorized)
-  httpsAgent.options.rejectUnauthorized = false
-  console.log(httpsAgent.options.rejectUnauthorized)
-  httpsAgent.options.ca=test
-  console.log(httpsAgent.options.ca)
-  */
 
   let url = 'https://marco-projects.com:3000/CORS';//https://api.duffel.com/air/offer_requests?return_offers=true
   return fetch(url,{
@@ -81,7 +67,6 @@ function getOffers(data) {
       headers : headers,
       body : body,
       compress : compress,
-      agent : httpsAgent
     })
     .then(response => response.json())
     .catch(err => console.log(err));
