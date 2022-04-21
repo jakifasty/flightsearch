@@ -6,7 +6,7 @@ function promiseNoData(promiseState){
     if(!promise){
       return <div></div>
     }else if( !data && !error ){
-      console.log("loading GIF")
+      //console.log("loading GIF")
       return(
             <div className="outsideBoxResults">
               <img class="center" height="200" src={loading_gif}></img>

@@ -11,10 +11,6 @@ function GlobeView(props) {
 
   <div>
     <Helmet>
-
-
-
-
     </ Helmet>
 
     <div id="globeViz" >
