@@ -38,12 +38,12 @@ class FlightModel {
     var date = new Date()
     this.deptDate = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate()
     this.returnDate = (parseInt(this.deptDate.split("-")[0]) + 2) + this.deptDate.slice(this.deptDate.indexOf("-"), this.deptDate.length)
-    
+
 
     this.data = {
       slices: [{
-        origin: 'LHR',
-        destination: 'JFK',
+        origin: this.fromAirport,
+        destination: this.toAirport,
         departure_date: this.deptDate
       }, ],
       passengers: this.passengers,
@@ -173,7 +173,7 @@ class FlightModel {
   setDataAirports(){
     this.data.slices[0].origin = this.fromAirport
     this.data.slices[0].destination = this.toAirport
-    
+
   }
 
   addChildToData(amount) {

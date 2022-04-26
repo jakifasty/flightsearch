@@ -61,15 +61,14 @@ function getOffers(data) {
   let method = 'POST'
   let compress = true;
 
-  let url = 'https://marco-projects.com:3000/CORS';//https://api.duffel.com/air/offer_requests?return_offers=true
+  let url = 'https://api.duffel.com/air/offer_requests?return_offers=true';//https://marco-projects.com:3000/CORS
   return fetch(url,{
       method : method,
       headers : headers,
       body : body,
       compress : compress,
     })
-    .then(response => response.json())
-    .catch(err => console.log(err));
+    .then(response => {if(response.status === 200 || response.status === 201) return response.json(); throw new Error (response.status)});
 }
 
 

@@ -7,7 +7,6 @@ function resolvePromise (promiseToResolve, promiseState, notifyACB){
   if(notifyACB) notifyACB();
   function saveDataACB(result) {
     if(promiseState.promise !== promiseToResolve) return;
-    /* TODO save results in promiseState, as before */
     promiseState.data = result;
     /* TODO Notify */
     if(notifyACB) notifyACB();
@@ -15,6 +14,7 @@ function resolvePromise (promiseToResolve, promiseState, notifyACB){
   function saveErrorACB(err) {
     if(promiseState.promise !== promiseToResolve) return;
     /* TODO save error in promiseState, as before */
+    promiseState.data = null;
     promiseState.error = err;
     /* TODO Notify */
     if(notifyACB) notifyACB();

@@ -116,7 +116,7 @@ h1 {
   width: auto;
 }
 
-.outsideBoxResults {
+.tr {
   padding-top: 2px;
   padding-bottom: 2px;
   background: rgb(240, 241, 241);
@@ -136,7 +136,7 @@ h1 {
   padding-left: 80px;
 }
 
-.infoSquare {
+.td {
   text-align: left;
   background-color: lightgray;
   width: 300px;

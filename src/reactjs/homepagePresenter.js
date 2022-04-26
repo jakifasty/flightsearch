@@ -84,12 +84,10 @@ function Homepage(props) {
   React.useEffect(wasCreatedACB, []);
 
   function onFromAirportSelectACB(from) {
-    from = from.substring(from.indexOf("(")+1,from.indexOf(")"))
-    props.model.setFromAirport(from)
+    props.model.setFromAirport(from);
   }
 
   function onToAirportSelectACB(to) {
-    to = to.substring(to.indexOf("(")+1,to.indexOf(")"))
     props.model.setToAirport(to)
   }
 
@@ -170,6 +168,7 @@ function Homepage(props) {
     if (props.model.tripType === props.model.oneWay)
       try {
         props.model.makeData();
+        console.log(props.model.data);
         resolveFlight(getOffers(props.model.data));
         props.model.clearData()
       } catch (error) {
@@ -248,6 +247,6 @@ function Homepage(props) {
       changeFlightOnClickACB
     }
     />
-  }; </div>
+  }</div>
 
 }

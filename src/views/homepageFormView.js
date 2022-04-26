@@ -19,8 +19,10 @@ function HomepageFormView(props) {
     //TODO Move or rewrite these logic checks if possible
     function fromTextInputACB(event) {
         if (event.target.value.length > 3) {
-            if (event.target.list.options.namedItem(event.target.value.substring(0,event.target.value.indexOf("(")-1)) !== null && event.target.value.endsWith(")")) {
-                props.onFromAirportSelect(event.target.value)
+            let indexOfPar=event.target.value.indexOf("(");
+            let airportCode = (event.target.value.substring(indexOfPar+1, indexOfPar+4));
+            if (event.target.value.endsWith(")")) {
+                props.onFromAirportSelect(airportCode);
             }
             return
         }
@@ -37,9 +39,11 @@ function HomepageFormView(props) {
 
     //TODO Move or rewrite these logic checks if possible
     function toTextInputACB(event) {
+        let indexOfPar=event.target.value.indexOf("(");
+        let airportCode = (event.target.value.substring(indexOfPar+1, indexOfPar+4));
         if (event.target.value.length > 3) {
-            if (event.target.list.options.namedItem(event.target.value.substring(0,event.target.value.indexOf("(")-1)) !== null && event.target.value.endsWith(")")) {
-                props.onToAirportSelect(event.target.value)
+            if (event.target.value.endsWith(")")) {
+                props.onToAirportSelect(airportCode);
             }
             return
         }
@@ -59,7 +63,7 @@ function HomepageFormView(props) {
     return (
 
         <div className="mainBackground">
-            <h1 style={{ color: '#DA291CFF'}}>Flight Search</h1>
+            <h1 style={{ color: '#DA291CFF'}}>FlightSearch</h1>
             <div className="search-form-container">
               <div className="search-params">
                 <select className="dropbtn" onChange={fromSelectTripTypeACB}>
