@@ -91,7 +91,6 @@ function Homepage(props) {
   function onToAirportSelectACB(to) {
     to = to.substring(to.indexOf("(")+1,to.indexOf(")"))
     props.model.setToAirport(to)
-
   }
 
   function onChangeAmountPeopleACB(params) {
@@ -130,7 +129,7 @@ function Homepage(props) {
   }
 
   function onSelectFromDateACB(date) {
-    if (compareDates(date, props.model.returnDate) || props.model.tripType == props.model.oneWay) {
+    if (compareDates(date, props.model.returnDate) || props.model.tripType === props.model.oneWay) {
       props.model.setDeptDate(date)
     }
   }
@@ -168,7 +167,7 @@ function Homepage(props) {
   function searchACB() {
 
 
-    if (props.model.tripType == props.model.oneWay)
+    if (props.model.tripType === props.model.oneWay)
       try {
         props.model.makeData();
         resolveFlight(getOffers(props.model.data));
@@ -176,7 +175,7 @@ function Homepage(props) {
       } catch (error) {
         console.log(error);
       }
-    else if (props.model.tripType == props.model.roundTrip)
+    else if (props.model.tripType === props.model.roundTrip)
       try {
         props.model.makeData();
         resolveFlight(getOffers(props.model.roundtripData));

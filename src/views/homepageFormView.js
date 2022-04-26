@@ -59,7 +59,7 @@ function HomepageFormView(props) {
     return (
 
         <div className="mainBackground">
-            <h1 style={{ color: '#DA291CFF' }}>FlightSearch</h1>
+            <h1 style={{ color: '#DA291CFF'}}>Flight Search</h1>
 
             <select className="dropbtn" onChange={fromSelectTripTypeACB}>
                 <option value="One">One-way</option>
@@ -93,7 +93,7 @@ function HomepageFormView(props) {
                   min={today} max={twoYearsAfterToday} onChange={changeReturnDateACB}>
               </input>
             </div>
-            <button disabled={false/*!props.isValidRequest*/} onClick={clickSearchACB}>Search</button>
+            <button className="searchButton" disabled={false/*!props.isValidRequest*/} onClick={clickSearchACB}>Search</button>
             {getAirportList(props.airportResults)}
         </div>
 
