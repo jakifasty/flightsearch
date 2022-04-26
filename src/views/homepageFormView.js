@@ -60,40 +60,46 @@ function HomepageFormView(props) {
 
         <div className="mainBackground">
             <h1 style={{ color: '#DA291CFF'}}>Flight Search</h1>
-
-            <select className="dropbtn" onChange={fromSelectTripTypeACB}>
-                <option value="One">One-way</option>
-                <option value="Round">Round-trip</option>
-            </select>
-
-            <div className="dropdown">
-                <select className="dropbtn">
-                    <option className="hidden">People</option>
+            <div className="search-form-container">
+              <div className="search-params">
+                <select className="dropbtn" onChange={fromSelectTripTypeACB}>
+                    <option value="One">One-way</option>
+                    <option value="Round">Round-trip</option>
                 </select>
-                <div className="dropdown-content">
-                    <div>Adults 18+ :
-                        <button disabled={props.amountAdults < 1} onClick={changeAmountPeopleACB} value="Adult -">-</button>
-                        {props.amountAdults}
-                        <button disabled={props.amountPeople >= 9} onClick={changeAmountPeopleACB} value="Adult +">+</button>
-                    </div>
-                    <div>Youths 1-18 :
-                        <button disabled={props.amountYouths < 1} onClick={changeAmountPeopleACB} value="Youth -">-</button>
-                        {props.amountYouths}
-                        <button disabled={props.amountPeople >= 9} onClick={changeAmountPeopleACB} value="Youth +">+</button>
+                <div className="dropdown">
+                    <select className="dropbtn">
+                        <option className="hidden">People</option>
+                    </select>
+                    <div className="dropdown-content">
+                        <div>Adults 18+ :
+                            <button disabled={props.amountAdults < 1} onClick={changeAmountPeopleACB} value="Adult -">-</button>
+                            {props.amountAdults}
+                            <button disabled={props.amountPeople >= 9} onClick={changeAmountPeopleACB} value="Adult +">+</button>
+                        </div>
+                        <div>Youths 1-18 :
+                            <button disabled={props.amountYouths < 1} onClick={changeAmountPeopleACB} value="Youth -">-</button>
+                            {props.amountYouths}
+                            <button disabled={props.amountPeople >= 9} onClick={changeAmountPeopleACB} value="Youth +">+</button>
+                        </div>
                     </div>
                 </div>
+              </div>
+              <div className="search-input">
+                <div className="input-flex-container">
+                  <input className="center" type="search" list="listID" name="From" placeholder="From..." onChange={fromTextInputACB}></input>
+                  <input className="center" type="search" list="listID" name="Destination" placeholder="Pick a destination..." onChange={toTextInputACB}></input>
+                  <input className="center" placeholder="test" type="date" name="trip-start"
+                      min={today} max={twoYearsAfterToday} onChange={changeFromDateACB}>
+                  </input>
+                  <input className={props.tripType === "One" ? "hidden" : "center"} type="date" name="returnDate"
+                      min={today} max={twoYearsAfterToday} onChange={changeReturnDateACB}>
+                  </input>
+                </div>
+              </div>
+              <div className="search-submit">
+                <button className="searchButton" disabled={false/*!props.isValidRequest*/} onClick={clickSearchACB}>Search</button>
+              </div>
             </div>
-            <div className="input-flex-container">
-              <input className="center" type="search" list="listID" name="From" placeholder="From..." onChange={fromTextInputACB}></input>
-              <input className="center" type="search" list="listID" name="Destination" placeholder="Pick a destination..." onChange={toTextInputACB}></input>
-              <input className="center" placeholder="test" type="date" name="trip-start"
-                  min={today} max={twoYearsAfterToday} onChange={changeFromDateACB}>
-              </input>
-              <input className={props.tripType === "One" ? "hidden" : "center"} type="date" name="returnDate"
-                  min={today} max={twoYearsAfterToday} onChange={changeReturnDateACB}>
-              </input>
-            </div>
-            <button className="searchButton" disabled={false/*!props.isValidRequest*/} onClick={clickSearchACB}>Search</button>
             {getAirportList(props.airportResults)}
         </div>
 
