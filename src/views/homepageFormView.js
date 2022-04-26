@@ -97,8 +97,14 @@ function HomepageFormView(props) {
                 </div>
               </div>
               <div className="search-submit">
-                <button className="searchButton" disabled={false/*!props.isValidRequest*/} onClick={clickSearchACB}>Search</button>
+                <button className="searchButton" disabled={false/*!props.isValidRequest*/} onClick={clickSearchACB}>
+                Search
+                <img className="landing-animation" src="https://icon-library.com/images/airplane-mode-icon/airplane-mode-icon-27.jpg" height="auto">
+                </img>
+                </button>
               </div>
+            </div>
+            <div className="animation">
             </div>
             {getAirportList(props.airportResults)}
         </div>
