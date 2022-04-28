@@ -1,5 +1,8 @@
 import {API_URL, API_TOKEN, API_MARKER, API_ACCESS_TOKEN, API_KEY} from "./apiConfig"
 
+const URL = 'https://marco-projects.com:3000/CORS'
+
+
 function treatHTTPResponseACB(response){
   console.log(response)
    /*TODO throw if the HTTP response is not 200, otherwise return response.json()*/
@@ -34,8 +37,7 @@ function getAirportsInCity(params) {
 
 function getFlightDetails(id){ //taken from GET Get Recipe Information
   let headers = {
-    "Api-Url" : "https://api.duffel.com/air/offer_requests?return_offers=true",
-    "Content-Type": "application/json",
+    "Api-Url" : "https://api.duffel.com/air/offers/" + id, // +"+?return_available_services=true"
     "Accept" : "application/json",
     "Accept-Encoding": "gzip",
     "Duffel-Version": "beta",
@@ -43,7 +45,6 @@ function getFlightDetails(id){ //taken from GET Get Recipe Information
   };
   let method = 'GET'
   let compress = true;
-	const URL = "https://api.duffel.com/air/offers/" + id;
 	return fetch(URL, {
       method : method,
       headers : headers,
@@ -69,9 +70,7 @@ function getOffers(data) {
         });
   let method = 'POST'
   let compress = true;
-
-  let url = 'https://api.duffel.com/air/offer_requests?return_offers=true';//https://marco-projects.com:3000/CORS
-  return fetch(url,{
+  return fetch(URL,{
       method : method,
       headers : headers,
       body : body,
