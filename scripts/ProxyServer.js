@@ -10,12 +10,16 @@ var myLimit = typeof('100kb');
 app.use(bodyParser.json({limit: myLimit}));
 
 app.all('/CORS', function (req, res, next) {
+
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Methods", "GET, PUT, POST");
     res.header("Access-Control-Allow-Headers", req.header('access-control-request-headers'));
+
     if (req.method === 'OPTIONS') {
         //Preflight
-        if(req.headers['access-control-request-headers'] === ('api-url,authorization,content-type,duffel-version')){
+        if(req.headers['access-control-request-headers'] === ('api-url,authorization,content-type,duffel-version') ||
+           req.headers['access-control-request-headers'] === ('api-url,authorization,duffel-version'))
+        {
             res.send();
         }
         else{
@@ -28,12 +32,22 @@ app.all('/CORS', function (req, res, next) {
             return;
         }
         if (apiURL.trimStart().startsWith('https://api.duffel.com/air/')){
-        request({ url: apiURL, method: req.method, json: req.body, headers: {'Authorization': req.header('Authorization'),'Duffel-version': req.header('Duffel-version'),} },
-            function (error, response, body) {
-                if (error) {
-                    console.error('error: ' + response.statusCode)
-                }
-            }).pipe(res);
+            if (Object.keys(req.body).length === 0){
+                request({ url: apiURL, method: req.method, headers: {'Authorization': req.header('Authorization'),'Duffel-version': req.header('Duffel-version'),} },
+                function (error, response, body) {
+                    if (error) {
+                        console.error('error: ' + response.statusCode)
+                    }
+                }).pipe(res);
+            }
+            else{
+            request({ url: apiURL, method: req.method, json: req.body, headers: {'Authorization': req.header('Authorization'),'Duffel-version': req.header('Duffel-version'),} },
+                function (error, response, body) {
+                    if (error) {
+                        console.error('error: ' + response.statusCode)
+                    }
+                }).pipe(res);
+            }
         }
         else{
             res.status(500).send({error: 'Inavlid Target-Endpoint'})
