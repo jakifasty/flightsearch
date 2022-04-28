@@ -1,8 +1,9 @@
 function HomepageResultsView(props){
   function listResultsCB(flight){
+
     //console.log(flight.slices[0].origin.iata_code);
     return (
-      <tr key={flight.id} onClick={function (event){window.location.hash="#details"; props.onChooseFlight(flight)}}>
+      <tr className="" key={flight.id} onClick={function (event){window.location.hash="#details"; props.onChooseFlight(flight)}}>
           <td>
             {flight.slices[0].origin.name}
           </td>

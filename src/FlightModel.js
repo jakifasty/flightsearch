@@ -3,6 +3,11 @@ import {
   createPassenger,
   createPassengers
 } from "./utils.js"
+import {
+  getAirportsInCity,
+  getOffers,
+  getFlightDetails
+} from "./flightSearches.js";
 //import {getFlightDetails} from "./flightSearches"
 /* This is an example of a JavaScript class.
    The Model keeps only abstract data and has no notions of graohics or interaction
@@ -21,6 +26,9 @@ class FlightModel {
     this.cabin_class = "economy";
     this.fromAirport = "";
     this.toAirport = "";
+
+    this.currentFlight = "";
+    this.currentFlightPromiseState = {};
 
     this.amountAdults = 1
     this.amountYouths = 0
@@ -65,7 +73,21 @@ class FlightModel {
       cabin_class: this.cabin_class,
     }
   }
-
+  setCurrentFlight(id){
+    if(!id || id == this.currentFlight){
+        //nothing to do
+    }
+    else{
+      const theModel = this;
+      function notifyACB() {theModel.notifyObservers(null);};
+      this.currentFlight = id;
+      resolvePromise(getFlightDetails(id), this.currentFlightPromiseState, notifyACB);
+      var payload = {
+        currentFlight: id
+      }
+      this.notifyObservers(payload)
+    }
+  }
 
   setDeptDate(date) {
     this.deptDate = date

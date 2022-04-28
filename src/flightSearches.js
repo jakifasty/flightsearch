@@ -32,16 +32,25 @@ function getAirportsInCity(params) {
     .then(transformResultsACB)
 }/* end of second fetch parameter, object */
 
-/*function getFlightDetails(id){ //taken from GET Get Recipe Information
-
-	const endpoint = 'recipes/' + id + '/information';
-	return fetch(BASE_URL + endpoint, {
-		"method": "GET",
-		"headers":  {
-			'X-Mashape-Key': API_KEY,
-			"x-rapidapi-url": BASE_URL,
-		}}).then(treatHTTPResponseACB);
-}*/
+function getFlightDetails(id){ //taken from GET Get Recipe Information
+  let headers = {
+    "Api-Url" : "https://api.duffel.com/air/offer_requests?return_offers=true",
+    "Content-Type": "application/json",
+    "Accept" : "application/json",
+    "Accept-Encoding": "gzip",
+    "Duffel-Version": "beta",
+    "Authorization": "Bearer " + API_ACCESS_TOKEN
+  };
+  let method = 'GET'
+  let compress = true;
+	const URL = "https://api.duffel.com/air/offers/" + id;
+	return fetch(URL, {
+      method : method,
+      headers : headers,
+      compress : compress,
+    })
+    .then(response => {if(response.status === 200 || response.status === 201) return response.json(); throw new Error (response.status)});
+}
 
 function getOffers(data) {
   let headers = {
@@ -72,4 +81,4 @@ function getOffers(data) {
 }
 
 
-export {getAirportsInCity, getOffers};
+export {getAirportsInCity, getOffers, getFlightDetails};

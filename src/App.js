@@ -1,7 +1,7 @@
 import Homepage from "./reactjs/homepagePresenter.js"
+import Details from "./reactjs/detailsPresenter.js"
 import Globe from "./reactjs/globePresenter.js";
 import SidebarFirebase from "./reactjs/sidebarFirebasePresenter.js";
-//import Details from "./reactjs/detailsPresenter.js";
 //import Sidebar from "./reactjs/sidebarPresenter.js";
 
 const Show=require("./show.js").default;
@@ -19,7 +19,7 @@ function App(props) {
       </div>
       <div>
         <Show hash="#homepage">{<Homepage model={props.model}/>}</Show>
-        {/*<Show hash="#details"><Details model={props.model}/></Show>*/}
+        <Show hash="#details"><Details model={props.model}/></Show>
         {/*<Show hash="#summary"><Summary model={props.model}/></Show>*/}
         {/*<Show hash="#confirmation"><Confirmation model={props.model}/></Show>*/}
       </div>

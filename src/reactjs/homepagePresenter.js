@@ -5,7 +5,8 @@ import resolvePromise from "../resolvePromise"
 import promiseNoData from "../promiseNoData"
 import {
   getAirportsInCity,
-  getOffers
+  getOffers,
+  getFlightDetails
 } from "../flightSearches.js";
 //import sendMail from "../testFIle";
 
@@ -168,7 +169,6 @@ function Homepage(props) {
     if (props.model.tripType === props.model.oneWay)
       try {
         props.model.makeData();
-        console.log(props.model.data);
         resolveFlight(getOffers(props.model.data));
         props.model.clearData()
       } catch (error) {
@@ -185,7 +185,7 @@ function Homepage(props) {
   }
 
   function changeFlightOnClickACB(flight) {
-    //props.model.setCurrentFlight(flight.id);
+    props.model.setCurrentFlight(flight.id);
   }
 
   return <div> < HomepageFormView
