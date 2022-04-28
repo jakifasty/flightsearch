@@ -33,8 +33,9 @@ function getAirportsInCity(params) {
 }/* end of second fetch parameter, object */
 
 function getFlightDetails(id){ //taken from GET Get Recipe Information
+  let duffel_url = "https://api.duffel.com/air/offers/" + id;
   let headers = {
-    "Api-Url" : "https://api.duffel.com/air/offer_requests?return_offers=true",
+    "Api-Url" : duffel_url,
     "Content-Type": "application/json",
     "Accept" : "application/json",
     "Accept-Encoding": "gzip",
@@ -43,8 +44,8 @@ function getFlightDetails(id){ //taken from GET Get Recipe Information
   };
   let method = 'GET'
   let compress = true;
-	const URL = "https://api.duffel.com/air/offers/" + id;
-	return fetch(URL, {
+	let url = "https://marco-projects.com:3000/CORS"
+	return fetch(url, {
       method : method,
       headers : headers,
       compress : compress,
@@ -70,7 +71,7 @@ function getOffers(data) {
   let method = 'POST'
   let compress = true;
 
-  let url = 'https://api.duffel.com/air/offer_requests?return_offers=true';//https://marco-projects.com:3000/CORS
+  let url = 'https://marco-projects.com:3000/CORS';//https://marco-projects.com:3000/CORS https://api.duffel.com/air/offer_requests?return_offers=true
   return fetch(url,{
       method : method,
       headers : headers,
