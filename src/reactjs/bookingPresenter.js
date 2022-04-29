@@ -4,8 +4,7 @@ import BookingView from "../views/bookingView.js"
 
 
 
-export default
-function BookingPresenter(props){
+export default function Booking (props){
 
 
   return <BookingView flights={props.model.flights} />;
