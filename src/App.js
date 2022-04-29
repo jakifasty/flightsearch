@@ -22,6 +22,7 @@ function App(props) {
         <Show hash="#details"><Details model={props.model}/></Show>
         {/*<Show hash="#summary"><Summary model={props.model}/></Show>*/}
         {/*<Show hash="#confirmation"><Confirmation model={props.model}/></Show>*/}
+        <Show hash="#booking"><Booking model={props.model}/></Show>
       </div>
     </div>
   );
