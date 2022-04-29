@@ -9,11 +9,12 @@ function bookingView(props) {
           <div className="div-row confDate"> Arrival date: {props.flightData.returnDate} </div>
 					<div className="div-row confRoute"> From: {props.flightData.fromAirport} </div>
           <div className="div-row confRoute"> To: {props.flightData.toAirport} </div>
-					<div className="div-row "> Confirmation number: <span class="confNumber">{props.flightData.confirmationNumber} </span> </div>
-					<div className="div-row confText"> Mobile check-in is not available for this route. </div>
-
+					<label for="name" required>Name:</label> <input type="text" id="name" name="user_name">
+					<label for="surname" required>Surname:</label> <input type="text" id="surname" name="user_surname">
+					<label for="mail" required>E-mail:</label> <input type="email" id="mail" name="user_email">
+					//phone number
 					<div className="div-row">
-						<div className="div-row confButton"><button>Book this flight</button></div>
+						<div className="div-row confButton"><button>Finish</button></div>
 					</div>
 			</div>
 		</div>
