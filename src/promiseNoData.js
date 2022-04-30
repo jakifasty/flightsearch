@@ -8,7 +8,7 @@ function promiseNoData(promiseState){
     }else if( !data && !error){
       return(
             <div className="outsideBoxResults">
-              <img class="center" height="200" src={loading_gif}></img>
+              <img className="center" height="200" src={loading_gif}></img>
             </div>
             )
     }else if(error){
