@@ -1,6 +1,6 @@
 /* Functional JSX component. Name starts with capital letter */
-function HomepageFormView(props) {
 
+function HomepageFormView(props) {
 
     function changeAmountPeopleACB(event) {
         props.onChangeAmountPeople(event.target.value)
