@@ -1,5 +1,6 @@
 function bookingView(props) {
 
+	console.log(props.flightData);
 
 
 	return (

@@ -1,10 +1,17 @@
 import React from "react";
 import BookingView from "../views/bookingView.js";
+import resolvePromise from "../resolvePromise";
 import promiseNoData from "../promiseNoData";
 
 
 
 export default function Booking (props){
+
+  const [, setPromiseData]=React.useState(null);
+  const [, setPromise]=React.useState(null);
+  const [, setError]=React.useState(null);
+
+  
   function observerACB() {
     setPromiseData(props.model.currentFlightPromiseState.data)
     setPromise(props.model.currentFlightPromiseState.promise)
