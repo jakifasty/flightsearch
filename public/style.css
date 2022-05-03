@@ -71,6 +71,27 @@ input:checked + label:before,
   border-color: #bd8200;
 }
 
+.input-group {
+  margin-bottom: 1em;
+  zoom: 1;
+}
+.input-group:before,
+.input-group:after {
+  content: "";
+  display: table;
+}
+.input-group:after {
+  clear: both;
+}
+
+.col-half {
+  padding-right: 10px;
+  float: left;
+  width: 50%;
+}
+.col-half:last-of-type {
+  padding-right: 0;
+}
 
 
 
