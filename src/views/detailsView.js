@@ -16,15 +16,15 @@ function DetailsView(props){
   }
 
   return  <div >
-            Details about chosen flight {props.flightData.slices[0].segments[0].operating_carrier.iata_code + props.flightData.slices[0].segments[0].operating_carrier_flight_number}
-            {props.flightData.owner.name}
+            Details about chosen flight {/*props.flightData.slices[0].segments[0].operating_carrier.iata_code + props.flightData.slices[0].segments[0].operating_carrier_flight_number*/}
+            {/*props.flightData.owner.name*/}
             <div className="flightResults">
               <div>
-                <span><h1>{props.flightData}</h1></span>
+                <span><h1>{/*props.flightData*/}</h1></span>
               </div>
             </div>
             <tr>
-            {/*JSON.stringify(props.flightData)*/}
+            {JSON.stringify(props.flightData)}
             </tr>
             <div>
               <button type="button" onClick={clickAddToCartCB} disabled={props.isFlightInCart}>Add to cart</button>
