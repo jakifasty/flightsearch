@@ -22,7 +22,7 @@ function bookingView(props) {
 
 			  <form>
 			    <div class="row">
-			      <h4>Account</h4>
+			      <h4 className="header4">Account</h4>
 			      <div class="input-group input-group-icon">
 			        <input type="text" placeholder="Full Name"/>
 			        <div class="input-icon"><i class="fa fa-user"></i></div>
@@ -38,7 +38,7 @@ function bookingView(props) {
 			    </div>
 			    <div class="row">
 			      <div class="col-half">
-			        <h4>Date of Birth</h4>
+			        <h4 className="header4">Date of Birth</h4>
 			        <div class="input-group">
 			          <div class="col-third">
 			            <input type="text" placeholder="DD"/>
@@ -52,7 +52,7 @@ function bookingView(props) {
 			        </div>
 			      </div>
 			      <div class="col-half">
-			        <h4>Gender</h4>
+			        <h4 className="header4">Gender</h4>
 			        <div class="input-group">
 			          <input id="gender-male" type="radio" name="gender" value="male"/>
 			          <label for="gender-male">Male</label>
@@ -62,7 +62,7 @@ function bookingView(props) {
 			      </div>
 			    </div>
 			    <div class="row">
-			      <h4>Payment Details</h4>
+			      <h4 className="header4">Payment Details</h4>
 			      <div class="input-group">
 			        <input id="payment-method-card" type="radio" name="payment-method" value="card" checked="true"/>
 			        <label for="payment-method-card"><span><i class="fa fa-cc-visa"></i>Credit Card</span></label>
@@ -82,12 +82,29 @@ function bookingView(props) {
 			      <div class="col-half">
 			        <div class="input-group">
 			          <select>
-			            <option>01 Jan</option>
-			            <option>02 Jan</option>
+								<option value="jan">01 Jan</option>
+									<option value="feb">02 Feb</option>
+									<option value="mar">03 Mar</option>
+									<option value="apr">04 Apr</option>
+									<option value="may">05 May</option>
+									<option value="jun">06 Jun</option>
+									<option value="jul">07 Jul</option>
+									<option value="aug">08 Aug</option>
+									<option value="sept">09 Sept</option>
+									<option value="oct">10 Oct</option>
+									<option value="nov">11 Nov</option>
+									<option value="dec">12 Dec</option>
 			          </select>
 			          <select>
-			            <option>2015</option>
-			            <option>2016</option>
+									<option value="2022">2022</option>
+									<option value="2023">2023</option>
+									<option value="2024">2024</option>
+									<option value="2025">2025</option>
+									<option value="2026">2026</option>
+									<option value="2027">2027</option>
+									<option value="2028">2028</option>
+									<option value="2029">2029</option>
+									<option value="2030">2030</option>
 			          </select>
 			        </div>
 			      </div>
