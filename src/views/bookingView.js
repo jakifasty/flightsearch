@@ -33,6 +33,10 @@ function bookingView(props) {
 							<input type="radio" id="payment-method-paypal" name="payment-method" value="paypal" disabled={true}/> <label htmlFor="payment-method-paypal">Paypal</label>
 						</div>
 
+						<div>
+							<h4> Terms and Conditions </h4>
+							<input type="checkbox" id="terms" name="terms" value="terms"/> <label htmlFor="terms">I accept the terms and conditions for signing up to this service, and hereby confirm I have read the privacy policy.</label>
+						</div>
 
 						<div className="div-row">
 								<div className="div-row confButton"><button>Finish</button></div>
