@@ -48,6 +48,7 @@ function getAirlineLogo(iataCode){
 }
 
 function getFlightDetails(id){ //taken from GET Get Recipe Information
+  let duffel_url = "https://api.duffel.com/air/offers/" + id;
   let headers = {
     "Api-Url" : "https://api.duffel.com/air/offers/" + id, // +"+?return_available_services=true"
     "Accept" : "application/json",

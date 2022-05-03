@@ -59,13 +59,13 @@ class FlightModel {
     };
     this.roundTripData = {
       slices: [{
-          origin: 'LHR',
-          destination: 'JFK',
+          origin: this.fromAirport,
+          destination: this.toAirport,
           departure_date: this.deptDate
         },
         {
-          origin: 'JFK',
-          destination: 'LHR',
+          origin: this.toAirport,
+          destination: this.fromAirport,
           departure_date: this.returnDate
         },
       ],
@@ -180,15 +180,12 @@ class FlightModel {
     this.addPassengers(childPassengers);
     this.addPassengers(adultPassengers);
     this.data.passengers = this.passengers;
+    this.roundTripData.passengers = this.passengers;
   }
 
   setDataDates() {
-    this.data.slices[0].departure_date = this.deptDate
-
-    //TODO
-    if(this.tripType === "Round"){
-      this.roundTripData.returnDate = this.deptDate
-    }
+    this.data.slices[0].departure_date = this.deptDate;
+    this.roundTripData.slices[1].departure_date = this.returnDate;
   }
 
   //TODO set return data
@@ -196,6 +193,11 @@ class FlightModel {
     this.data.slices[0].origin = this.fromAirport
     this.data.slices[0].destination = this.toAirport
 
+    this.roundTripData.slices[0].origin = this.fromAirport
+    this.roundTripData.slices[0].destination = this.toAirport
+
+    this.roundTripData.slices[1].origin = this.toAirport
+    this.roundTripData.slices[1].destination = this.fromAirport
   }
 
   addChildToData(amount) {
@@ -215,6 +217,17 @@ class FlightModel {
     this.makeDataPassengers();
     this.setDataDates();
     this.setDataAirports()
+    return this.data;
+  }
+
+  makeRoundTripData(){
+    if (this.amountOfAdults < 1 && this.amountOfYouths < 1) {
+      throw new Error('number of people is zero');
+    }
+    this.makeDataPassengers();
+    this.setDataDates();
+    this.setDataAirports()
+    return this.data;
   }
 
 

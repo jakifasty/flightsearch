@@ -128,15 +128,17 @@ function Homepage(props) {
   }
 
   function onSelectFromDateACB(date) {
-    if (compareDates(date, props.model.returnDate) || props.model.tripType === props.model.oneWay) {
+  //  if (compareDates(date, props.model.deptDate) || props.model.tripType === props.model.oneWay) {
+      console.log(date);
       props.model.setDeptDate(date)
-    }
+  //  }
   }
 
   function onSelectReturnDateACB(date) {
-    if (compareDates(props.model.fromDate, date)) {
+    //if (compareDates(props.model.returnDate, date)) {
+      console.log(date);
       props.model.setReturnDate(date)
-    }
+    //}
   }
 
   function onSelectTripTypeACB(type) {
@@ -168,17 +170,15 @@ function Homepage(props) {
 
     if (props.model.tripType === props.model.oneWay)
       try {
-        props.model.makeData();
-        resolveFlight(getOffers(props.model.data));
-        props.model.clearData()
+        let data = props.model.makeData();
+        resolveFlight(getOffers(data));
       } catch (error) {
         console.log(error);
       }
     else if (props.model.tripType === props.model.roundTrip)
       try {
-        props.model.makeData();
-        resolveFlight(getOffers(props.model.roundtripData));
-        props.model.clearData()
+        let data = props.model.makeRoundTripData();
+        resolveFlight(getOffers(data));
       } catch (error) {
         console.log(error);
       }
