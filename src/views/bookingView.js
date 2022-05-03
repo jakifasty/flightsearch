@@ -70,7 +70,7 @@ function bookingView(props) {
 
 						<div>
 							<h4> Terms and Conditions </h4>
-							<input type="checkbox" id="terms" name="terms" value="terms"/> <label htmlFor="terms">I accept the terms and conditions for signing up to this service, and hereby confirm I have read the privacy policy.</label>
+							<input type="checkbox" id="terms" name="terms" value="terms" defaultChecked disabled={true}/> <label htmlFor="terms">By clicking Finish, I accept the terms and conditions for signing up to this service, and hereby confirm I have read the privacy policy.</label>
 						</div>
 
 						<div className="div-row">
