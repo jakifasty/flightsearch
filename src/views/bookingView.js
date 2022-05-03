@@ -10,7 +10,7 @@ function bookingView(props) {
 
 
 	return (
-      <div class="container">
+      <div className="container">
 			<div>
 						<h4 className="header4"> Flight Information </h4>
 						<div className="div-row confDate"> Departure date: {props.flightData.deptDate} </div>
@@ -21,63 +21,63 @@ function bookingView(props) {
 
 
 			  <form>
-			    <div class="row">
-			      <h4 className="header4">Account</h4>
-			      <div class="input-group input-group-icon">
+			    <div className="row">
+			      <h4 className="header4">Personal Information</h4>
+			      <div className="input-group input-group-icon">
 			        <input type="text" placeholder="Full Name"/>
-			        <div class="input-icon"><i class="fa fa-user"></i></div>
+			        <div className="input-icon"><i className="fa fa-user"></i></div>
 			      </div>
-			      <div class="input-group input-group-icon">
+			      <div className="input-group input-group-icon">
 			        <input type="email" placeholder="Email Adress"/>
-			        <div class="input-icon"><i class="fa fa-envelope"></i></div>
+			        <div className="input-icon"><i className="fa fa-envelope"></i></div>
 			      </div>
-			      
+
 			    </div>
-			    <div class="row">
-			      <div class="col-half">
+			    <div className="row">
+			      <div className="col-half">
 			        <h4 className="header4">Date of Birth</h4>
-			        <div class="input-group">
-			          <div class="col-third">
+			        <div className="input-group">
+			          <div className="col-third">
 			            <input type="text" placeholder="DD"/>
 			          </div>
-			          <div class="col-third">
+			          <div className="col-third">
 			            <input type="text" placeholder="MM"/>
 			          </div>
-			          <div class="col-third">
+			          <div className="col-third">
 			            <input type="text" placeholder="YYYY"/>
 			          </div>
 			        </div>
 			      </div>
-			      <div class="col-half">
+			      <div className="col-half">
 			        <h4 className="header4">Gender</h4>
-			        <div class="input-group">
+			        <div className="input-group">
 			          <input id="gender-male" type="radio" name="gender" value="male"/>
-			          <label for="gender-male">Male</label>
+			          <label htmlFor="gender-male">Male</label>
 			          <input id="gender-female" type="radio" name="gender" value="female"/>
-			          <label for="gender-female">Female</label>
+			          <label htmlFor="gender-female">Female</label>
 			        </div>
 			      </div>
 			    </div>
-			    <div class="row">
+			    <div className="row">
 			      <h4 className="header4">Payment Details</h4>
-			      <div class="input-group">
-			        <input id="payment-method-card" type="radio" name="payment-method" value="card" checked="true"/>
-			        <label for="payment-method-card"><span><i class="fa fa-cc-visa"></i>Credit Card</span></label>
+			      <div className="input-group">
+			        <input id="payment-method-card" type="radio" name="payment-method" value="card" defaultChecked/>
+			        <label htmlFor="payment-method-card"><span><i className="fa fa-cc-visa"></i>Credit Card</span></label>
 			        <input id="payment-method-paypal" type="radio" name="payment-method" value="paypal" disabled={true}/>
-			        <label for="payment-method-paypal"> <span><i class="fa fa-cc-paypal" ></i>Paypal</span></label>
+			        <label htmlFor="payment-method-paypal"> <span><i className="fa fa-cc-paypal" ></i>Paypal</span></label>
 			      </div>
-			      <div class="input-group input-group-icon">
+			      <div className="input-group input-group-icon">
 			        <input type="text" placeholder="Card Number"/>
-			        <div class="input-icon"><i class="fa fa-credit-card"></i></div>
+			        <div className="input-icon"><i className="fa fa-credit-card"></i></div>
 			      </div>
-			      <div class="col-half">
-			        <div class="input-group input-group-icon">
+			      <div className="col-half">
+			        <div className="input-group input-group-icon">
 			          <input type="text" placeholder="Card CVC"/>
-			          <div class="input-icon"><i class="fa fa-user"></i></div>
+			          <div className="input-icon"><i className="fa fa-user"></i></div>
 			        </div>
 			      </div>
-			      <div class="col-half">
-			        <div class="input-group">
+			      <div className="col-half">
+			        <div className="input-group">
 			          <select>
 								<option value="jan">01 Jan</option>
 									<option value="feb">02 Feb</option>
@@ -106,11 +106,11 @@ function bookingView(props) {
 			        </div>
 			      </div>
 			    </div>
-			    <div class="row">
+			    <div className="row">
 			      <h4>Terms and Conditions</h4>
-			      <div class="input-group">
-			        <input id="terms" type="checkbox"/>
-			        <label for="terms">I accept the terms and conditions for signing up to this service, and hereby confirm I have read the privacy policy.</label>
+			      <div className="input-group">
+			        <input id="terms" type="checkbox" className="check" defaultChecked disabled={true}/>
+			        <label htmlFor="terms">By clicking Finish, I accept the terms and conditions for signing up to this service, and hereby confirm I have read the privacy policy.</label>
 			      </div>
 			    </div>
 			  </form>
