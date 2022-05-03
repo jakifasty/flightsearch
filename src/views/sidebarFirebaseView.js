@@ -14,7 +14,7 @@ function sidebarFirebaseView(props){
                         </td>
                         <td width="10px">
                         </td>
-                        <td class="right">
+                        <td className="right">
                             {props.total_amount}
                             {props.total_currency}
                         </td>
