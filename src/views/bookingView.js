@@ -4,6 +4,11 @@ function bookingView(props) {
 	console.log(props.model);
 
 
+	function handleCancelACB(event) {
+        window.location.hash = "#homepage";
+    }
+
+
 	return (
       <div className="book">
 				<div className="div-table">
@@ -70,7 +75,7 @@ function bookingView(props) {
 
 						<div className="div-row">
 								<div className="div-row confButton"><button>Finish</button></div>
-								<div className="div-row confButton"><button>Cancel</button></div>
+								<div className="div-row confButton"><button onClick={handleCancelACB}>Cancel</button></div>
 						</div>
 			</div>
 		</div>
