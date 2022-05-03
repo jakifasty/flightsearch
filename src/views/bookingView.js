@@ -34,7 +34,7 @@ function bookingView(props) {
 
 						<div>
 							<h4> Payment details </h4>
-							<input type="radio" id="payment-method-card" name="payment-method" value="card" checked="true"/> <label htmlFor="payment-method-card">Credit Card</label>
+							<input type="radio" id="payment-method-card" name="payment-method" value="card" defaultChecked/> <label htmlFor="payment-method-card">Credit Card</label>
 							<input type="radio" id="payment-method-paypal" name="payment-method" value="paypal" disabled={true}/> <label htmlFor="payment-method-paypal">Paypal</label>
 							<div>
 								<input type="text" id="card-number" name="card-number" placeholder="Card Number"/>
