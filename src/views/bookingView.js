@@ -24,11 +24,11 @@ function bookingView(props) {
 			    <div className="row">
 			      <h4 className="header4">Personal Information</h4>
 			      <div className="input-group input-group-icon">
-			        <input type="text" placeholder="Full Name"/>
+			        <input type="text" placeholder="Full Name" className="inpt"/>
 			        <div className="input-icon"><i className="fa fa-user"></i></div>
 			      </div>
 			      <div className="input-group input-group-icon">
-			        <input type="email" placeholder="Email Adress"/>
+			        <input type="email" placeholder="Email Adress" className="inpt"/>
 			        <div className="input-icon"><i className="fa fa-envelope"></i></div>
 			      </div>
 
@@ -38,22 +38,22 @@ function bookingView(props) {
 			        <h4 className="header4">Date of Birth</h4>
 			        <div className="input-group">
 			          <div className="col-third">
-			            <input type="text" placeholder="DD"/>
+			            <input type="text" placeholder="DD" className="inpt"/>
 			          </div>
 			          <div className="col-third">
-			            <input type="text" placeholder="MM"/>
+			            <input type="text" placeholder="MM" className="inpt"/>
 			          </div>
 			          <div className="col-third">
-			            <input type="text" placeholder="YYYY"/>
+			            <input type="text" placeholder="YYYY" className="inpt"/>
 			          </div>
 			        </div>
 			      </div>
 			      <div className="col-half">
 			        <h4 className="header4">Gender</h4>
 			        <div className="input-group">
-			          <input id="gender-male" type="radio" name="gender" value="male"/>
+			          <input id="gender-male" type="radio" name="gender" value="male" className="rad inpt"/>
 			          <label htmlFor="gender-male">Male</label>
-			          <input id="gender-female" type="radio" name="gender" value="female"/>
+			          <input id="gender-female" type="radio" name="gender" value="female" className="rad inpt"/>
 			          <label htmlFor="gender-female">Female</label>
 			        </div>
 			      </div>
@@ -61,24 +61,24 @@ function bookingView(props) {
 			    <div className="row">
 			      <h4 className="header4">Payment Details</h4>
 			      <div className="input-group">
-			        <input id="payment-method-card" type="radio" name="payment-method" value="card" defaultChecked/>
+			        <input id="payment-method-card" type="radio" name="payment-method" value="card" className="rad inpt" defaultChecked/>
 			        <label htmlFor="payment-method-card"><span><i className="fa fa-cc-visa"></i>Credit Card</span></label>
-			        <input id="payment-method-paypal" type="radio" name="payment-method" value="paypal" disabled={true}/>
+			        <input id="payment-method-paypal" type="radio" name="payment-method" value="paypal" className="rad inpt" disabled={true}/>
 			        <label htmlFor="payment-method-paypal"> <span><i className="fa fa-cc-paypal" ></i>Paypal</span></label>
 			      </div>
 			      <div className="input-group input-group-icon">
-			        <input type="text" placeholder="Card Number"/>
+			        <input type="text" placeholder="Card Number" className="inpt"/>
 			        <div className="input-icon"><i className="fa fa-credit-card"></i></div>
 			      </div>
 			      <div className="col-half">
 			        <div className="input-group input-group-icon">
-			          <input type="text" placeholder="Card CVC"/>
+			          <input type="text" placeholder="Card CVC" className="inpt"/>
 			          <div className="input-icon"><i className="fa fa-user"></i></div>
 			        </div>
 			      </div>
 			      <div className="col-half">
 			        <div className="input-group">
-			          <select>
+			          <select className="dropbtn2">
 								<option value="jan">01 Jan</option>
 									<option value="feb">02 Feb</option>
 									<option value="mar">03 Mar</option>
@@ -92,7 +92,7 @@ function bookingView(props) {
 									<option value="nov">11 Nov</option>
 									<option value="dec">12 Dec</option>
 			          </select>
-			          <select>
+			          <select className="dropbtn2">
 									<option value="2022">2022</option>
 									<option value="2023">2023</option>
 									<option value="2024">2024</option>

@@ -1,9 +1,16 @@
 /* Booking view */
-.header4{
-  color: #f0a500;
+/* 64ac15 */
+/* 64ac15 */
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
 }
 
-.input,
+h4 {
+  color: #f0a500;
+}
+.inpt,
 .rad + label,
 .check + label:before,
 .dropbtn2 option,
@@ -20,14 +27,14 @@
   transition: 0.35s ease-in-out;
   transition: all 0.35s ease-in-out;
 }
-input:focus {
+.inpt:focus {
   outline: 0;
   border-color: #bd8200;
 }
-input:focus + .input-icon i {
+.inpt:focus + .input-icon i {
   color: #f0a500;
 }
-input:focus + .input-icon:after {
+.inpt:focus + .input-icon:after {
   border-right-color: #f0a500;
 }
 .rad {
@@ -53,7 +60,7 @@ input:focus + .input-icon:after {
   padding-right: 0.4em;
 }
 .rad:checked + label,
-input:checked + label:before,
+.inpt:checked + label:before,
 .dropbtn2:focus,
 .dropbtn2:active {
   background-color: #f0a500;
@@ -88,7 +95,7 @@ input:checked + label:before,
   font-family: FontAwesome;
   content: "\f00c";
 }
-input:checked + label:after {
+.inpt:checked + label:after {
   opacity: 1;
 }
 .dropbtn2 {
@@ -111,7 +118,6 @@ input:checked + label:after {
   background-color: #f0a500;
   color: #fff;
 }
-
 .input-group {
   margin-bottom: 1em;
   zoom: 1;
@@ -161,7 +167,6 @@ input:checked + label:after {
   transition: 0.35s ease-in-out;
   transition: all 0.35s ease-in-out;
 }
-
 .container {
   max-width: 38em;
   padding: 1em 3em 2em 3em;
@@ -197,8 +202,17 @@ input:checked + label:after {
 .col-third:last-of-type {
   padding-right: 0;
 }
+@media only screen and (max-width: 540px) {
+  .col-half {
+    width: 100%;
+    padding-right: 0;
+  }
+}
 
 
+
+
+/*-----------------------------*/
 
 /* Chrome, Safari, Opera */
 @-webkit-keyframes mymove {
@@ -292,11 +306,11 @@ input:checked + label:after {
   flex-wrap: nowrap;
 }
 
-.input-flex-container input {
+.input-flex-container .inpt {
   text-align: center;
   width: 100%;
   line-height: 20px;
-  font-size: 20px;
+  /*font-size: 20px;*/
 }
 
 body {
