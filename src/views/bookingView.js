@@ -31,10 +31,7 @@ function bookingView(props) {
 			        <input type="email" placeholder="Email Adress"/>
 			        <div class="input-icon"><i class="fa fa-envelope"></i></div>
 			      </div>
-			      <div class="input-group input-group-icon">
-			        <input type="password" placeholder="Password"/>
-			        <div class="input-icon"><i class="fa fa-key"></i></div>
-			      </div>
+			      
 			    </div>
 			    <div class="row">
 			      <div class="col-half">
