@@ -31,6 +31,36 @@ function bookingView(props) {
 							<h4> Payment details </h4>
 							<input type="radio" id="payment-method-card" name="payment-method" value="card" checked="true"/> <label htmlFor="payment-method-card">Credit Card</label>
 							<input type="radio" id="payment-method-paypal" name="payment-method" value="paypal" disabled={true}/> <label htmlFor="payment-method-paypal">Paypal</label>
+							<div>
+								<input type="text" id="card-number" name="card-number" placeholder="Card Number"/>
+								<input type="text" id="card-cvc" name="card-cvc" placeholder="Card CVC"/>
+								<select name="card-month" id="card-month">
+								  <option value="jan">01 Jan</option>
+								  <option value="feb">02 Feb</option>
+								  <option value="mar">03 Mar</option>
+								  <option value="apr">04 Apr</option>
+									<option value="may">05 May</option>
+									<option value="jun">06 Jun</option>
+									<option value="jul">07 Jul</option>
+									<option value="aug">08 Aug</option>
+									<option value="sept">09 Sept</option>
+									<option value="oct">10 Oct</option>
+									<option value="nov">11 Nov</option>
+									<option value="dec">12 Dec</option>
+								</select>
+
+								<select name="card-year" id="card-year">
+								  <option value="2022">2022</option>
+								  <option value="2023">2023</option>
+								  <option value="2024">2024</option>
+								  <option value="2025">2025</option>
+									<option value="2026">2026</option>
+									<option value="2027">2027</option>
+									<option value="2028">2028</option>
+									<option value="2029">2029</option>
+									<option value="2030">2030</option>
+								</select>
+							</div>
 						</div>
 
 						<div>
@@ -40,6 +70,7 @@ function bookingView(props) {
 
 						<div className="div-row">
 								<div className="div-row confButton"><button>Finish</button></div>
+								<div className="div-row confButton"><button>Cancel</button></div>
 						</div>
 			</div>
 		</div>
