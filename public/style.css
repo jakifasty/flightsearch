@@ -1,3 +1,46 @@
+/* Booking view */
+.header4{
+  color: #f0a500;
+}
+
+.dropbtn2 option,
+.dropbtn2 {
+  width: 100%;
+  padding: 1em;
+  line-height: 1.4;
+  background-color: #f9f9f9;
+  border: 1px solid #e5e5e5;
+  border-radius: 3px;
+  -webkit-transition: 0.35s ease-in-out;
+  -moz-transition: 0.35s ease-in-out;
+  -o-transition: 0.35s ease-in-out;
+  transition: 0.35s ease-in-out;
+  transition: all 0.35s ease-in-out;
+}
+.dropbtn2 {
+  height: 3.4em;
+  line-height: 2;
+}
+.dropbtn2:first-of-type {
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+}
+.dropbtn2:last-of-type {
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
+.dropbtn2:focus,
+.dropbtn2:active {
+  outline: 0;
+}
+.dropbtn2 option {
+  background-color: #f0a500;
+  color: #fff;
+}
+
+
+
+
 /* Chrome, Safari, Opera */
 @-webkit-keyframes mymove {
     from {left: 0px;}
@@ -199,4 +242,3 @@ h1 {
     flex: 0%;
     flex-wrap: wrap;
   }
-}
