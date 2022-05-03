@@ -66,8 +66,8 @@ function bookingView(props) {
 			      <div class="input-group">
 			        <input id="payment-method-card" type="radio" name="payment-method" value="card" checked="true"/>
 			        <label for="payment-method-card"><span><i class="fa fa-cc-visa"></i>Credit Card</span></label>
-			        <input id="payment-method-paypal" type="radio" name="payment-method" value="paypal"/>
-			        <label for="payment-method-paypal"> <span><i class="fa fa-cc-paypal"></i>Paypal</span></label>
+			        <input id="payment-method-paypal" type="radio" name="payment-method" value="paypal" disabled={true}/>
+			        <label for="payment-method-paypal"> <span><i class="fa fa-cc-paypal" ></i>Paypal</span></label>
 			      </div>
 			      <div class="input-group input-group-icon">
 			        <input type="text" placeholder="Card Number"/>
