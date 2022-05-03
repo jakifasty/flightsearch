@@ -15,6 +15,18 @@ function DetailsView(props){
     window.location.hash="#search";
   }
 
+  let details = "";
+  try{
+    details = props.flightData.slices[0].segments[0].operating_carrier.iata_code;
+    details.append(" ");
+    details.append(props.flightData.slices[0].segments[0].operating_carrier_flight_number);
+    details.append(" ");
+    details.append(props.flightData.owner.name);
+    //props.flightData.slices[0].segments[0].operating_carrier.iata_code + props.flightData.slices[0].segments[0].operating_carrier_flight_number+props.flightData.owner.name
+  }catch(e){
+    details = "undefined field in flight data";
+  }
+
   return  <div >
             Details about chosen flight {/*props.flightData.slices[0].segments[0].operating_carrier.iata_code + props.flightData.slices[0].segments[0].operating_carrier_flight_number*/}
             {/*props.flightData.owner.name*/}
