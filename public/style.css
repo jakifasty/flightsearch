@@ -4,7 +4,9 @@
 }
 
 .dropbtn2 option,
-.dropbtn2 {
+.dropbtn2,
+.rad + label,
+.check + label:before, {
   width: 100%;
   padding: 1em;
   line-height: 1.4;

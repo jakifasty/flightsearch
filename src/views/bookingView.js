@@ -28,14 +28,14 @@ function bookingView(props) {
 						</div>
 						<div>
 							<h4 className="header4"> Gender </h4>
-							<input type="radio" id="gender-male" name="gender" value="male"/> <label htmlFor="gender-male">Male</label>
-							<input type="radio" id="gender-female" name="gender" value="female"/> <label htmlFor="gender-female">Female</label>
+							<input type="radio" className="rad" id="gender-male" name="gender" value="male"/> <label htmlFor="gender-male">Male</label>
+							<input type="radio" className="rad" id="gender-female" name="gender" value="female"/> <label htmlFor="gender-female">Female</label>
 						</div>
 
 						<div>
 							<h4 className="header4"> Payment details </h4>
-							<input type="radio" id="payment-method-card" name="payment-method" value="card" defaultChecked/> <label htmlFor="payment-method-card">Credit Card</label>
-							<input type="radio" id="payment-method-paypal" name="payment-method" value="paypal" disabled={true}/> <label htmlFor="payment-method-paypal">Paypal</label>
+							<input type="radio" className="rad" id="payment-method-card" name="payment-method" value="card" defaultChecked/> <label htmlFor="payment-method-card">Credit Card</label>
+							<input type="radio" className="rad" id="payment-method-paypal" name="payment-method" value="paypal" disabled={true}/> <label htmlFor="payment-method-paypal">Paypal</label>
 							<div>
 								<input type="text" id="card-number" name="card-number" placeholder="Card Number"/>
 								<input type="text" id="card-cvc" name="card-cvc" placeholder="Card CVC"/>
@@ -70,7 +70,7 @@ function bookingView(props) {
 
 						<div>
 							<h4 className="header4"> Terms and Conditions </h4>
-							<input type="checkbox" id="terms" name="terms" value="terms" defaultChecked disabled={true}/> <label htmlFor="terms">By clicking Finish, I accept the terms and conditions for signing up to this service, and hereby confirm I have read the privacy policy.</label>
+							<input type="checkbox" id="terms" className="check" name="terms" value="terms" defaultChecked disabled={true}/> <label htmlFor="terms">By clicking Finish, I accept the terms and conditions for signing up to this service, and hereby confirm I have read the privacy policy.</label>
 						</div>
 
 						<div className="div-row">
