@@ -1,8 +1,12 @@
+/*
+	The css for bookingView was inspired from here: https://codepen.io/arefeh_htmi/pen/mdPYZKJ
+*/
+
+
 function bookingView(props) {
 
 	console.log(props.flightData);
 	console.log(props.model);
-
 
 	function handleCancelACB(event) {
         window.location.hash = "#homepage";
