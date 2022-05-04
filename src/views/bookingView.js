@@ -6,7 +6,11 @@ function bookingView(props) {
 
 	function handleCancelACB(event) {
         window.location.hash = "#homepage";
-    }
+  }
+
+	function handleBookingACB(event) {
+        window.location.hash = "#confirmation";
+  }
 
 
 	return (
@@ -116,7 +120,7 @@ function bookingView(props) {
 					<div className="row">
 						<div className="input-group">
 								<div className="div-row confButton">
-									<button className="inpt col-half">Finish</button>
+									<button className="inpt col-half" onClick={handleBookingACB}>Finish</button>
 									<button className="inpt col-half" onClick={handleCancelACB}>Cancel</button>
 								</div>
 						</div>
