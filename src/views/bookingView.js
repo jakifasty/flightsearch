@@ -23,6 +23,10 @@ function bookingView(props) {
 		return event.charCode>=48 && event.charCode<=57;
 	}
 
+	function checkLength(L, maxL) {
+		if(L==maxL) return false;
+	}
+
 	return (
       <div className="container">
 			<div>
@@ -52,13 +56,13 @@ function bookingView(props) {
 			        <h4 className="header4">Date of Birth</h4>
 			        <div className="input-group">
 			          <div className="col-third">
-			            <input type="text" placeholder="DD" className="inpt" maxLength="2" max="31" min="1" onKeyPress={keyPressACB}/>
+			            <input type="number" placeholder="DD" className="inpt" maxLength="2" max="31" min="1" onInput={(e) => e.target.value = e.target.value.slice(0, 2)}/>
 			          </div>
 			          <div className="col-third">
-			            <input type="text" placeholder="MM" className="inpt" maxLength="2" max="12" min="1"/>
+			            <input type="number" placeholder="MM" className="inpt" maxLength="2" max="12" min="1" onInput={(e) => e.target.value = e.target.value.slice(0, 2)}/>
 			          </div>
 			          <div className="col-third">
-			            <input type="text" placeholder="YYYY" className="inpt" maxLength="4" max="2022" min="1900"/>
+			            <input type="number" placeholder="YYYY" className="inpt" maxLength="4" max="2022" min="1900" onInput={(e) => e.target.value = e.target.value.slice(0, 4)}/>
 			          </div>
 			        </div>
 			      </div>
@@ -81,12 +85,12 @@ function bookingView(props) {
 			        <label htmlFor="payment-method-paypal"> <span><i className="fa fa-cc-paypal" ></i>Paypal</span></label>
 			      </div>
 			      <div className="input-group input-group-icon">
-			        <input type="text" placeholder="Card Number" className="inpt" maxLength="16"/>
+			        <input type="number" placeholder="Card Number" className="inpt" maxLength="16" onInput={(e) => e.target.value = e.target.value.slice(0, 16)}/>
 			        <div className="input-icon"><i className="fa fa-credit-card"></i></div>
 			      </div>
 			      <div className="col-half">
 			        <div className="input-group input-group-icon">
-			          <input type="text" placeholder="Card CVC" className="inpt" maxlength="3" max="999" min="000"/>
+			          <input type="number" placeholder="Card CVC" className="inpt" maxLength="3" max="999" min="000" onInput={(e) => e.target.value = e.target.value.slice(0, 3)}/>
 			          <div className="input-icon"><i className="fa fa-user"></i></div>
 			        </div>
 			      </div>
