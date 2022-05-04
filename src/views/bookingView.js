@@ -18,6 +18,11 @@ function bookingView(props) {
   }
 
 
+	function keyPressACB(event) {
+		console.log(event.charCode>=48 && event.charCode<=57);
+		return event.charCode>=48 && event.charCode<=57;
+	}
+
 	return (
       <div className="container">
 			<div>
@@ -47,13 +52,13 @@ function bookingView(props) {
 			        <h4 className="header4">Date of Birth</h4>
 			        <div className="input-group">
 			          <div className="col-third">
-			            <input type="text" placeholder="DD" className="inpt" maxLength="2"/>
+			            <input type="text" placeholder="DD" className="inpt" maxLength="2" max="31" min="1" onKeyPress={keyPressACB}/>
 			          </div>
 			          <div className="col-third">
-			            <input type="text" placeholder="MM" className="inpt" maxLength="2"/>
+			            <input type="text" placeholder="MM" className="inpt" maxLength="2" max="12" min="1"/>
 			          </div>
 			          <div className="col-third">
-			            <input type="text" placeholder="YYYY" className="inpt" maxLength="4"/>
+			            <input type="text" placeholder="YYYY" className="inpt" maxLength="4" max="2022" min="1900"/>
 			          </div>
 			        </div>
 			      </div>
@@ -81,7 +86,7 @@ function bookingView(props) {
 			      </div>
 			      <div className="col-half">
 			        <div className="input-group input-group-icon">
-			          <input type="text" placeholder="Card CVC" className="inpt" maxlength="3"/>
+			          <input type="text" placeholder="Card CVC" className="inpt" maxlength="3" max="999" min="000"/>
 			          <div className="input-icon"><i className="fa fa-user"></i></div>
 			        </div>
 			      </div>
