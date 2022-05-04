@@ -20,7 +20,7 @@ function bookingView(props) {
 			</div>
 
 
-			  <form>
+
 			    <div className="row">
 			      <h4 className="header4">Personal Information</h4>
 			      <div className="input-group input-group-icon">
@@ -109,11 +109,19 @@ function bookingView(props) {
 			    <div className="row">
 			      <h4>Terms and Conditions</h4>
 			      <div className="input-group">
-			        <input id="terms" type="checkbox" className="check" defaultChecked disabled={true}/>
+			        <input id="terms" type="checkbox" className="check inpt" defaultChecked disabled={true}/>
 			        <label htmlFor="terms">By clicking Finish, I accept the terms and conditions for signing up to this service, and hereby confirm I have read the privacy policy.</label>
 			      </div>
 			    </div>
-			  </form>
+					<div className="row">
+						<div className="input-group">
+								<div className="div-row confButton">
+									<button className="inpt col-half">Finish</button>
+									<button className="inpt col-half" onClick={handleCancelACB}>Cancel</button>
+								</div>
+						</div>
+					</div>
+
 			</div>
 
 
