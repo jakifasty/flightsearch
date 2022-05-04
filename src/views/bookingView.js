@@ -125,8 +125,8 @@ function bookingView(props) {
 					<div className="row">
 						<div className="input-group">
 								<div className="div-row confButton">
-									<button className="inpt col-half" onClick={handleBookingACB}>Finish</button>
-									<button className="inpt col-half" onClick={handleCancelACB}>Cancel</button>
+									<button className="inpt col-half btnBk" onClick={handleBookingACB}>Finish</button>
+									<button className="inpt col-half btnBk" onClick={handleCancelACB}>Cancel</button>
 								</div>
 						</div>
 					</div>

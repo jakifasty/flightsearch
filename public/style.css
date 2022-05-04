@@ -7,6 +7,18 @@
   box-sizing: border-box;
 }
 
+.btnBk {
+  font-weight: bold;
+}
+
+.btnBk:hover {
+  background-color: #ffcf66;
+}
+.btnBk:active {
+  background-color: #f0a500;
+  transform: translateY(4px);
+}
+
 h4 {
   color: #f0a500;
 }
