@@ -30,6 +30,8 @@ export default function Booking (props){
 
   function addBookingACB() {
     console.log("Booking Presenter - Adding flight");
+    //props.model.addToMenu(props.model.currentDishPromiseState.data);
+    //props.model.
   }
 
   React.useEffect(wasCreatedACB, []);
