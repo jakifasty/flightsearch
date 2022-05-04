@@ -9,6 +9,7 @@ function bookingView(props) {
   }
 
 	function handleBookingACB(event) {
+				props.onAddBooking();
         window.location.hash = "#confirmation";
   }
 
