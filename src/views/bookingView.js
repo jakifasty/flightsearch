@@ -47,13 +47,13 @@ function bookingView(props) {
 			        <h4 className="header4">Date of Birth</h4>
 			        <div className="input-group">
 			          <div className="col-third">
-			            <input type="text" placeholder="DD" className="inpt" maxlength="2"/>
+			            <input type="text" placeholder="DD" className="inpt" maxLength="2"/>
 			          </div>
 			          <div className="col-third">
-			            <input type="text" placeholder="MM" className="inpt" maxlength="2"/>
+			            <input type="text" placeholder="MM" className="inpt" maxLength="2"/>
 			          </div>
 			          <div className="col-third">
-			            <input type="text" placeholder="YYYY" className="inpt" maxlength="4"/>
+			            <input type="text" placeholder="YYYY" className="inpt" maxLength="4"/>
 			          </div>
 			        </div>
 			      </div>
@@ -76,7 +76,7 @@ function bookingView(props) {
 			        <label htmlFor="payment-method-paypal"> <span><i className="fa fa-cc-paypal" ></i>Paypal</span></label>
 			      </div>
 			      <div className="input-group input-group-icon">
-			        <input type="text" placeholder="Card Number" className="inpt" maxlength="16"/>
+			        <input type="text" placeholder="Card Number" className="inpt" maxLength="16"/>
 			        <div className="input-icon"><i className="fa fa-credit-card"></i></div>
 			      </div>
 			      <div className="col-half">
