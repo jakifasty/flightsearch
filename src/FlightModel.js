@@ -217,7 +217,9 @@ class FlightModel {
     this.makeDataPassengers();
     this.setDataDates();
     this.setDataAirports()
-    return this.data;
+    let ret={...this.data};
+    this.clearData();
+    return ret;
   }
 
   makeRoundTripData(){
@@ -227,6 +229,8 @@ class FlightModel {
     this.makeDataPassengers();
     this.setDataDates();
     this.setDataAirports()
+    let ret={...this.data};
+    this.clearData();
     return this.data;
   }
 
