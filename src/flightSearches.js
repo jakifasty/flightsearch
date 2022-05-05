@@ -1,6 +1,6 @@
 import {API_URL, API_TOKEN, API_MARKER, API_ACCESS_TOKEN, API_KEY} from "./apiConfig"
 
-const URL = 'https://marco-projects.com:3000/CORS'
+const proxyURL = 'https://marco-projects.com:3000/CORS'
 
 
 function treatHTTPResponseACB(response){
@@ -35,6 +35,18 @@ function getAirportsInCity(params) {
     .then(transformResultsACB)
 }/* end of second fetch parameter, object */
 
+function getAirlineLogo(iataCode){
+  let url = 'https://content.r9cdn.net/rimg/provider-logos/airlines/v/'+iataCode+'.png?crop=false&width=100&height=90&fallback=default1.png'
+  let method = 'GET'
+  return fetch(url,{
+    method: method
+  })
+  .then(response => response.blob())
+  .then(imageBlob => {
+    return URL.createObjectURL(imageBlob)
+  })
+}
+
 function getFlightDetails(id){ //taken from GET Get Recipe Information
   let duffel_url = "https://api.duffel.com/air/offers/" + id;
   let headers = {
@@ -46,7 +58,7 @@ function getFlightDetails(id){ //taken from GET Get Recipe Information
   };
   let method = 'GET'
   let compress = true;
-	return fetch(URL, {
+	return fetch(proxyURL, {
       method : method,
       headers : headers,
       compress : compress,
@@ -71,7 +83,7 @@ function getOffers(data) {
         });
   let method = 'POST'
   let compress = true;
-  return fetch(URL,{
+  return fetch(proxyURL,{
       method : method,
       headers : headers,
       body : body,
@@ -81,4 +93,4 @@ function getOffers(data) {
 }
 
 
-export {getAirportsInCity, getOffers, getFlightDetails};
+export {getAirportsInCity, getOffers, getFlightDetails, getAirlineLogo};
