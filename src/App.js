@@ -9,7 +9,7 @@ const Show=require("./show.js").default;
 require("./navigation.js")
 require("./utils.js")
 
-window.location.hash = "homepage"
+window.location.hash = "#homepage"
 
 function App(props) {
   return (
