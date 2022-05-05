@@ -63,6 +63,9 @@ class FlightModel {
           destination: this.toAirport,
           departure_date: this.deptDate
         },
+       
+      ],
+      slices2:[
         {
           origin: this.toAirport,
           destination: this.fromAirport,
@@ -185,7 +188,9 @@ class FlightModel {
 
   setDataDates() {
     this.data.slices[0].departure_date = this.deptDate;
-    this.roundTripData.slices[1].departure_date = this.returnDate;
+
+    this.roundTripData.slices[0].departure_date = this.returnDate;
+    this.roundTripData.slices2[0].departure_date = this.returnDate;
   }
 
   //TODO set return data
@@ -196,8 +201,8 @@ class FlightModel {
     this.roundTripData.slices[0].origin = this.fromAirport
     this.roundTripData.slices[0].destination = this.toAirport
 
-    this.roundTripData.slices[1].origin = this.toAirport
-    this.roundTripData.slices[1].destination = this.fromAirport
+    this.roundTripData.slices2[0].origin = this.toAirport
+    this.roundTripData.slices2[0].destination = this.fromAirport
   }
 
   addChildToData(amount) {
@@ -231,7 +236,7 @@ class FlightModel {
     this.setDataAirports()
     let ret={...this.data};
     this.clearData();
-    return this.data;
+    return this.roundTripData;
   }
 
 
