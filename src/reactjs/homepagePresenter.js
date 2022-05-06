@@ -7,6 +7,7 @@ import  {getAirportsInCity, getOffers} from "../flightSearches.js";
 //import sendMail from "../testFIle";
 
 export default
+<<<<<<< Updated upstream
     function Homepage(props) {
     const [, setFrom] = React.useState(null);
     const [, setTo] = React.useState(null);
@@ -27,6 +28,56 @@ export default
     function resolveAirports(promise){
       resolvePromise(promise, airportsPromiseState,
         function promiseStateChangedACB(){reRender(new Object());})
+=======
+
+function Homepage(props) {
+  const [, setFrom] = React.useState(null);
+  const [, setTo] = React.useState(null);
+  const [, setFromDate] = React.useState(null);
+  const [, setReturnDate] = React.useState(null);
+  const [, setAdults] = React.useState(null);
+  const [, setYouths] = React.useState(null);
+  const [, setTripType] = React.useState(null);
+  const [, setFilterType] = React.useState(null);
+  const [choosenAirport, setAirport] = React.useState([]);
+  const [airportsPromiseState] = React.useState({});
+  const [flightPromiseState] = React.useState({});
+  const [, reRender] = React.useState();
+
+  const data = require('../data/airports.json')
+
+
+  //TODO add return airports functionality
+  function resolveAirports(promise) {
+    resolvePromise(promise, airportsPromiseState,
+      function promiseStateChangedACB() {
+        reRender(new Object());
+      })
+  }
+
+  function resolveFlight(promise) {
+    resolvePromise(promise, flightPromiseState,
+      function promiseStateChangedACB() {
+        reRender(new Object());
+      })
+  }
+
+  function observerACB() {
+    setFrom(props.model.fromAirport);
+    setTo(props.model.toAirport)
+    setFromDate(props.model.fromDate)
+    setReturnDate(props.model.returnDate)
+    setAdults(props.model.amountAdults);
+    setYouths(props.model.amountYouths);
+    setTripType(props.model.tripType);
+    setFilterType(props.model.filterType);
+  }
+
+  function searchAirportACB(searchText) {
+
+    function isValidAirportCB(airport, search) {
+      return (airport[search] != undefined)
+>>>>>>> Stashed changes
     }
 
     function resolveFlight(promise){
@@ -85,6 +136,7 @@ export default
 
     }
 
+<<<<<<< Updated upstream
     function onChangeAmountPeopleACB(params) {
         switch (params) {
             case 'Adult +':
@@ -112,6 +164,19 @@ export default
         }
         if(parseInt(date1Split[1])>parseInt(date2Split[1])){
             return false
+=======
+  function onSelectFromDateACB(date) {
+    if (compareDates(date, props.model.returnDate) || props.model.tripType === props.model.oneWay) {
+      props.model.setDeptDate(date)
+    }
+  }
+
+  function onSelectReturnDateACB(date) {
+    if (compareDates(props.model.fromDate, date)) {
+      props.model.setReturnDate(date)
+    }
+  }
+>>>>>>> Stashed changes
 
         }
         if(parseInt(date1Split[2])>parseInt(date2Split[2])){
@@ -156,6 +221,7 @@ export default
         }
     }
 
+<<<<<<< Updated upstream
     function searchACB(){
         if(props.model.tripType == props.model.oneWay)
           resolveFlight(getOffers(props.model.data));
@@ -183,6 +249,98 @@ export default
         amountOfYouths={props.model.amountYouths}
         tripType={props.model.tripType} 
         airportResults={choosenAirport}
+=======
+    if (props.model.tripType === props.model.oneWay)
+      try {
+        props.model.makeData();
+        resolveFlight(getOffers(props.model.data));
+        props.model.clearData()
+      } catch (error) {
+        console.log(error);
+      }
+    else if (props.model.tripType === props.model.roundTrip)
+      try {
+        props.model.makeData();
+        resolveFlight(getOffers(props.model.roundtripData));
+        props.model.clearData()
+      } catch (error) {
+        console.log(error);
+      }
+  }
+
+  function changeFlightOnClickACB(flight) {
+    props.model.setCurrentFlight(flight.id);
+  }
+
+  function onSelectFilterTypeACB(type){
+    props.model.setFilterType(type);
+  }
+
+  return <div> < HomepageFormView
+  onChangeAmountPeople = {
+    onChangeAmountPeopleACB
+  }
+  onFromAirportSelect = {
+    onFromAirportSelectACB
+  }
+  onToAirportSelect = {
+    onToAirportSelectACB
+  }
+  onSelectTripType = {
+    onSelectTripTypeACB
+  }
+  onSelectFromDate = {
+    onSelectFromDateACB
+  }
+  onSelectReturnDate = {
+    onSelectReturnDateACB
+  }
+  isValidRequest = {
+    isReadyForSearchACB
+  }
+  onSearchForAirport = {
+    searchAirportACB
+  }
+  onSearch = {
+    searchACB
+  }
+  fromAirport = {
+    props.model.fromAirport
+  }
+  amountOfPeople = {
+    props.model.amountAdults + props.model.amountYouths
+  }
+  amountAdults = {
+    props.model.amountAdults
+  }
+  amountYouths = {
+    props.model.amountYouths
+  }
+  tripType = {
+    props.model.tripType
+  }
+  airportResults = {
+    choosenAirport
+  }
+  /> {
+    promiseNoData({
+        promise: flightPromiseState.promise,
+        data: flightPromiseState.data,
+        error: flightPromiseState.error
+      }) ||
+      < HomepageResultsView results = {
+        flightPromiseState.data
+      }
+    onChooseFlight = {
+      changeFlightOnClickACB
+    }
+    onSelectFilterType = {
+      onSelectFilterTypeACB
+    }
+    filterType = {
+      props.model.filterType
+    }
+>>>>>>> Stashed changes
     />
     {
         promiseNoData({promise: flightPromiseState.promise, data: flightPromiseState.data, error: flightPromiseState.error})
