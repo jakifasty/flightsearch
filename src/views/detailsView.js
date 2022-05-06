@@ -1,37 +1,20 @@
-//detailsView.js React file
-import {fromTextInputACB, fromChangeAmountPeopleACB, fromSelectTripTypeACB} from "../detailsView.js"
-
 function DetailsView(props){
+  console.log("here value flighData");
+  console.log(props.flightData);
+  console.log(props.flightData.data.passenger_identity_documents_required);
 
-	function fromTextInputACB(event){
-        props.onFromTextChange(event.target.value)
-    }
-    function fromSelectTripTypeACB(event){
-        console.log("In ACB")
-        props.onSelectTripType(event.target.value)
-    }
+  function clickAddToCartCB(flight){
+    return props.onAddToFinalList(flight);
+		//window.location.hash="#booking";
+	}
 
-	var date = new Date()
-    var today = date.getFullYear()+'-'+(date.getMonth()+1)+'-'+date.getDate()
-    var twoYearsAfterToday = (parseInt(today.split("-")[0])+2)+today.slice(today.indexOf("-"),today.length)
-
-	window.location.hash = "#details"
-	return(	
-			<div className = "mainBackground">
-				<h1>style={{color:'#DA291CFF'}}Flight Search</h1>
-
-				<select className="dropbtn" onChange={fromSelectTripTypeACB}>
-					<option value="One">One-way</option>
-					<option value="Round">Round-trip</option>
-				</select>
-
-  function setToReturnACB() {
-    //console.log("leaving to search page...");
-    window.location.hash="#homepage";
+  function clickRemoveFromCart(flight){ 
+    return props.searchFlights(flight);
   }
 
-  function clickGoToBookingCB(){
-    window.location.hash="#booking";
+  function setToReturnACB() {
+    console.log("leaving to search page...");
+    window.location.hash="#homepage";
   }
 
   let details = "";
@@ -46,11 +29,13 @@ function DetailsView(props){
     details = "undefined field in flight data";
   }
 
-				<div className="outsideBox">
-					Flight results:
-					{renderResults(props)}
-					<button onClick={function setFlightOptionACB(e){ongamepaddisconnected}}></button>
-				</div>
+  let valueTravel = "";
+  if (props.flightData.data.passenger_identity_documents_required == 'false'){
+    valueTravel = "no ducuments required";
+  }
+  else{
+    valueTravel = "specific ducuments required";
+  }
 
   return  <div >
             <h1>Details about chosen flight {props.flightData.data.slices[0].segments[0].operating_carrier.iata_code + " " + props.flightData.data.slices[0].segments[0].operating_carrier_flight_number} :</h1> {/*props.flightData.slices[0].segments[0].operating_carrier.iata_code + props.flightData.slices[0].segments[0].operating_carrier_flight_number*/}
@@ -80,12 +65,9 @@ function DetailsView(props){
             </tr>
             <div>
               <button type="button" onClick={clickAddToCartCB} disabled={props.isFlightInCart}>Add to cart</button>
-              <button type="button" onClick={clickGoToBookingCB} disabled={props.isFlightInCart}>Go to booking</button>
               <button type="button" onClick={setToReturnACB}>Return to search</button>
             </div>
           </div>
 }
 
-			</div>
-		);
-}
+export default DetailsView;

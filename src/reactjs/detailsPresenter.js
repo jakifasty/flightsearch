@@ -1,46 +1,45 @@
-//detailsPresenter.js React file
-
-import FlightModel from "./FlightModel.js"
 import React from "react"
-import {wasCreatedACB, onFromTextChangeACB, onSelectTripTypeACB} from "../reactjs/homepagePresenter.js"
-import DetailsView from "../views/detailsView.js"
+import FlightModel from "../FlightModel.js"
+import DetailsView from "../views/detailsView.js";
+import promiseNoData from "../promiseNoData"
+//TODO: import utilities.js and add isFlightInFinalList to be used in DetailsView
 
-export default
-function Presenter(props){
+export default function Details(props) {
+  const [, setPromiseData]=React.useState(null);
+  const [, setPromise]=React.useState(null);
+  const [, setError]=React.useState(null);
+  const [, setCurrentFlight] = React.useState(null);
 
-	const [, setFrom] = React.useState(null);
-	const [, setTo] = React.useState(null);
-	const [, setTripType] = React.useState(null);
+  function observerACB() {
+    setPromiseData(props.model.currentFlightPromiseState.data)
+    setPromise(props.model.currentFlightPromiseState.promise)
+    setPromise(props.model.currentFlightPromiseState.error)
+  }
 
-	function observerACB(){
-		setFrom(props.model.fromAirport);
-		setTo(props.model.toAirport);
-		setTripType(props.model.tripType)
-	}
+  function wasCreatedACB() {
+    //var airports = require('../data/airports.json')
+    //setData(airports)
+    observerACB();
+    props.model.addObserver(observerACB);
+    return function isTakenDownACB() {
+      props.model.removeObserver(observerACB);
+    }
+  }
 
-	function wasCreatedACB() {
-		observerACB();
-		props.model.addObserver(observerACB);
+  function addToFinalListACB(){
+    props.model.addToFinalList(props.model.currentFlightPromiseState.data)
+  }
 
-		return function isTakenDownACB(){
-			props.model.removeObserver(observerACB);
-		}
-	}
-	React.useEffect(wasCreatedACB, []);
-
-	/*function sameidCB(selectionToCompare){
-		if(props.model.currentSelection === amountOfYouths)
-			return true;
-		else
-			return false;
-	}*/
-
-	return(
-			<DetailsView 
-				onFromTextChange={onFromTextChangeACB}
-				onSelectTripType={onSelectTripTypeACB}
-				fromAirport={props.model.fromAirport}
-				toAirport={props.model.toAirport}
-				tripType={props.model.tripType}
-			/>);
+  React.useEffect(wasCreatedACB, []);
+  return (<div>{
+            promiseNoData({
+                promise: props.model.currentFlightPromiseState.promise,
+                data: props.model.currentFlightPromiseState.data,
+                error: props.model.currentFlightPromiseState.error
+              }) ||
+            <DetailsView
+              flightData = {props.model.currentFlightPromiseState.data} onAddToFinalList={addToFinalListACB}
+            />}
+          </div>
+          );
 }

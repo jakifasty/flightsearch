@@ -1,6 +1,10 @@
 import {API_URL, API_TOKEN, API_MARKER, API_ACCESS_TOKEN, API_KEY} from "./apiConfig"
 
+const URL = 'https://marco-projects.com:3000/CORS'
+
+
 function treatHTTPResponseACB(response){
+  console.log(response)
    /*TODO throw if the HTTP response is not 200, otherwise return response.json()*/
    if(response.status !== 200){
      throw new Error (response.status);
@@ -31,19 +35,28 @@ function getAirportsInCity(params) {
     .then(transformResultsACB)
 }/* end of second fetch parameter, object */
 
-/*function getFlightDetails(id){ //taken from GET Get Recipe Information
-
-	const endpoint = 'recipes/' + id + '/information';
-	return fetch(BASE_URL + endpoint, {
-		"method": "GET",
-		"headers":  {
-			'X-Mashape-Key': API_KEY,
-			"x-rapidapi-url": BASE_URL,
-		}}).then(treatHTTPResponseACB);
-}*/
+function getFlightDetails(id){ //taken from GET Get Recipe Information
+  let duffel_url = "https://api.duffel.com/air/offers/" + id;
+  let headers = {
+    "Api-Url" : "https://api.duffel.com/air/offers/" + id, // +"+?return_available_services=true"
+    "Accept" : "application/json",
+    "Accept-Encoding": "gzip",
+    "Duffel-Version": "beta",
+    "Authorization": "Bearer " + API_ACCESS_TOKEN
+  };
+  let method = 'GET'
+  let compress = true;
+	return fetch(URL, {
+      method : method,
+      headers : headers,
+      compress : compress,
+    })
+    .then(response => {if(response.status === 200 || response.status === 201) return response.json(); throw new Error (response.status)});
+}
 
 function getOffers(data) {
   let headers = {
+    "Api-Url" : "https://api.duffel.com/air/offer_requests?return_offers=true",
     "Content-Type": "application/json",
     "Accept" : "application/json",
     "Accept-Encoding": "gzip",
@@ -58,15 +71,14 @@ function getOffers(data) {
         });
   let method = 'POST'
   let compress = true;
-  let url = 'https://api.duffel.com/air/offer_requests?return_offers=true';
-  return fetch(url,{
+  return fetch(URL,{
       method : method,
       headers : headers,
       body : body,
       compress : compress,
     })
-    .then(response => response.json())
-    .catch(err => console.error(err));
+    .then(response => {if(response.status === 200 || response.status === 201) return response.json(); throw new Error (response.status)});
 }
 
-export {getAirportsInCity, getOffers};
+
+export {getAirportsInCity, getOffers, getFlightDetails};

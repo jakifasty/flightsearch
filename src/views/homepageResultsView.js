@@ -1,22 +1,11 @@
 function HomepageResultsView(props){
-
-  function fromSelectFilterTypeACB(event) {
-    props.onSelectFilterType(event.target.value);
-  }
   function listResultsCB(flight){
 
-    //let flightTime = parseInt('', 16); //convert from minutes in hexadecimal to hours in decimal
+    let flightTime = parseInt('flight.slices[0].segments[0].duration', 16); //convert from minutes in hexadecimal to hours in decimal
     
     console.log(flight.slices);
-    
+
     return (
-      /*      <><div className="search-params">
-        <select className="dropbtn" onChange={fromSelectFilterTypeACB}>
-          <option value="price-up">One-way</option>
-          <option value="price-down">Round-trip</option>
-          <option value="flight-duration">Duration</option>
-        </select>
-    </div>*/
       <tr className="flightResults" key={flight.id} onClick={function (event){window.location.hash="#details"; props.onChooseFlight(flight)}}>         
         
         <td>
@@ -38,7 +27,7 @@ function HomepageResultsView(props){
         </td>
 
         <td>
-          {"Duration " + flight.slices[0].segments[0].duration }
+          {"Duration " + flightTime + "h   "}
         </td>
 
         <td>
@@ -55,32 +44,13 @@ function HomepageResultsView(props){
 
       </tr>
     );
-    /*<tr>
-          <td>
-          {flight.origin}
-          </td>
-          <td>
-          {flight.destination}
-          </td>
-          <td>
-          {flight.price}
-          </td>
-          <td>
-          {flight.main_airline}
-          </td>
-          <td>
-          {flight.departure_date}
-          </td>
-      </tr>*/
   }
 
   return (
           <div>
-            {props.results.map(listResultsCB)}
-          </div>
-          /*<div>
             <table>
-              <thead>
+              {/*<thead>
+              <tr>
                 <th>
                   From
                 </th>
@@ -94,12 +64,18 @@ function HomepageResultsView(props){
                   Airline
                 </th>
                 <th>
-                  Depart Date
+                  Departure
                 </th>
-              </thead>
+                <th>
+                  Hops
+                </th>
+              </tr>
+              </thead>*/}
+              <tbody>
+                {props.results.data.offers.map(listResultsCB)}
+              </tbody>
             </table>
-            See offers in console
-          </div>*/
+          </div>
   );
 }
 export default HomepageResultsView;

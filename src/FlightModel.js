@@ -1,165 +1,266 @@
 import resolvePromise from "./resolvePromise.js";
+import {
+  createPassenger,
+  createPassengers
+} from "./utils.js"
+import {
+  getAirportsInCity,
+  getOffers,
+  getFlightDetails
+} from "./flightSearches.js";
 //import {getFlightDetails} from "./flightSearches"
 /* This is an example of a JavaScript class.
    The Model keeps only abstract data and has no notions of graohics or interaction
 */
 
-function isValid(id){
+function isValid(id) {
   return (typeof(id) == "number")
 }
 
-class FlightModel{
-    constructor(){
-        this.oneWay = "One";
-        this.roundTrip = "Round";
-        this.fromAirport = "LHR";
-        this.destAirport = "JFK";
-        this.observers = [];
+class FlightModel {
+  constructor() {
+    //Not sure why these were added
+    this.oneWay = "One";
+    this.roundTrip = "Round";
+    this.passengers = [];
+    this.cabin_class = "economy";
+    this.fromAirport = "";
+    this.toAirport = "";
 
-        this.currentFlightPromiseState = {};
-        this.searchResultsPromiseState = {};
-        this.searchParams = {query: "", type: ""};
-        this.amountOfAdults = 1
-        this.amountOfYouths = 0
-        this.tripType = "One"
-        this.data = {slices:
-                      [
-                        {
-                          origin: this.fromAirport,
-                          destination: this.destAirport,
-                          departure_date: '2022-04-24',
-                        },
-                      ],
-                      passengers: [
-                        {
-                          type: 'adult',
-                        },
-                        {
-                          age: 14,
-                        },
-                      ],
-                    cabin_class: 'economy',
-                  };
-        this.roundtripData = {slices:
-                  [
-                    {
-                      origin: 'LHR',
-                      destination: 'JFK',
-                      departure_date: "2022-10-10T17:22:07.481Z"
-                    },
-                    {
-                      origin: 'JFK',
-                      destination: 'LHR',
-                      departure_date: "2022-10-18T17:22:07.481Z"
-                    },
-                  ],
-                  passengers: [{ "type": "adult" }],
-                  cabin_class: null
-                }
+    this.currentFlight = "";
+    this.currentFlightPromiseState = {};
+
+    this.amountAdults = 1
+    this.amountYouths = 0
+
+    this.tripType = "One"
+
+    this.searchResultsPromiseState = {};
+    this.observers = [];
+    this.searchParams = {
+      query: "",
+      type: ""
+    };
+
+
+    var date = new Date()
+    this.deptDate = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate()
+    this.returnDate = (parseInt(this.deptDate.split("-")[0]) + 2) + this.deptDate.slice(this.deptDate.indexOf("-"), this.deptDate.length)
+
+
+    this.data = {
+      slices: [{
+        origin: this.fromAirport,
+        destination: this.toAirport,
+        departure_date: this.deptDate
+      }, ],
+      passengers: this.passengers,
+      cabin_class: this.cabin_class,
+    };
+    this.roundTripData = {
+      slices: [{
+          origin: this.fromAirport,
+          destination: this.toAirport,
+          departure_date: this.deptDate
+        },
+        {
+          origin: this.toAirport,
+          destination: this.fromAirport,
+          departure_date: this.returnDate
+        },
+      ],
+      passengers: this.passengers,
+      cabin_class: this.cabin_class,
     }
-
-    /*setCurrentFlight(id){
-      let myModel = this;
-
-      function notifyACB() {
-        myModel.notifyObservers(null);
-      }
-
-      if(!id || id==this.currentDish || !isValid(id)) return;
-
-      resolvePromise(getFlightDetails(id), this.currentFlightPromiseState, notifyACB);
-
+  }
+  setCurrentFlight(id){
+    if(!id || id == this.currentFlight){
+        //nothing to do
+    }
+    else{
+      const theModel = this;
+      function notifyACB() {theModel.notifyObservers(null);};
       this.currentFlight = id;
-
-      this.notifyObservers({setCurrentFlight: id})
-    }*/
-
-    setTripType(type){
-        this.tripType = type
-        var payload = {tripType: type}
-        this.notifyObservers(payload)
-    }
-
-    setFromAirport(airport){
-        this.fromAirport = airport
-        var payload = {fromAirport: airport}
-        this.notifyObservers(payload)
-    }
-
-    setToAirport(airport){
-      this.toAirport = airport
-      var payload = {toAirport: airport}
+      resolvePromise(getFlightDetails(id), this.currentFlightPromiseState, notifyACB);
+      var payload = {
+        currentFlight: id
+      }
       this.notifyObservers(payload)
+    }
   }
 
-    setAmountAdults(nr){
-        this.amountOfAdults = nr
-        var payload = {amountAdults: nr}
-        this.notifyObservers(payload)
-
+  setDeptDate(date) {
+    this.deptDate = date
+    var payload = {
+      deptDate: date
     }
-    setAmountYouths(nr){
-        this.amountOfYouths = nr
-        var payload = {amountYouths: nr}
-        this.notifyObservers(payload)
+    this.notifyObservers(payload)
+  }
+
+  setReturnDate(date) {
+    this.returnDate = date
+    var payload = {
+      returnDate: date
     }
+    this.notifyObservers(payload)
+  }
 
 
-     setSearchQuery(q){
-       this.searchParams.query = q;
-       this.notifyObservers();
-     }
-     setSearchType(t){
-       this.searchParams.type = t;
-       this.notifyObservers();
-     }
-     doSearch(params){
-       const theModel = this;
-       function notifyACB() {theModel.notifyObservers(null);};
-       if(params){
-         resolvePromise(searchFlights(this.searchParams), this.searchResultsPromiseState, notifyACB);
-       }
-       else{
-         resolvePromise(searchFlights(params), this.searchResultsPromiseState, notifyACB);
-       }
-     }
-     addObserver(callback){
-       this.observers.push(callback);
-     }
-     removeObserver(callback){
-        this.observers = this.observers.filter(function(x){
-            if(x === callback){
-                return false
-            }
-            return true;
-            }
-        )
+  setTripType(type) {
+    this.tripType = type
+    var payload = {
+      tripType: type
     }
-    setCurrentFlight(id){
-      let myModel = this;
+    this.notifyObservers(payload)
+  }
 
-      function notifyACB(){
-        myModel.notifyObservers(null);
+  setFromAirport(airport) {
+    this.fromAirport = airport
+    var payload = {
+      fromAirport: airport
+    }
+    this.notifyObservers(payload)
+  }
+
+  setToAirport(airport) {
+    this.toAirport = airport
+    var payload = {
+      toAirport: airport
+    }
+    this.notifyObservers(payload)
+  }
+
+  setAmountAdults(nr) {
+    this.amountAdults = nr
+    var payload = {
+      amountAdults: nr
+    }
+    this.notifyObservers(payload)
+
+  }
+  setAmountYouths(nr) {
+    this.amountYouths = nr
+    var payload = {
+      amountYouths: nr
+    }
+    this.notifyObservers(payload)
+  }
+
+
+  setSearchQuery(q) {
+    this.searchParams.query = q;
+    this.notifyObservers();
+  }
+  setSearchType(t) {
+    this.searchParams.type = t;
+    this.notifyObservers();
+  }
+  doSearch(params) {
+    const theModel = this;
+
+    function notifyACB() {
+      theModel.notifyObservers(null);
+    };
+    if (params) {
+      resolvePromise(null, this.searchResultsPromiseState, notifyACB);
+    } else {
+      resolvePromise(null, this.searchResultsPromiseState, notifyACB);
+    }
+  }
+  addPassenger(passenger) {
+    this.passengers = this.passengers.push(passenger) //TODO: check passenger structure
+  }
+
+  addPassengers(passengers) {
+    this.passengers = this.passengers.concat(passengers); //TODO: check passenger structure
+  }
+  makeDataPassengers() {
+    let childPassengers = createPassengers(this.amountYouths, "child");
+    let adultPassengers = createPassengers(this.amountAdults, "adult");
+    this.addPassengers(childPassengers);
+    this.addPassengers(adultPassengers);
+    this.data.passengers = this.passengers;
+    this.roundTripData.passengers = this.passengers;
+  }
+
+  setDataDates() {
+    this.data.slices[0].departure_date = this.deptDate;
+    this.roundTripData.slices[1].departure_date = this.returnDate;
+  }
+
+  //TODO set return data
+  setDataAirports(){
+    this.data.slices[0].origin = this.fromAirport
+    this.data.slices[0].destination = this.toAirport
+
+    this.roundTripData.slices[0].origin = this.fromAirport
+    this.roundTripData.slices[0].destination = this.toAirport
+
+    this.roundTripData.slices[1].origin = this.toAirport
+    this.roundTripData.slices[1].destination = this.fromAirport
+  }
+
+  addChildToData(amount) {
+    let childPassengers = createPassengers((amount ? amount : 1), "child");
+    this.addPassengers(childPassengers);
+  }
+
+  addAdultToData(amount) {
+    let adultPassengers = createPassengers((amount ? amount : 1), "adult");
+    this.addPassengers(adultPassengers);
+  }
+
+  makeData() {
+    if (this.amountOfAdults < 1 && this.amountOfYouths < 1) {
+      throw new Error('number of people is zero');
+    }
+    this.makeDataPassengers();
+    this.setDataDates();
+    this.setDataAirports()
+    let ret={...this.data};
+    this.clearData();
+    return ret;
+  }
+
+  makeRoundTripData(){
+    if (this.amountOfAdults < 1 && this.amountOfYouths < 1) {
+      throw new Error('number of people is zero');
+    }
+    this.makeDataPassengers();
+    this.setDataDates();
+    this.setDataAirports()
+    let ret={...this.data};
+    this.clearData();
+    return this.data;
+  }
+
+
+  clearData() {
+    this.passengers = [];
+    this.data.passengers = this.passengers;
+  }
+
+  addObserver(callback) {
+    this.observers.push(callback);
+  }
+  removeObserver(callback) {
+    this.observers = this.observers.filter(function(x) {
+      if (x === callback) {
+        return false
       }
-
-      if(!id || id === this.currentFlight || !isValid(id)) return;
-
-      resolvePromise(getFlightDetails(id), this.currentFlightPromiseState, notifyACB);
-
-      this.currentFlight = id;
-
-      this.notifyObservers({setcurrentFlight: id});
-    }
-    notifyObservers(payload){
-      function invokeObserverCB(obs){
-        try{
-          obs(payload);
-        }catch (err){
-          console.log(err);
-        }
+      return true;
+    })
+  }
+  notifyObservers(payload) {
+    function invokeObserverCB(obs) {
+      try {
+        obs(payload);
+      } catch (err) {
+        console.log(err);
       }
-      this.observers.forEach(invokeObserverCB);
     }
+    this.observers.forEach(invokeObserverCB);
+  }
 
 }
 
