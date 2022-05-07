@@ -6,8 +6,6 @@ function HomepageFormView(props) {
         props.onChangeAmountPeople(event.target.value)
     }
 
-
-
     function fromSelectTripTypeACB(event) {
         props.onSelectTripType(event.target.value)
     }

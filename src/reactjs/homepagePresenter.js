@@ -20,6 +20,7 @@ function Homepage(props) {
   const [, setAdults] = React.useState(null);
   const [, setYouths] = React.useState(null);
   const [, setTripType] = React.useState(null);
+  const [, setFilterType] = React.useState(null);
   const [choosenAirport, setAirport] = React.useState([]);
   const [airportsPromiseState] = React.useState({});
   const [flightPromiseState] = React.useState({});
@@ -51,6 +52,7 @@ function Homepage(props) {
     setAdults(props.model.amountAdults);
     setYouths(props.model.amountYouths);
     setTripType(props.model.tripType);
+    setFilterType(props.model.filterType);
   }
 
   function searchAirportACB(searchText) {
@@ -143,6 +145,10 @@ function Homepage(props) {
 
   function onSelectTripTypeACB(type) {
     props.model.setTripType(type)
+  }
+
+  function onSelectFilterTypeACB(type){
+    props.model.setFilterType(type);
   }
 
   //TODO
@@ -245,6 +251,9 @@ function Homepage(props) {
       }
     onChooseFlight = {
       changeFlightOnClickACB
+    }
+    onSelectFilterType = {
+      onSelectFilterTypeACB
     }
     />
   }</div>
