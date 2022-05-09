@@ -32,14 +32,14 @@ function bookingView(props) {
 			<div>
 						<h4 className="header4"> Flight Information </h4>
 
-						<div className="div-row confDate"> Company: {props.flightData.data.owner.name} </div>
-						<div className="div-row confDate"> Departure date: {props.flightData.data.slices[0].segments[0].departing_at} </div>
-	          <div className="div-row confDate"> Arrival date: {props.flightData.data.slices[0].segments[props.flightData.data.slices[0].segments.length-1].arriving_at}</div>
-						<div className="div-row confRoute"> From: {props.flightData.data.slices[0].origin.city_name + " " + props.flightData.data.slices[0].origin.iata_code} </div>
-	          <div className="div-row confRoute"> To: {props.flightData.data.slices[0].destination.city_name + " " + props.flightData.data.slices[0].destination.iata_code} </div>
-						<div className="div-row confRoute"> Number of stops: {props.flightData.data.slices[0].segments.length} </div>
-						<div className="div-row confRoute"> Passengers: {props.flightData.data.passengers.length} </div>
-						<div className="div-row confRoute"> Total amount: {props.flightData.data.total_amount + " " + props.flightData.data.total_currency}  </div>
+						<div className="div-row confDate"> Company: <i>{props.flightData.data.owner.name}</i></div>
+						<div className="div-row confDate"> Departure date: <i>{props.flightData.data.slices[0].segments[0].departing_at.replace("T", " ")}</i></div>
+	          <div className="div-row confDate"> Arrival date: <i>{props.flightData.data.slices[0].segments[props.flightData.data.slices[0].segments.length-1].arriving_at.replace("T", " ")}</i></div>
+						<div className="div-row confRoute"> From: <i>{props.flightData.data.slices[0].origin.city_name + " " + props.flightData.data.slices[0].origin.iata_code}</i></div>
+	          <div className="div-row confRoute"> To: <i>{props.flightData.data.slices[0].destination.city_name + " " + props.flightData.data.slices[0].destination.iata_code}</i></div>
+						<div className="div-row confRoute"> Number of stops: <i>{props.flightData.data.slices[0].segments.length}</i></div>
+						<div className="div-row confRoute"> Passengers: <i>{props.flightData.data.passengers.length}</i></div>
+						<div className="div-row confRoute"> Total amount: <i>{props.flightData.data.total_amount + " " + props.flightData.data.total_currency}</i></div>
 
 
 			</div>
