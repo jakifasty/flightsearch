@@ -6,7 +6,7 @@
 function bookingView(props) {
 
 	console.log(props.flightData);
-	console.log(props.model);
+	console.log(props);
 
 	function handleCancelACB(event) {
         window.location.hash = "#homepage";
@@ -31,10 +31,17 @@ function bookingView(props) {
       <div className="container">
 			<div>
 						<h4 className="header4"> Flight Information </h4>
-						<div className="div-row confDate"> Departure date: {props.flightData.deptDate} </div>
-	          <div className="div-row confDate"> Arrival date: {props.flightData.returnDate} </div>
-						<div className="div-row confRoute"> From: {props.flightData.fromAirport} </div>
-	          <div className="div-row confRoute"> To: {props.flightData.toAirport} </div>
+
+						<div className="div-row confDate"> Company: {props.flightData.data.owner.name} </div>
+						<div className="div-row confDate"> Departure date: {props.flightData.data.slices[0].segments[0].departing_at} </div>
+	          <div className="div-row confDate"> Arrival date: {props.flightData.data.slices[0].segments[props.flightData.data.slices[0].segments.length-1].arriving_at}</div>
+						<div className="div-row confRoute"> From: {props.flightData.data.slices[0].origin.city_name + " " + props.flightData.data.slices[0].origin.iata_code} </div>
+	          <div className="div-row confRoute"> To: {props.flightData.data.slices[0].destination.city_name + " " + props.flightData.data.slices[0].destination.iata_code} </div>
+						<div className="div-row confRoute"> Number of stops: {props.flightData.data.slices[0].segments.length} </div>
+						<div className="div-row confRoute"> Passengers: {props.flightData.data.passengers.length} </div>
+						<div className="div-row confRoute"> Total amount: {props.flightData.data.total_amount + " " + props.flightData.data.total_currency}  </div>
+
+
 			</div>
 
 
