@@ -168,20 +168,22 @@ function Homepage(props) {
   function searchACB() {
 
 
-    if (props.model.tripType === props.model.oneWay)
+    if (props.model.tripType === props.model.oneWay){
       try {
         let data = props.model.makeData();
         resolveFlight(getOffers(data));
       } catch (error) {
         console.log(error);
       }
-    else if (props.model.tripType === props.model.roundTrip)
+    }
+    else if (props.model.tripType === props.model.roundTrip){
       try {
         let data = props.model.makeRoundTripData();
         resolveFlight(getOffers(data));
       } catch (error) {
         console.log(error);
       }
+    }
   }
 
   function changeFlightOnClickACB(flight) {
