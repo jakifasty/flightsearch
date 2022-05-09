@@ -3,7 +3,6 @@ function HomepageResultsView(props){
 
     let flightTime = parseInt('flight.slices[0].segments[0].duration', 16); //convert from minutes in hexadecimal to hours in decimal
     
-    console.log(flight.slices);
 
     return (
       <tr className="flightResults" key={flight.id} onClick={function (event){window.location.hash="#details"; props.onChooseFlight(flight)}}>         
@@ -48,8 +47,15 @@ function HomepageResultsView(props){
     );
   }
 
+  function onScrollACB(){ 
+    props.onScrollEnd()
+ }
+
   return (
           <div>
+            {window.addEventListener('scroll',onScrollACB)}
+            <button onClick={props.setDisplayAmount(1)}></button>
+            {console.log(props.displayAmount)}
             <table>
               {/*<thead>
               <tr>
