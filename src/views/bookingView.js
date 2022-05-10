@@ -9,6 +9,7 @@ function bookingView(props) {
 	let inpEmail = false;
 	let inpCard = false;
 	let inpCVC = false;
+	let valEmail = false;
 
 
 
@@ -18,7 +19,7 @@ function bookingView(props) {
 
 	function handleBookingACB(event) {
 				//props.onAddBooking();
-				console.log(inpName +" "+ inpEmail +" " + inpCard + " " + inpCVC);
+				//console.log(inpName +" "+ inpEmail +" " + inpCard + " " + inpCVC);
 				//console.log(isDisabled());
 
 				if (isDisabled()===true) {
@@ -40,10 +41,22 @@ function bookingView(props) {
 		if(L==maxL) return false;
 	}
 
+	function ValidateEmail(event) {
+		//console.log("Validate email " + event.target.value);
+	 	if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(event.target.value)) {
+			//console.log(true);
+			valEmail = true;
+	    return (true);
+	  }
+		//console.log(false);
+		valEmail = false;
+	  return (false);
+	}
+
 
 	function isDisabled() {
 		//console.log(inpName && inpEmail &&inpCard);
-		return (inpName && inpEmail && inpCard && inpCVC);
+		return (inpName && inpEmail && inpCard && inpCVC && valEmail);
 	}
 
 // Would be better with React, but we are keeping the views dumb, so using React only for presenters
@@ -118,7 +131,7 @@ function bookingView(props) {
 			        <div className="input-icon"><i className="fa fa-user"></i></div>
 			      </div>
 			      <div className="input-group input-group-icon">
-			        <input type="email" placeholder="Email Adress" className="inpt" id="inptEmail" onKeyUp={keyPressUpACB}/>
+			        <input type="email" placeholder="Email Adress" className="inpt" id="inptEmail" onKeyUp={keyPressUpACB} onChange={ValidateEmail}/>
 			        <div className="input-icon"><i className="fa fa-envelope"></i></div>
 			      </div>
 
