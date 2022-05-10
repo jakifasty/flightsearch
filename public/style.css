@@ -8,6 +8,15 @@
   box-sizing: border-box;
 }
 
+.centr {
+  text-align: center;
+}
+
+#check {
+  text-align: center;
+  color:red;
+}
+
 .btnBk {
   font-weight: bold;
 }

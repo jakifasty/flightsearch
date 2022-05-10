@@ -14,10 +14,14 @@ function confirmationView(props) {
 
 	return (
 		<div className="container">
-				<div>
-					<h4 className="header4"> Thank you for your reservation. Confirmation number: <b>{generateID()}</b>. <br/>
-					We're dedicated to giving you the best experience possible. If you have any questions, feel free to get in touch. </h4>
-					</div>
+				<div className="row">
+					<div> <h2 class="centr"> Booking Successful </h2> </div>
+					<div> <h1 id="check"> &#10004; </h1></div>
+					<div><h4 className="header4 centr"> <p>Thank you for your reservation.</p>
+																							<p>Confirmation number: <b>{generateID()}</b>.</p>
+																							<p>We're dedicated to giving you the best experience possible. If you have any questions, feel free to get in touch.</p>
+					</h4></div>
+				</div>
 
 					<div className="row">
 						<div className="input-group">
