@@ -1,13 +1,14 @@
 /*
 	The css for bookingView was inspired from here: https://codepen.io/arefeh_htmi/pen/mdPYZKJ
 */
-import React from 'react';
 
 function bookingView(props) {
 
+	//Workaround as we chose to not have any React logic in views.
 	let inpName = false;
 	let inpEmail = false;
 	let inpCard = false;
+	let inpCVC = false;
 
 
 
@@ -17,7 +18,7 @@ function bookingView(props) {
 
 	function handleBookingACB(event) {
 				//props.onAddBooking();
-				//console.log(inpName +" "+ inpEmail +" " + inpCard);
+				console.log(inpName +" "+ inpEmail +" " + inpCard + " " + inpCVC);
 				//console.log(isDisabled());
 
 				if (isDisabled()===true) {
@@ -31,7 +32,7 @@ function bookingView(props) {
 
 
 	function keyPressACB(event) {
-		console.log(event.charCode>=48 && event.charCode<=57);
+		//console.log(event.charCode>=48 && event.charCode<=57);
 		return event.charCode>=48 && event.charCode<=57;
 	}
 
@@ -42,7 +43,7 @@ function bookingView(props) {
 
 	function isDisabled() {
 		//console.log(inpName && inpEmail &&inpCard);
-		return (inpName && inpEmail && inpCard);
+		return (inpName && inpEmail && inpCard && inpCVC);
 	}
 
 // Would be better with React, but we are keeping the views dumb, so using React only for presenters
@@ -60,6 +61,9 @@ function bookingView(props) {
 			if(event.target.id==="inptCard") {
 				inpCard = false;
 			}
+			if(event.target.id==="inptCVC") {
+				inpCVC = false;
+			}
 
 			/*if(!inpName || !inpEmail || !inpCard)
 				//document.getElementById('btnFinish').disabled = true;
@@ -75,6 +79,10 @@ function bookingView(props) {
 				}
 				if(event.target.id==="inptCard") {
 					inpCard = true;
+				}
+
+				if(event.target.id==="inptCVC") {
+					inpCVC = true;
 				}
 			/*if(inpName && inpEmail && inpCard)
 	    	//document.getElementById('btnFinish').disabled = false;
@@ -104,7 +112,7 @@ function bookingView(props) {
 
 
 			    <div className="row">
-			      <h4 className="header4">Personal Information</h4>
+			      <h4 className="header4">Personal Information*</h4>
 			      <div className="input-group input-group-icon">
 			        <input type="text" placeholder="Full Name" className="inpt" id="inptName" onKeyUp={keyPressUpACB}/>
 			        <div className="input-icon"><i className="fa fa-user"></i></div>
@@ -141,12 +149,13 @@ function bookingView(props) {
 			      </div>
 			    </div>
 			    <div className="row">
-			      <h4 className="header4">Payment Details</h4>
+			      <h4 className="header4">Payment Details*</h4>
 			      <div className="input-group">
 			        <input id="payment-method-card" type="radio" name="payment-method" value="card" className="rad inpt" defaultChecked/>
 			        <label htmlFor="payment-method-card"><span><i className="fa fa-cc-visa"></i>Credit Card</span></label>
 			        <input id="payment-method-paypal" type="radio" name="payment-method" value="paypal" className="rad inpt" disabled={true}/>
-			        <label htmlFor="payment-method-paypal"> <span><i className="fa fa-cc-paypal" ></i>Paypal</span></label>
+			        <label htmlFor="payment-method-paypal"> <span><i className="fa fa-cc-paypal" ></i>Paypal<small>*</small></span></label>
+
 			      </div>
 			      <div className="input-group input-group-icon">
 			        <input type="number" placeholder="Card Number" className="inpt" id="inptCard" maxLength="16" onInput={(e) => e.target.value = e.target.value.slice(0, 16)} onKeyUp={keyPressUpACB}/>
@@ -154,10 +163,11 @@ function bookingView(props) {
 			      </div>
 			      <div className="col-half">
 			        <div className="input-group input-group-icon">
-			          <input type="number" placeholder="Card CVC" className="inpt" maxLength="3" max="999" min="000" onInput={(e) => e.target.value = e.target.value.slice(0, 3)}/>
+			          <input type="number" placeholder="Card CVC" className="inpt" id="inptCVC" maxLength="3" max="999" min="000" onInput={(e) => e.target.value = e.target.value.slice(0, 3)} onKeyUp={keyPressUpACB}/>
 			          <div className="input-icon"><i className="fa fa-user"></i></div>
 			        </div>
 			      </div>
+
 			      <div className="col-half">
 			        <div className="input-group">
 			          <select className="dropbtn2">
@@ -187,7 +197,9 @@ function bookingView(props) {
 			          </select>
 			        </div>
 			      </div>
+
 			    </div>
+
 			    <div className="row">
 			      <h4>Terms and Conditions</h4>
 			      <div className="input-group">
@@ -203,7 +215,7 @@ function bookingView(props) {
 								</div>
 						</div>
 					</div>
-
+					<p><small>*PayPal payment is currently disabled. We are sorry for the inconvenicence.</small></p>
 			</div>
 
 
