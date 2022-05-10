@@ -1,12 +1,9 @@
 /*
 	The css for bookingView was inspired from here: https://codepen.io/arefeh_htmi/pen/mdPYZKJ
 */
-
+import React from 'react';
 
 function bookingView(props) {
-
-	//console.log(props.flightData);
-	//console.log(props);
 
 	let inpName = false;
 	let inpEmail = false;
@@ -19,8 +16,17 @@ function bookingView(props) {
   }
 
 	function handleBookingACB(event) {
-				props.onAddBooking();
-        window.location.hash = "#confirmation";
+				//props.onAddBooking();
+				//console.log(inpName +" "+ inpEmail +" " + inpCard);
+				//console.log(isDisabled());
+
+				if (isDisabled()===true) {
+        	window.location.hash = "#confirmation";
+				}
+
+				else {
+					alert("Please fill in the mandatory fields to continue.");
+				}
   }
 
 
@@ -33,6 +39,11 @@ function bookingView(props) {
 		if(L==maxL) return false;
 	}
 
+
+	function isDisabled() {
+		//console.log(inpName && inpEmail &&inpCard);
+		return (inpName && inpEmail && inpCard);
+	}
 
 // Would be better with React, but we are keeping the views dumb, so using React only for presenters
 	function keyPressUpACB(event) {
@@ -50,8 +61,9 @@ function bookingView(props) {
 				inpCard = false;
 			}
 
-			if(!inpName || !inpEmail || !inpCard)
-				document.getElementById('btnFinish').disabled = true;
+			/*if(!inpName || !inpEmail || !inpCard)
+				//document.getElementById('btnFinish').disabled = true;
+				this.setState({ disabled: true });*/
   	}
 	  else {
 			//console.log(inpName + " " +inpEmail);
@@ -64,8 +76,10 @@ function bookingView(props) {
 				if(event.target.id==="inptCard") {
 					inpCard = true;
 				}
-			if(inpName && inpEmail && inpCard)
-	    	document.getElementById('btnFinish').disabled = false;
+			/*if(inpName && inpEmail && inpCard)
+	    	//document.getElementById('btnFinish').disabled = false;
+				document.getElementById('btnFinish').removeAttribute('disabled');*/
+			//	this.setState({ disabled: false })
 	  }
 }
 
@@ -184,7 +198,7 @@ function bookingView(props) {
 					<div className="row">
 						<div className="input-group">
 								<div className="div-row confButton">
-									<button className="inpt col-half btnBk" onClick={handleBookingACB} id="btnFinish" disabled>Finish</button>
+									<button className="inpt col-half btnBk" onClick={handleBookingACB} id="btnFinish">Finish</button>
 									<button className="inpt col-half btnBk" onClick={handleCancelACB}>Cancel</button>
 								</div>
 						</div>
