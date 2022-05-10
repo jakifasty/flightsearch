@@ -29,7 +29,7 @@ function Homepage(props) {
   const data = require('../data/airports.json')
 
   var scrollEnd = false;
-  var scrollTypeAuto =  true;
+  var scrollTypeAuto =  false;
 
 
   //TODO add return airports functionality
@@ -207,17 +207,19 @@ function Homepage(props) {
  }
  function setDisplayAmountACB(amount){
   if(amount === 'auto' ){
-      scrollTypeAuto = true
       if(scrollEnd){
-      props.model.setDisplayAmount(10)
+      props.model.setDisplayAmount(props.model.displayAmount + 10)
       //component.searchParams.offset += 0
       }
   }
-  else{
+  else if(amount === 'autoEnable'){
+    console.log("Set")
+    scrollTypeAuto = true
+  }else{
       scrollTypeAuto = false
-      props.model.setDisplayAmount(amount)
-
+      props.model.setDisplayAmount(parseInt(amount))
   }
+  console.log(scrollTypeAuto)
 }
   return <div> < HomepageFormView
   onChangeAmountPeople = {

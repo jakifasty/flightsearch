@@ -151,7 +151,7 @@ class FlightModel {
   }
 
   setDisplayAmount(amount){
-    this.displayAmount += amount
+    this.displayAmount = amount;
     var payload = {
       displayAmount: amount
     }

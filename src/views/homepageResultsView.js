@@ -51,11 +51,19 @@ function HomepageResultsView(props){
     props.onScrollEnd()
  }
 
+ function onSelectDisplayAmountACB(event){
+  props.setDisplayAmount(event.target.value)
+ }
+
   return (
           <div>
             {window.addEventListener('scroll',onScrollACB)}
-            <button onClick={props.setDisplayAmount(1)}></button>
-            {console.log(props.displayAmount)}
+            <select onInput={onSelectDisplayAmountACB}>
+              <option value={10}> 10 </option>
+              <option value={20}> 20 </option>
+              <option value={50}> 50 </option>
+              <option value="autoEnable"> auto </option>
+            </select>
             <table>
               {/*<thead>
               <tr>
@@ -80,7 +88,7 @@ function HomepageResultsView(props){
               </tr>
               </thead>*/}
               <tbody>
-                {props.results.data.offers.map(listResultsCB)}
+                {props.results.data.offers.map(listResultsCB).slice(0,props.displayAmount)}
               </tbody>
             </table>
           </div>
