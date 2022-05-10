@@ -1,11 +1,11 @@
 import React from "react";
-import BookingView from "../views/bookingView.js";
+import ConfirmationView from "../views/confirmationView.js";
 import resolvePromise from "../resolvePromise";
 import promiseNoData from "../promiseNoData";
 
 
 
-export default function Booking (props){
+export default function Confirmation (props){
 
   const [, setPromiseData]=React.useState(null);
   const [, setPromise]=React.useState(null);
@@ -28,12 +28,7 @@ export default function Booking (props){
     }
   }
 
-  // Not used anymore as it is no longer persistent.
-  function addBookingACB() {
-    //console.log("Booking Presenter - Adding flight");
-    //props.model.addToMenu(props.model.currentDishPromiseState.data);
-    //props.model.
-  }
+  //console.log("Loading confirmation");
 
   React.useEffect(wasCreatedACB, []);
   return (<div>{
@@ -42,9 +37,9 @@ export default function Booking (props){
               data: props.model.currentFlightPromiseState.data,
               error: props.model.currentFlightPromiseState.error
             }) ||
-          <BookingView
+          <ConfirmationView
           flightData = {props.model.currentFlightPromiseState.data}
-          onAddBooking = {addBookingACB}
+
 
 
           />}
