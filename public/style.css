@@ -1,3 +1,4 @@
+
 /* Booking view */
 /* 64ac15 */
 /* 64ac15 */
@@ -5,6 +6,15 @@
 *:before,
 *:after {
   box-sizing: border-box;
+}
+
+.centr {
+  text-align: center;
+}
+
+#check {
+  text-align: center;
+  color : #53A567FF;
 }
 
 .btnBk {
