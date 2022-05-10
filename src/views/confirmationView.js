@@ -19,7 +19,7 @@ function confirmationView(props) {
 	return (
 		<div className="container">
 				<div className="row">
-					<div> <h2 class="centr"> Booking Successful </h2> </div>
+					<div> <h2 className="centr"> Booking Successful </h2> </div>
 					<div> <h1 id="check"> &#10004; </h1></div>
 					<div><h4 className="header4 centr"> <p>Thank you for your reservation.</p>
 																							<p>Confirmation number: <b>{generateID()}</b>.</p>
