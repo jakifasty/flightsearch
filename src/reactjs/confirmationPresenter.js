@@ -28,7 +28,7 @@ export default function Confirmation (props){
     }
   }
 
-  console.log("Loading confirmation");
+  //console.log("Loading confirmation");
 
   React.useEffect(wasCreatedACB, []);
   return (<div>{
