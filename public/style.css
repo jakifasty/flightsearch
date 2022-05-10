@@ -1,3 +1,4 @@
+
 /* Booking view */
 /* 64ac15 */
 /* 64ac15 */
@@ -7,20 +8,29 @@
   box-sizing: border-box;
 }
 
+.centr {
+  text-align: center;
+}
+
+#check {
+  text-align: center;
+  color : #53A567FF;
+}
+
 .btnBk {
   font-weight: bold;
 }
 
 .btnBk:hover {
-  background-color: #ffcf66;
+  background-color: #cce4ef;
 }
 .btnBk:active {
-  background-color: #f0a500;
+  background-color: #56A8CBFF;
   transform: translateY(4px);
 }
 
 h4 {
-  color: #f0a500;
+  color: #56A8CBFF;
 }
 .inpt,
 .rad + label,
@@ -44,10 +54,10 @@ h4 {
   border-color: #bd8200;
 }
 .inpt:focus + .input-icon i {
-  color: #f0a500;
+  color: #56A8CBFF;
 }
 .inpt:focus + .input-icon:after {
-  border-right-color: #f0a500;
+  border-right-color: #56A8CBFF;
 }
 .rad {
   display: none;
@@ -75,7 +85,7 @@ h4 {
 .inpt:checked + label:before,
 .dropbtn2:focus,
 .dropbtn2:active {
-  background-color: #f0a500;
+  background-color: #56A8CBFF;
   color: #fff;
   border-color: #bd8200;
 }
@@ -127,7 +137,7 @@ h4 {
   outline: 0;
 }
 .dropbtn2 option {
-  background-color: #f0a500;
+  background-color: #56A8CBFF;
   color: #fff;
 }
 .input-group {
@@ -370,17 +380,17 @@ h1 {
 
 .flightResults {
   margin: 4px;
-  
+
   background-color: lightskyblue;
   text-align: left;
   vertical-align: baseline;
-  
+
   display: block;
   padding-top: 50px;
   padding-right: 30px;
   padding-bottom: 50px;
   padding-left: 80px;
-  
+
 }
 
 .td {
@@ -457,4 +467,3 @@ h1 {
   padding: 50px;
   margin: 20px;
 }
-
