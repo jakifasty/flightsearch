@@ -2,14 +2,14 @@ function HomepageResultsView(props){
   function listResultsCB(flight){
 
     let flightTime = parseInt('flight.slices[0].segments[0].duration', 16); //convert from minutes in hexadecimal to hours in decimal
-    
-    console.log(flight.slices);
+
+    //console.log(flight.slices);
 
     return (
-      <tr className="flightResults" key={flight.id} onClick={function (event){window.location.hash="#details"; props.onChooseFlight(flight)}}>         
-        
+      <tr className="flightResults" key={flight.id} onClick={function (event){window.location.hash="#details"; props.onChooseFlight(flight)}}>
+
         <td>
-          {flight.owner.name + "    " } 
+          {flight.owner.name + "    " }
         </td>
 
         <td>
@@ -47,35 +47,11 @@ function HomepageResultsView(props){
   }
 
   return (
-          <div>
             <table>
-              {/*<thead>
-              <tr>
-                <th>
-                  From
-                </th>
-                <th>
-                  To
-                </th>
-                <th>
-                  Price
-                </th>
-                <th>
-                  Airline
-                </th>
-                <th>
-                  Departure
-                </th>
-                <th>
-                  Hops
-                </th>
-              </tr>
-              </thead>*/}
               <tbody>
                 {props.results.data.offers.map(listResultsCB)}
               </tbody>
             </table>
-          </div>
   );
 }
 export default HomepageResultsView;

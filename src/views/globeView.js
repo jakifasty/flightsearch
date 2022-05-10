@@ -3,10 +3,16 @@ import ReactDOM from 'react-dom';
 import {Helmet} from "react-helmet";
 import { SizeMe } from 'react-sizeme'
 
-
 function GlobeView(props) {
-
-
+  let sunBasket;
+  if(props.renderSunBasket){
+    sunBasket=(<a onClick={function acb(evente) {evente.preventDefault(); var elem = document.getElementById("sidebar"); elem.classList.toggle("show");}} href="" className="float">
+    {props.nrFlights}
+    </a>)
+  }else{
+    sunBasket=(<a className="glowing-float">
+    </a>)
+  }
   return (
 
   <div>
@@ -28,10 +34,10 @@ function GlobeView(props) {
         arcDashLength={() => Math.random()}
         arcDashGap={() => Math.random()}
         arcDashAnimateTime={() => Math.random() * 4000 + 500}
-
         />
         )}</SizeMe>
     </div>
+    {sunBasket}
   </div>
   );
 }

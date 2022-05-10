@@ -6,8 +6,6 @@ function HomepageFormView(props) {
         props.onChangeAmountPeople(event.target.value)
     }
 
-
-
     function fromSelectTripTypeACB(event) {
         props.onSelectTripType(event.target.value)
     }
@@ -101,7 +99,7 @@ function HomepageFormView(props) {
                 </div>
               </div>
               <div className="search-submit">
-                <button className="searchButton" disabled={false/*!props.isValidRequest*/} onClick={clickSearchACB}>
+                <button className="searchButton" onClick={clickSearchACB}>
                 Search
                 <img className="landing-animation" src="https://icon-library.com/images/airplane-mode-icon/airplane-mode-icon-27.jpg" height="auto">
                 </img>
