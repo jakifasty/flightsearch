@@ -10,6 +10,7 @@ function bookingView(props) {
 
 	let inpName = false;
 	let inpEmail = false;
+	let inpCard = false;
 
 
 
@@ -45,19 +46,25 @@ function bookingView(props) {
 			if(event.target.id==="inptEmail") {
 				inpEmail = false;
 			}
+			if(event.target.id==="inptCard") {
+				inpCard = false;
+			}
 
-			if(!inpName || !inpEmail)
+			if(!inpName || !inpEmail || !inpCard)
 				document.getElementById('btnFinish').disabled = true;
   	}
 	  else {
-			console.log(inpName + " " +inpEmail);
+			//console.log(inpName + " " +inpEmail);
 				if(event.target.id==="inptName") {
 					inpName = true;
 				}
 				if(event.target.id==="inptEmail") {
 					inpEmail = true;
 				}
-			if(inpName && inpEmail)
+				if(event.target.id==="inptCard") {
+					inpCard = true;
+				}
+			if(inpName && inpEmail && inpCard)
 	    	document.getElementById('btnFinish').disabled = false;
 	  }
 }
@@ -128,7 +135,7 @@ function bookingView(props) {
 			        <label htmlFor="payment-method-paypal"> <span><i className="fa fa-cc-paypal" ></i>Paypal</span></label>
 			      </div>
 			      <div className="input-group input-group-icon">
-			        <input type="number" placeholder="Card Number" className="inpt" maxLength="16" onInput={(e) => e.target.value = e.target.value.slice(0, 16)}/>
+			        <input type="number" placeholder="Card Number" className="inpt" id="inptCard" maxLength="16" onInput={(e) => e.target.value = e.target.value.slice(0, 16)} onKeyUp={keyPressUpACB}/>
 			        <div className="input-icon"><i className="fa fa-credit-card"></i></div>
 			      </div>
 			      <div className="col-half">
