@@ -5,8 +5,13 @@
 
 function bookingView(props) {
 
-	console.log(props.flightData);
-	console.log(props);
+	//console.log(props.flightData);
+	//console.log(props);
+
+	let inpName = false;
+	let inpEmail = false;
+
+
 
 	function handleCancelACB(event) {
         window.location.hash = "#homepage";
@@ -26,6 +31,37 @@ function bookingView(props) {
 	function checkLength(L, maxL) {
 		if(L==maxL) return false;
 	}
+
+
+// Would be better with React, but we are keeping the views dumb, so using React only for presenters
+	function keyPressUpACB(event) {
+		//console.log(event.target.id);
+		//console.log(inpName + " " +inpEmail);
+
+		if (event.target.value == "") {
+			if(event.target.id==="inptName") {
+				inpName = false;
+			}
+			if(event.target.id==="inptEmail") {
+				inpEmail = false;
+			}
+
+			if(!inpName || !inpEmail)
+				document.getElementById('btnFinish').disabled = true;
+  	}
+	  else {
+			console.log(inpName + " " +inpEmail);
+				if(event.target.id==="inptName") {
+					inpName = true;
+				}
+				if(event.target.id==="inptEmail") {
+					inpEmail = true;
+				}
+			if(inpName && inpEmail)
+	    	document.getElementById('btnFinish').disabled = false;
+	  }
+}
+
 
 	return (
       <div className="container">
@@ -49,11 +85,11 @@ function bookingView(props) {
 			    <div className="row">
 			      <h4 className="header4">Personal Information</h4>
 			      <div className="input-group input-group-icon">
-			        <input type="text" placeholder="Full Name" className="inpt"/>
+			        <input type="text" placeholder="Full Name" className="inpt" id="inptName" onKeyUp={keyPressUpACB}/>
 			        <div className="input-icon"><i className="fa fa-user"></i></div>
 			      </div>
 			      <div className="input-group input-group-icon">
-			        <input type="email" placeholder="Email Adress" className="inpt"/>
+			        <input type="email" placeholder="Email Adress" className="inpt" id="inptEmail" onKeyUp={keyPressUpACB}/>
 			        <div className="input-icon"><i className="fa fa-envelope"></i></div>
 			      </div>
 
@@ -141,7 +177,7 @@ function bookingView(props) {
 					<div className="row">
 						<div className="input-group">
 								<div className="div-row confButton">
-									<button className="inpt col-half btnBk" onClick={handleBookingACB}>Finish</button>
+									<button className="inpt col-half btnBk" onClick={handleBookingACB} id="btnFinish" disabled>Finish</button>
 									<button className="inpt col-half btnBk" onClick={handleCancelACB}>Cancel</button>
 								</div>
 						</div>
