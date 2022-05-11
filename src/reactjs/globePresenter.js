@@ -23,7 +23,7 @@ export default function Globe(props) {
   }
   React.useEffect(wasCreatedACB, []);
   var render;
-  if(promiseNoData(props.model.flightsPromiseState)){
+  if(props.model.sessionId != null && promiseNoData(props.model.flightsPromiseState)){
     render = <GlobeView  renderSunBasket={false} nrFlights={nrFlights}/>
   }else{
     render = <GlobeView  renderSunBasket={true} nrFlights={nrFlights}/>

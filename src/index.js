@@ -6,7 +6,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 //const [model, setModel]= React.useState(new FlightModel());
 import {firebaseSessionPromise, checkSessionId, updateFirbase, updateFirebaseFromModel, updateModelFromFirebase} from "./firebaseModel.js"
-//setModel("")
+
 const App=require("./App.js").default;
 
 function hours (nrHours){
@@ -27,27 +27,41 @@ function ReactRoot(){
           //            " - Time two hours ago: " + twoHoursAgo + " = " + (response.val().timestamp-twoHoursAgo));
           //timestamp is the time when session was active. twoHoursAgo is the timestamp as it was 2 hours ago.
           //if the timestamp of the session is lesser than that of two hours ago the session will no longer be valid.
-          if(!response.exists() && response.val().timestamp < twoHoursAgo){
+          if(!response.exists() || response.val().timestamp < twoHoursAgo){
             removeCookie('sessionId');
             let sessionId = uuidv4();
             setCookie('sessionId', sessionId, { maxAge: hours(2) })
             model.setSessionId(sessionId);
             updateModelFromFirebase(model);
             model.notifyNewSession();
-            updateFirbase();
+            updateFirbase(); //cleans up firebase from inactive sessions
           }else{
-            console.log(response.val());
             model.setSessionId(cookies.sessionId);
             updateModelFromFirebase(model);
             model.notifyContinueSession();
-            updateFirbase();
+            updateFirbase(); //cleans up firebase from inactive sessions
           }})
     }else{
-      //console.log("no previous cookie in browser, creates new cookie")
-      let sessionId = uuidv4();
-      setCookie('sessionId', sessionId, { maxAge: hours(10) })
-      model.setSessionId(sessionId);
-      model.notifyNewSession();
+        var cookieConsentPromise = new Promise(function(resolve, reject) {
+          // do a thing, possibly async, then…
+          let ret = window.prompt("This website is using a cookie. Click OK to continue", "OK");
+          if (ret != null) {
+            resolve("User consented");
+          }
+          else {
+            reject(Error("User did not consent"));
+          }
+        });
+        cookieConsentPromise.then(response =>{
+        //console.log("no previous cookie in browser, creates new cookie")
+        let sessionId = uuidv4();
+        setCookie('sessionId', sessionId, { maxAge: hours(10) })
+        model.setSessionId(sessionId);
+        updateModelFromFirebase(model);
+        model.notifyNewSession();
+      }).catch(response =>{
+        console.log(response);
+      })
     }
   }, []);
 

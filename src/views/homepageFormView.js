@@ -61,7 +61,9 @@ function HomepageFormView(props) {
     return (
 
         <div className="mainBackground">
+            <div className="header">
             <h1 style={{ color: '#DA291CFF'}}>FlightSearch</h1>
+            </div>
             <div className="search-form-container">
               <div className="search-params">
                 <select className="dropbtn" onChange={fromSelectTripTypeACB}>
