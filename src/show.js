@@ -12,7 +12,7 @@ function Show(props){
   function wasCreatedACB(){
       window.addEventListener("hashchange", hashListenerACB);   // 1 subscribe
        window.addEventListener("scroll", noscroll);
-      function tearDownACB(){ window.removeEventListener("hashchange", hashListenerACB);  window.removeEventListener("scroll", noscroll);}
+      function tearDownACB(){ window.removeEventListener("hashchange", hashListenerACB);  }//window.removeEventListener("scroll", noscroll);
       return tearDownACB;
   }
   React.useEffect(wasCreatedACB, []);

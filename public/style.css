@@ -439,6 +439,12 @@ h1 {
   padding-left: 20px;
 
 }
+.flightResults div {
+  display: inline-block;
+  padding-right: 20px;
+  padding-left: 20px;
+
+}
 
 .searchButton {
   padding: 10px 32px;

@@ -12,45 +12,45 @@ function HomepageResultsView(props){
 
 
     return (
-      <tr className="flightResults" key={flight.id} onClick={function (event){window.location.hash="#details"; props.onChooseFlight(flight)}}>
-        <td>
+      <span className="flightResults" key={flight.id} onClick={function (event){window.location.hash="#details"; props.onChooseFlight(flight)}}>
+        <div>
           <img src={"https://content.r9cdn.net/rimg/provider-logos/airlines/v/"+flight.slices[0].segments[0].operating_carrier.iata_code+".png?crop=false&width=100&height=90&fallback=default1.png"} alt=""></img>
-        </td>
-        <td>
+        </div>
+        <div>
           {flight.owner.name + "    " }
-        </td>
+        </div>
 
-        <td>
+        <div>
           {flight.slices[0].segments[0].departing_at + "    " }
-        </td>
-        <td>
+        </div>
+        <div>
           {flight.slices[0].segments[0].arriving_at + "    " }
-        </td>
+        </div>
 
-        <td>
+        <div>
           {flight.slices[0].origin.name + ", Terminal " + flight.slices[0].origin_terminal + "    " }
-        </td>
-        <td>
+        </div>
+        <div>
           {flight.slices[0].destination.name + ", Terminal " + flight.slices[0].destination_terminal + "    "}
-        </td>
+        </div>
 
-        <td>
+        <div>
           {"Duration " + flightTime}
-        </td>
+        </div>
 
-        <td>
+        <div>
           {"Flight " + flight.slices[0].segments[0].operating_carrier.iata_code + flight.slices[0].segments[0].operating_carrier_flight_number}
-        </td>
+        </div>
 
-        <td>
+        <div>
           {flight.slices[0].fare_brand_name + " fare    " }
-        </td>
+        </div>
 
-        <td>
+        <div>
           {flight.total_amount + " " + flight.total_currency + "    "}
-        </td>
+        </div>
 
-      </tr>
+      </span>
     );
   }
   function sortACB(flight1,flight2){
@@ -80,12 +80,8 @@ function HomepageResultsView(props){
               <option value={50}> 50 </option>
               <option value="autoEnable"> auto </option>
             </select>
-            <table>
-              <tbody>
-                {props.results.data.offers.sort(sortACB).slice(0,props.displayAmount).map(listResultsCB)}
-              </tbody>
-            </table>
-            </div>
+            {props.results.data.offers.sort(sortACB).slice(0,props.displayAmount).map(listResultsCB)}
+          </div>
   );
 }
 export default HomepageResultsView;
