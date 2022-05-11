@@ -3,11 +3,12 @@ function HomepageResultsView(props){
 
     let flightTime = parseInt('flight.slices[0].segments[0].duration', 16); //convert from minutes in hexadecimal to hours in decimal
     
-    console.log(flight.slices);
 
     return (
       <tr className="flightResults" key={flight.id} onClick={function (event){window.location.hash="#details"; props.onChooseFlight(flight)}}>         
-        
+        <td>
+          <img src={"https://content.r9cdn.net/rimg/provider-logos/airlines/v/"+flight.slices[0].segments[0].operating_carrier.iata_code+".png?crop=false&width=100&height=90&fallback=default1.png"}></img>
+        </td>
         <td>
           {flight.owner.name + "    " } 
         </td>
@@ -46,8 +47,24 @@ function HomepageResultsView(props){
     );
   }
 
+  function onScrollACB(){ 
+    props.onScrollEnd()
+ }
+
+ function onSelectDisplayAmountACB(event){
+  props.setDisplayAmount(event.target.value)
+ }
+
   return (
           <div>
+            {window.addEventListener('scroll',onScrollACB)}
+            Display:
+            <select onInput={onSelectDisplayAmountACB}>
+              <option value={10}> 10 </option>
+              <option value={20}> 20 </option>
+              <option value={50}> 50 </option>
+              <option value="autoEnable"> auto </option>
+            </select>
             <table>
               {/*<thead>
               <tr>
@@ -72,7 +89,7 @@ function HomepageResultsView(props){
               </tr>
               </thead>*/}
               <tbody>
-                {props.results.data.offers.map(listResultsCB)}
+                {props.results.data.offers.map(listResultsCB).slice(0,props.displayAmount)}
               </tbody>
             </table>
           </div>

@@ -24,8 +24,12 @@ function Homepage(props) {
   const [airportsPromiseState] = React.useState({});
   const [flightPromiseState] = React.useState({});
   const [, reRender] = React.useState();
+  const [displayAmount, setDisplayAmount] = React.useState(null)
 
   const data = require('../data/airports.json')
+
+  var scrollEnd = false;
+  var scrollTypeAuto =  false;
 
 
   //TODO add return airports functionality
@@ -51,6 +55,7 @@ function Homepage(props) {
     setAdults(props.model.amountAdults);
     setYouths(props.model.amountYouths);
     setTripType(props.model.tripType);
+    setDisplayAmount(props.model.displayAmount)
   }
 
   function searchAirportACB(searchText) {
@@ -190,6 +195,31 @@ function Homepage(props) {
     props.model.setCurrentFlight(flight.id);
   }
 
+  function setScrollEndACB(){
+    if ((window.innerHeight + Math.ceil(window.pageYOffset)) >= document.body.offsetHeight && !scrollEnd) {
+        scrollEnd = true;
+        if(scrollTypeAuto){
+            setDisplayAmountACB('auto')
+        }
+    }else if((window.innerHeight + Math.ceil(window.pageYOffset)) <= document.body.offsetHeight -10 && scrollEnd){
+        scrollEnd = false;
+
+    }
+ }
+ function setDisplayAmountACB(amount){
+  if(amount === 'auto' ){
+      if(scrollEnd){
+      props.model.setDisplayAmount(props.model.displayAmount + 10)
+      //component.searchParams.offset += 0
+      }
+  }
+  else if(amount === 'autoEnable'){
+    scrollTypeAuto = true
+  }else{
+      scrollTypeAuto = false
+      props.model.setDisplayAmount(parseInt(amount))
+  }
+}
   return <div> < HomepageFormView
   onChangeAmountPeople = {
     onChangeAmountPeopleACB
@@ -236,6 +266,7 @@ function Homepage(props) {
   airportResults = {
     choosenAirport
   }
+  
   /> {
     promiseNoData({
         promise: flightPromiseState.promise,
@@ -247,6 +278,15 @@ function Homepage(props) {
       }
     onChooseFlight = {
       changeFlightOnClickACB
+    }
+    onScrollEnd= {
+      setScrollEndACB
+    }
+    displayAmount = {
+      props.model.displayAmount
+    }
+    setDisplayAmount = {
+      setDisplayAmountACB
     }
     />
   }</div>

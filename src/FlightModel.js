@@ -42,6 +42,7 @@ class FlightModel {
       type: ""
     };
 
+    this.displayAmount = 10;
 
     var date = new Date()
     this.deptDate = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate()
@@ -149,7 +150,14 @@ class FlightModel {
     this.notifyObservers(payload)
   }
 
-
+  setDisplayAmount(amount){
+    this.displayAmount = amount;
+    var payload = {
+      displayAmount: amount
+    }
+    this.notifyObservers(payload)
+  }
+  
   setSearchQuery(q) {
     this.searchParams.query = q;
     this.notifyObservers();
