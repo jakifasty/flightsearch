@@ -266,7 +266,7 @@ function Homepage(props) {
   airportResults = {
     choosenAirport
   }
-  
+
   /> {
     promiseNoData({
         promise: flightPromiseState.promise,

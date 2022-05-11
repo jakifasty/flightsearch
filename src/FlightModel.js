@@ -8,6 +8,7 @@ import {
   getOffers,
   getFlightDetails
 } from "./flightSearches.js";
+import {firebaseSessionPromise, updateModelFromFirebase} from "./firebaseModel.js"
 //import {getFlightDetails} from "./flightSearches"
 /* This is an example of a JavaScript class.
    The Model keeps only abstract data and has no notions of graohics or interaction
@@ -18,7 +19,15 @@ function isValid(id) {
 }
 
 class FlightModel {
-  constructor() {
+  constructor(flights) {
+    this.sessionId = null;
+    if(flights){
+      this.flights = flights;
+    }else{
+      this.flights = [];
+    }
+    this.flightsPromiseState = {data: {}};
+    this.nrCurrentFlights = 0;
     //Not sure why these were added
     this.oneWay = "One";
     this.roundTrip = "Round";
@@ -64,7 +73,7 @@ class FlightModel {
           destination: this.toAirport,
           departure_date: this.deptDate
         },
-       
+
       ],
       slices2:[
         {
@@ -77,17 +86,73 @@ class FlightModel {
       cabin_class: this.cabin_class,
     }
   }
+  nrFlights(){
+    return this.flights.length;
+  }
+  addToFinalList(data){
+    function checkIfExistsCB(dataToCompare){
+      return dataToCompare.data.id === data.data.id? true : false;
+    }
+    if(this.flights.filter(checkIfExistsCB).length > 0){
+      //it is already in list
+    }else{
+      //add to list
+      this.flights = [...this.flights, data]
+      let payload = {addedFlight: data.data.id}
+      this.nrCurrentFlights = this.flights.length;
+      this.notifyObservers(payload);
+    }
+  }
+  removeFromFinalList(id){
+    function checkIfExistsCB(dataToCompare){
+      return dataToCompare.data.id === id? false : true;
+    }
+    let previousLength = this.flights.length;
+    let newFlights = this.flights.filter(checkIfExistsCB);
+    if(newFlights.length < previousLength){
+      this.flights = newFlights;
+      let payload = {removedFlight: id}
+      this.nrCurrentFlights = this.flights.length;
+      this.notifyObservers(payload);
+    }
+  }
+
+  setSessionId(id){
+    this.sessionId = id;
+  }
+  removeSessionId(id){
+    if(id == this.sessionId){
+      this.sessionId = null;
+    }
+  }
+  //TODO: the data from the promise should be used in sidebar
+  notifyNewSession(){
+    const theModel = this;
+    function notifyACB() {theModel.notifyObservers(null);};
+    resolvePromise(firebaseSessionPromise(this.sessionId), this.flightsPromiseState, notifyACB);
+    console.log("welcome new session")
+    let payload = {setSessionId: {id: this.sessionId, status: "active", timestamp: Date.now()}}
+    this.notifyObservers(payload);
+  }
+  notifyContinueSession(){
+    const theModel = this;
+    function notifyACB() {theModel.notifyObservers(null);};
+    resolvePromise(firebaseSessionPromise(this.sessionId), this.flightsPromiseState, notifyACB);
+    console.log("welcome back")
+    let payload = {continueSessionId: {id: this.sessionId, status: "active", timestamp: Date.now()}}
+    this.notifyObservers(payload);
+  }
+  //Not sure if this functionality is still needed but keep it for now
   setCurrentFlight(id){
     if(!id || id == this.currentFlight){
-        //nothing to do
-    }
-    else{
+        //nothing to do here yet
+    }else{
       const theModel = this;
       function notifyACB() {theModel.notifyObservers(null);};
       this.currentFlight = id;
       resolvePromise(getFlightDetails(id), this.currentFlightPromiseState, notifyACB);
       var payload = {
-        currentFlight: id
+        setCurrentFlight: id
       }
       this.notifyObservers(payload)
     }
@@ -223,6 +288,8 @@ class FlightModel {
     this.addPassengers(adultPassengers);
   }
 
+  //Not sure this is conventional but this reads data from model properties and
+  //formats it in the data property. Data propery could then be used for API requests
   makeData() {
     if (this.amountOfAdults < 1 && this.amountOfYouths < 1) {
       throw new Error('number of people is zero');
@@ -246,8 +313,7 @@ class FlightModel {
     this.clearData();
     return this.roundTripData;
   }
-
-
+  //Clears fields present in the data propery that might be invalid
   clearData() {
     this.passengers = [];
     this.data.passengers = this.passengers;
