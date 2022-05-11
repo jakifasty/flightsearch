@@ -14,8 +14,8 @@ function DetailsView(props){
   //});
 
   function clickAddToCartCB(flight){
-    return props.onAddToFinalList(flight);
-		//window.location.hash="#booking";
+    //return props.onAddToFinalList(flight);
+		window.location.hash="#booking";
 	}
 
   function clickRemoveFromCart(flight){ 
@@ -55,6 +55,7 @@ function DetailsView(props){
                 <span>{/*props.flightData*/}{/*JSON.stringify(props.flightData)*/}</span>
               </div>
               <div>
+              <img src={"https://content.r9cdn.net/rimg/provider-logos/airlines/v/"+props.flightData.slices[0].segments[0].operating_carrier.iata_code+".png?crop=false&width=500&height=40&fallback=default1.png"} alt=""></img>
                 <td><span>{"Name of the company: " + props.flightData.data.owner.name}</span></td>
                 <span>{"Available services: " + props.flightData.data.available_services}</span>
                 <td><span>{"Documents required to travel: " + valueTravel}</span></td>
