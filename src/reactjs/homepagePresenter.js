@@ -203,6 +203,7 @@ function Homepage(props) {
         }
     }else if((window.innerHeight + Math.ceil(window.pageYOffset)) <= document.body.offsetHeight -10 && scrollEnd){
         scrollEnd = false;
+
     }
  }
  function setDisplayAmountACB(amount){
@@ -213,13 +214,11 @@ function Homepage(props) {
       }
   }
   else if(amount === 'autoEnable'){
-    console.log("Set")
     scrollTypeAuto = true
   }else{
       scrollTypeAuto = false
       props.model.setDisplayAmount(parseInt(amount))
   }
-  console.log(scrollTypeAuto)
 }
   return <div> < HomepageFormView
   onChangeAmountPeople = {

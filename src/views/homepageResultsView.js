@@ -58,6 +58,7 @@ function HomepageResultsView(props){
   return (
           <div>
             {window.addEventListener('scroll',onScrollACB)}
+            Display:
             <select onInput={onSelectDisplayAmountACB}>
               <option value={10}> 10 </option>
               <option value={20}> 20 </option>
