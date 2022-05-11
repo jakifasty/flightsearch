@@ -1,8 +1,15 @@
 function HomepageResultsView(props){
   function listResultsCB(flight){
-
-    let flightTime = parseInt('flight.slices[0].segments[0].duration', 16); //convert from minutes in hexadecimal to hours in decimal
     
+    let flightTime = flight.slices[0].duration
+    if(flightTime.startsWith("PT")){
+      flightTime = flightTime.substring(2)
+    }
+    else{
+      flightTime = flightTime.substring(1).replace("T","")
+    }
+
+
 
     return (
       <tr className="flightResults" key={flight.id} onClick={function (event){window.location.hash="#details"; props.onChooseFlight(flight)}}>         
@@ -28,7 +35,7 @@ function HomepageResultsView(props){
         </td>
 
         <td>
-          {"Duration " + flightTime + "h   "}
+          {"Duration " + flightTime}
         </td>
 
         <td>
@@ -46,7 +53,15 @@ function HomepageResultsView(props){
       </tr>
     );
   }
+  function sortACB(flight1,flight2){
+    switch(props.sortType){
+      case 'PriceUp':
+        return flight1.total_currency  < flight2.totalCurrency 
+      default:
+        break
 
+    }
+  }
   function onScrollACB(){ 
     props.onScrollEnd()
  }
@@ -89,7 +104,7 @@ function HomepageResultsView(props){
               </tr>
               </thead>*/}
               <tbody>
-                {props.results.data.offers.map(listResultsCB).slice(0,props.displayAmount)}
+                {props.results.data.offers.sort(sortACB).slice(0,props.displayAmount).map(listResultsCB)}
               </tbody>
             </table>
           </div>
