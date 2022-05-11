@@ -119,15 +119,12 @@ function HomepageFormView(props) {
 
 
 function getAirportList(e) {
-    console.log("HMMM")
     if (e == undefined) {
-        console.log("Here")
         return <datalist id="listID"></datalist>
     }
     var k = Object.keys(e)[0]
 
     if (k == undefined) {
-        console.log("AAA")
         return <datalist id="listID">
                 <option id={"Stockholm Arlanda Airport"} value={"Stockholm Arlanda Airport (ARN)"} className="textOverflow"> {"Sweden, Stockholm (ARN)"} </option>
                 <option id={"Barcelona–El Prat Airport"} value={"Barcelona–El Prat Airport (BCN)"} className="textOverflow"> {"Spain, Barcelona (BCN)"} </option>
