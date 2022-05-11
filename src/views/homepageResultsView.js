@@ -1,13 +1,8 @@
 function HomepageResultsView(props){
 
-  function fromSelectFilterTypeACB(event){
-    props.onSelectTripType(event.target.value);
-  }
   function listResultsCB(flight){
-
-    let flightTime = parseInt('flight.slices[0].segments[0].duration', 16); //convert from minutes in hexadecimal to hours in decimal
     
-    //console.log(flight.slices);
+    console.log(flight.slices);
 
     return (
         <tr className="flightResults" key={flight.id} onClick={function (event) { window.location.hash = "#details"; props.onChooseFlight(flight); } }>
@@ -31,11 +26,15 @@ function HomepageResultsView(props){
           </td>
 
           <td>
-            {"Duration " + flightTime}
+            {"Duration " + flight.slices[0].segments[0].duration}
           </td>
 
           <td>
             {"Flight " + flight.slices[0].segments[0].operating_carrier.iata_code + flight.slices[0].segments[0].operating_carrier_flight_number}
+          </td>
+
+          <td>
+            {(flight.slices[0].segments.length - 1) + " layover/s"}
           </td>
 
           <td>
@@ -76,15 +75,10 @@ function HomepageResultsView(props){
               </tr>
               </thead>*/}
               <tbody>
+
               <div>
-                <select className="dropbtn" onChange={fromSelectFilterTypeACB}>
-                  <option value="price-up">Increasing price</option>
-                  <option value="price-down">Decreasing price</option>
-                  <option value="duration">Travel time</option>
-                  <option value="hops">Number of hops</option>
-                </select>
-              </div>
                 {props.results.data.offers.map(listResultsCB)}
+              </div>
               </tbody>
             </table>
           </div>

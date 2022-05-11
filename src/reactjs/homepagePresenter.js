@@ -20,7 +20,7 @@ function Homepage(props) {
   const [, setAdults] = React.useState(null);
   const [, setYouths] = React.useState(null);
   const [, setTripType] = React.useState(null);
-  const [, setFilterType] = React.useState(null);
+  const [, setSortingType] = React.useState(null);
   const [choosenAirport, setAirport] = React.useState([]);
   const [airportsPromiseState] = React.useState({});
   const [flightPromiseState] = React.useState({});
@@ -52,7 +52,7 @@ function Homepage(props) {
     setAdults(props.model.amountAdults);
     setYouths(props.model.amountYouths);
     setTripType(props.model.tripType);
-    setFilterType(props.model.filterType);
+    setSortingType(props.model.sortingType);
   }
 
   function searchAirportACB(searchText) {
@@ -147,8 +147,8 @@ function Homepage(props) {
     props.model.setTripType(type)
   }
 
-  function onSelectFilterTypeACB(type){
-    props.model.setFilterType(type);
+  function onSelectSortingTypeACB(type){
+    props.model.setSortingType(type);
   }
 
   //TODO
@@ -190,6 +190,18 @@ function Homepage(props) {
       }
   }
 
+  function sortACB(){
+    if(props.model.filterType === props.model.increasingPrice){
+      try{
+        let data = props.model.makeData();
+        resolveFlight(getOffers(data));
+      } catch(error){
+        console.log(error);
+      }
+    }
+    //else if (props.model.filterType ===)
+  }
+
   function changeFlightOnClickACB(flight) {
     props.model.setCurrentFlight(flight.id);
   }
@@ -222,6 +234,12 @@ function Homepage(props) {
   onSearch = {
     searchACB
   }
+  onSelectSortingType = {
+    onSelectSortingTypeACB
+  }
+  onSort = {
+    sortACB
+  }
   fromAirport = {
     props.model.fromAirport
   }
@@ -251,9 +269,6 @@ function Homepage(props) {
       }
     onChooseFlight = {
       changeFlightOnClickACB
-    }
-    onSelectFilterType = {
-      onSelectFilterTypeACB
     }
     />
   }</div>

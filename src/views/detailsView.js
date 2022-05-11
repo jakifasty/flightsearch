@@ -1,4 +1,5 @@
 function DetailsView(props){
+  
   console.log("here value flighData");
   console.log(props.flightData);
   console.log(props.flightData.data.passenger_identity_documents_required);
