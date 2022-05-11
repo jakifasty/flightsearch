@@ -3,6 +3,16 @@ function DetailsView(props){
   console.log(props.flightData);
   console.log(props.flightData.data.passenger_identity_documents_required);
 
+  //console.log("Flight:")
+  //let flightTime = parseInt(flight.slices[0].duration, 16); //convert from minutes in hexadecimal to hours in decimal
+  //props.flightData.slices[0].segments.forEach(ele => {
+    /*console.log("New:")
+    console.log(ele)
+    console.log(ele.duration)
+    console.log(ele.arriving_at)
+    console.log(ele.departing_at)*/
+  //});
+
   function clickAddToCartCB(flight){
     return props.onAddToFinalList(flight);
 		//window.location.hash="#booking";
