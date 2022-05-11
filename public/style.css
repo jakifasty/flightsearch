@@ -419,7 +419,6 @@ h1 {
 
 
 .mainContent{
-  max-height: 100vh;
   flex: 1;
   display: inline-block;
   background-color: #53A567FF;
@@ -437,6 +436,12 @@ h1 {
   padding-top: 50px;
   padding-right: 20px;
   padding-bottom: 50px;
+  padding-left: 20px;
+
+}
+.flightResults div {
+  display: inline-block;
+  padding-right: 20px;
   padding-left: 20px;
 
 }
@@ -483,10 +488,7 @@ h1 {
 }
 
 .search-results{
-  width:100%;
   flex: 1;
-  max-height: 100%;
-  overflow-y: :scroll;
 }
 
 @media (max-width: 600px) {

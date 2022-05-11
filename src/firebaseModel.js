@@ -16,7 +16,7 @@ function checkSessionId(id){
 function updateFirbase(){
   var ref = firebase.database().ref(REF + '/sessions/');
   var now = Date.now();
-  var cutoff = now - 2 * 60 * 60 * 1000; //2 hours
+  var cutoff = now - 30 * 60 * 1000; //30 min
   var old = ref.orderByChild('timestamp').endAt(cutoff).limitToLast(1);
   var listener = old.on('child_added', function(snapshot) {
       snapshot.ref.remove();
