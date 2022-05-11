@@ -44,6 +44,8 @@ class FlightModel {
 
     this.tripType = "One"
 
+    this.sortType = "Hops"
+
     this.searchResultsPromiseState = {};
     this.observers = [];
     this.searchParams = {
@@ -227,10 +229,20 @@ class FlightModel {
     this.searchParams.query = q;
     this.notifyObservers();
   }
+
   setSearchType(t) {
     this.searchParams.type = t;
     this.notifyObservers();
   }
+
+  setSortType(t) {
+    this.sortType = t
+    var payload = {
+      sortType : t
+    }
+    this.notifyObservers(payload)
+  }
+
   doSearch(params) {
     const theModel = this;
 
