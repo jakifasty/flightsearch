@@ -1,5 +1,28 @@
 function HomepageResultsView(props){
 
+  function sortACB(flight1, flight2, sortingType){
+    //TODO
+    if(sortingType === "price-up"){
+      return flight1.total_amount < flight2.total_amount;
+    }
+
+    if(sortingType === "price-down"){
+      return flight1.total_amount > flight2.total_amount;
+    } 
+
+    if(sortingType === "hops"){
+      return flight1.slices[0].segments.length < flight2.slices[0].segments.length;
+    }
+  }
+
+  /*function fromSelectSortingTypeACB(event){
+    props.onSelectFilterType(event.target.value);
+  }*/
+
+  function fromSelectSortingTypeACB(event){
+    props.onSelectSortingType(event.target.value);
+  }
+  
   function listResultsCB(flight){
     
     console.log(flight.slices);
@@ -76,8 +99,18 @@ function HomepageResultsView(props){
               </thead>*/}
               <tbody>
 
+                <div className="search-params">
+                  <select className="dropbtn" onChange={fromSelectSortingTypeACB}>
+                    <option value="price-up">Increasing price</option>
+                    <option value="price-down">Decreasing price</option>
+                    <option value="hops">Number of stops/layovers</option>
+                  </select>
+                  <div>
+                    {/*<button className="search-input" disabled={false} onClick={sortACB}>Sort</button>*/}
+                  </div>
+              </div>
               <div>
-                {props.results.data.offers.map(listResultsCB)}
+                {props.results.data.offers.sort(sortACB).map(listResultsCB)}
               </div>
               </tbody>
             </table>

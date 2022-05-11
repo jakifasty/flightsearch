@@ -148,8 +148,9 @@ function Homepage(props) {
   }
 
   function onSelectSortingTypeACB(type){
-    props.model.setSortingType(type);
+    props.model.setSortingType(type)
   }
+
 
   //TODO
   function isReadyForSearchACB() {
@@ -190,18 +191,6 @@ function Homepage(props) {
       }
   }
 
-  function sortACB(){
-    if(props.model.filterType === props.model.increasingPrice){
-      try{
-        let data = props.model.makeData();
-        resolveFlight(getOffers(data));
-      } catch(error){
-        console.log(error);
-      }
-    }
-    //else if (props.model.filterType ===)
-  }
-
   function changeFlightOnClickACB(flight) {
     props.model.setCurrentFlight(flight.id);
   }
@@ -219,6 +208,9 @@ function Homepage(props) {
   onSelectTripType = {
     onSelectTripTypeACB
   }
+  onSelectSortingType = {
+    onSelectSortingTypeACB
+  }
   onSelectFromDate = {
     onSelectFromDateACB
   }
@@ -234,12 +226,6 @@ function Homepage(props) {
   onSearch = {
     searchACB
   }
-  onSelectSortingType = {
-    onSelectSortingTypeACB
-  }
-  onSort = {
-    sortACB
-  }
   fromAirport = {
     props.model.fromAirport
   }
@@ -254,6 +240,9 @@ function Homepage(props) {
   }
   tripType = {
     props.model.tripType
+  }
+  sortingType = {
+    props.model.sortingType
   }
   airportResults = {
     choosenAirport

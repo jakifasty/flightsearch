@@ -52,15 +52,6 @@ function HomepageFormView(props) {
         props.onSearch();
     }
 
-    function clickSortACB(){
-        props.onSort();
-    }
-
-    function fromSelectSortingTypeACB(event){
-        props.onSelectSortingType(event.target.value);
-    }
-
-
     //TODO move this (Date) to apropriate place(Most likely model)
     var date = new Date()
     var today = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate()
@@ -113,16 +104,6 @@ function HomepageFormView(props) {
                 </img>
                 </button>
               </div>
-            </div>
-            <div className="search-params">
-                <select className="dropbtn" onChange={fromSelectSortingTypeACB}>
-                <option value="price-up">Increasing price</option>
-                <option value="price-down">Decreasing price</option>
-                <option value="hops">Number of stops/layovers</option>
-                </select>
-            </div>
-            <div>
-                <button className="center" disabled={false} onClick={clickSortACB}>Sort</button>
             </div>
             <div className="animation">
             </div>
