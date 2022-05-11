@@ -43,6 +43,15 @@
   box-sizing: border-box;
 }
 
+.centr {
+  text-align: center;
+}
+
+#check {
+  text-align: center;
+  color : #53A567FF;
+}
+
 .btnBk {
   font-weight: bold;
 }

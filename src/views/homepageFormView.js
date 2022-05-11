@@ -103,7 +103,7 @@ function HomepageFormView(props) {
               <div className="search-submit">
                 <button className="searchButton" onClick={clickSearchACB}>
                 Search
-                <img className="landing-animation" src="https://icon-library.com/images/airplane-mode-icon/airplane-mode-icon-27.jpg" height="auto">
+                <img className="landing-animation" src="https://icon-library.com/images/airplane-mode-icon/airplane-mode-icon-27.jpg" height="auto" alt="">
                 </img>
                 </button>
               </div>
@@ -125,7 +125,12 @@ function getAirportList(e) {
     var k = Object.keys(e)[0]
 
     if (k == undefined) {
-        return <datalist id="listID"></datalist>
+        return <datalist id="listID">
+                <option id={"Stockholm Arlanda Airport"} value={"Stockholm Arlanda Airport (ARN)"} className="textOverflow"> {"Sweden, Stockholm (ARN)"} </option>
+                <option id={"Barcelona–El Prat Airport"} value={"Barcelona–El Prat Airport (BCN)"} className="textOverflow"> {"Spain, Barcelona (BCN)"} </option>
+                <option id={"John F. Kennedy International Airport"} value={"John F. Kennedy International Airport (JFK)"} className="textOverflow"> {"United States, New York City (JFK)"} </option>
+                <option id={"Heathrow Airport"} value={"Heathrow Airport (LHR)"} className="textOverflow"> {"United Kingdom, London (LHR)"} </option>  
+        </datalist>
     }
 
     e = e[k]

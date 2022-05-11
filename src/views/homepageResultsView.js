@@ -1,13 +1,21 @@
 function HomepageResultsView(props){
   function listResultsCB(flight){
 
-    let flightTime = parseInt('flight.slices[0].segments[0].duration', 16); //convert from minutes in hexadecimal to hours in decimal
+    let flightTime = flight.slices[0].duration
+    if(flightTime.startsWith("PT")){
+      flightTime = flightTime.substring(2)
+    }
+    else{
+      flightTime = flightTime.substring(1).replace("T","")
+    }
 
-    //console.log(flight.slices);
+
 
     return (
       <tr className="flightResults" key={flight.id} onClick={function (event){window.location.hash="#details"; props.onChooseFlight(flight)}}>
-
+        <td>
+          <img src={"https://content.r9cdn.net/rimg/provider-logos/airlines/v/"+flight.slices[0].segments[0].operating_carrier.iata_code+".png?crop=false&width=100&height=90&fallback=default1.png"} alt=""></img>
+        </td>
         <td>
           {flight.owner.name + "    " }
         </td>
@@ -27,7 +35,7 @@ function HomepageResultsView(props){
         </td>
 
         <td>
-          {"Duration " + flightTime + "h   "}
+          {"Duration " + flightTime}
         </td>
 
         <td>
@@ -45,13 +53,39 @@ function HomepageResultsView(props){
       </tr>
     );
   }
+  function sortACB(flight1,flight2){
+    switch(props.sortType){
+      case 'PriceUp':
+        return flight1.total_currency  < flight2.totalCurrency
+      default:
+        break
+
+    }
+  }
+  function onScrollACB(){
+    props.onScrollEnd()
+ }
+
+ function onSelectDisplayAmountACB(event){
+  props.setDisplayAmount(event.target.value)
+ }
 
   return (
+          <div>
+            {window.addEventListener('scroll',onScrollACB)}
+            Display:
+            <select onInput={onSelectDisplayAmountACB}>
+              <option value={10}> 10 </option>
+              <option value={20}> 20 </option>
+              <option value={50}> 50 </option>
+              <option value="autoEnable"> auto </option>
+            </select>
             <table>
               <tbody>
-                {props.results.data.offers.map(listResultsCB)}
+                {props.results.data.offers.sort(sortACB).slice(0,props.displayAmount).map(listResultsCB)}
               </tbody>
             </table>
+            </div>
   );
 }
 export default HomepageResultsView;
