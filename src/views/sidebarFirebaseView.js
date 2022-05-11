@@ -4,23 +4,28 @@ function sidebarFirebaseView(props){
 
     return(
             <div>
+                <h3> Chosen flights </h3>
                 <table>
+                  <thead>
                     <tr>
-                        <td>
-                            My travel plan
-                        </td>
-                        <td>
-                            Total costs:
-                        </td>
-                        <td width="10px">
-                        </td>
-                        <td className="right">
-                            {props.total_amount}
-                            {props.total_currency}
-                        </td>
+                        <th>
+                        </th>
+                        <th>
+                          Flightname
+                        </th>
+                        <th>
+                          Hops
+                        </th>
+                        <th>
+                          Departure time
+                        </th>
+                        <th>
+                          Price
+                        </th>
                     </tr>
-                </table>
+                  </thead>
                 {renderFlights(props.onCurrentFlight, props.onRemove, props.flights)}
+                </table>
             </div>
     );
 }
@@ -28,26 +33,34 @@ function sidebarFirebaseView(props){
 function renderFlights(onCurrentFlight, onRemove, flights){
     function flightsTableRowCB(flight){
         return (
-                <tr key={flight.id}>
+                <tr key={flight.data.id}>
                     <td>
-                        <button onclick={function clickButtonACB(event){onRemove(flight);}}>x</button>
+                        <button onClick={function clickButtonACB(event){onRemove(flight);}}>x</button>
                     </td>
 
                     <td>
                         <a onClick={function clickButtonACB(event){onCurrentFlight(flight);}} href='#details'>{flight.orgin}
-                        {flight.destination}</a>
+                        {flight.data.slices[0].segments[0].operating_carrier.iata_code + " " + flight.data.slices[0].segments[0].operating_carrier_flight_number}</a>
+                    </td>
+                    <td>
+                        <a onClick={function clickButtonACB(event){onCurrentFlight(flight);}} href='#details'>{flight.orgin}
+                        {flight.data.slices[0].segments.length}</a>
+                    </td>
+                    <td>
+                        <a onClick={function clickButtonACB(event){onCurrentFlight(flight);}} href='#details'>{flight.orgin}
+                        {flight.data.slices[0].segments[0].departing_at}</a>
+                    </td>
+                    <td>
+                        <a onClick={function clickButtonACB(event){onCurrentFlight(flight);}} href='#details'>{flight.orgin}
+                        {flight.data.total_amount + " " + flight.data.total_currency}</a>
                     </td>
                 </tr>
         );
     }
     return(
-            <table>
                 <tbody>
-                    {console.log("print content here")}
-                    {/*map(flightsTableRowCB)*/}
                     {flights.map(flightsTableRowCB)}
                 </tbody>
-            </table>
     );
 }
 

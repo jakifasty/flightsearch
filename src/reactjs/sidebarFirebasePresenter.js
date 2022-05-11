@@ -21,11 +21,12 @@ function SidebarFirebase(props){
     React.useEffect(observerItWasCreatedACB, []);
 
     function setCurrentFlightACB(flight){
-        props.model.setCurrentFlight(flight.id);
+        props.model.setCurrentFlight(flight.data.id);
     }
 
     function removeFlightACB(flight){
-        props.model.setCurrentFlight(flight.id);
+      console.log("removed");
+        props.model.removeFromFinalList(flight.data.id);
     }
 
     return <SidebarFirebaseView flights={props.model.flights} onCurrentFlight={setCurrentFlightACB} onRemove={removeFlightACB}/>;

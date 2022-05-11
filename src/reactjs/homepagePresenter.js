@@ -242,13 +242,13 @@ function Homepage(props) {
         data: flightPromiseState.data,
         error: flightPromiseState.error
       }) ||
-      < HomepageResultsView results = {
+      <div className="search-results">< HomepageResultsView results = {
         flightPromiseState.data
       }
     onChooseFlight = {
       changeFlightOnClickACB
     }
-    />
+    /></div>
   }</div>
 
 }
