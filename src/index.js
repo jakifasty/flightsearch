@@ -13,7 +13,7 @@ function hours (nrHours){
   const twoHours = 1000 * 60 * 60 * nrHours;
 }
 var now = Date.now();
-const twoHoursAgo = now - 2 * 60 * 60 * 1000; //2 hours
+const twoHoursAgo = now - 30 * 60 * 1000; //30 min
 
 function ReactRoot(){
   const [model, setModel]= React.useState(new FlightModel());
