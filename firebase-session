@@ -1,0 +1,3 @@
+npm install uuid4
+npm install react-cookie
+npm install firebase@8.10.1
