@@ -101,7 +101,6 @@ Of course, no flight search will serve all as needs may be different. But provid
 This section should list any major frameworks/libraries used to bootstrap your project. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
 
 * [React.js](https://reactjs.org/)
-* [React Project](https://reactjs.org/docs/create-a-new-react-app.html)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -113,7 +112,7 @@ This is an example of how you may give instructions on setting up your project l
 To get a local copy up and running follow these simple example steps.
 
 ### Install
-  
+
 Follow these steps to get the app up and working locally
 
 1. Get a free API Key at [https://example.com](https://example.com)
@@ -121,13 +120,25 @@ Follow these steps to get the app up and working locally
    ```sh
    git clone https://github.com/your_username_/Project-Name.git
    ```
-3. Install NPM packages
+4. Create a react app 
+_For more details, please refer to the [Documentation](https://reactjs.org/docs/create-a-new-react-app.html)_; It sets up your development environment so that you can use the latest JavaScript features, provides a nice developer experience, and optimizes your app for production. You’ll need to have Node >= 14.0.0 and npm >= 5.6 on your machine. To create a project, run:
+   ```sh
+   npx create-react-app my-app
+   ```
+   
+5. Copy the files from flightsearch folder to my-app
+6. Navigate to the app in the console
+   ```sh
+   cd my-app
+   ```
+8. Install NPM packages
    ```sh
    npm install
    ```
-4. Enter your API in `config.js`
-   ```js
-   const API_KEY = 'ENTER YOUR API';
+7. Enter your API in `src/apiConfig.js` `src/firebaseConfig.js` `src/awsConfig.js`
+8. Start the app
+   ```sh
+   npm start
    ```
 
 <p align="right">(<a href="#top">back to top</a>)</p>
@@ -137,9 +148,7 @@ Follow these steps to get the app up and working locally
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
-
-_For more examples, please refer to the [Documentation](https://example.com)_
+To be written
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -183,18 +192,6 @@ This is a list of the packages that is used in this project exept react
   npm install -s aws-sdk
   ```
 
-<!-- ROADMAP -->
-## Roadmap
-
-- [x] Add Changelog
-- [x] Add back to top links
-- [ ] Add Additional Templates w/ Examples
-- [ ] Add "components" document to easily copy & paste sections of the readme
-- [ ] Multi-language Support
-    - [ ] Chinese
-    - [ ] Spanish
-
-See the [open issues](https://github.com/othneildrew/Best-README-Template/issues) for a full list of proposed features (and known issues).
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
