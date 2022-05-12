@@ -1,6 +1,6 @@
 /* Functional JSX component. Name starts with capital letter */
-function HomepageFormView(props) {
 
+function HomepageFormView(props) {
 
     function changeAmountPeopleACB(event) {
         props.onChangeAmountPeople(event.target.value)
@@ -60,7 +60,9 @@ function HomepageFormView(props) {
     return (
 
         <div className="mainBackground">
+            <div className="header">
             <h1 style={{ color: '#DA291CFF'}}>FlightSearch</h1>
+            </div>
             <div className="search-form-container">
               <div className="search-params">
                 <select className="dropbtn" onChange={fromSelectTripTypeACB}>
@@ -98,9 +100,9 @@ function HomepageFormView(props) {
                 </div>
               </div>
               <div className="search-submit">
-                <button className="searchButton" disabled={false/*!props.isValidRequest*/} onClick={clickSearchACB}>
+                <button className="searchButton" onClick={clickSearchACB}>
                 Search
-                <img className="landing-animation" src="https://icon-library.com/images/airplane-mode-icon/airplane-mode-icon-27.jpg" height="auto">
+                <img className="landing-animation" src="https://icon-library.com/images/airplane-mode-icon/airplane-mode-icon-27.jpg" height="auto" alt="">
                 </img>
                 </button>
               </div>
@@ -121,7 +123,12 @@ function getAirportList(e) {
     var k = Object.keys(e)[0]
 
     if (k == undefined) {
-        return <datalist id="listID"></datalist>
+        return <datalist id="listID">
+                <option id={"Stockholm Arlanda Airport"} value={"Stockholm Arlanda Airport (ARN)"} className="textOverflow"> {"Sweden, Stockholm (ARN)"} </option>
+                <option id={"Barcelona–El Prat Airport"} value={"Barcelona–El Prat Airport (BCN)"} className="textOverflow"> {"Spain, Barcelona (BCN)"} </option>
+                <option id={"John F. Kennedy International Airport"} value={"John F. Kennedy International Airport (JFK)"} className="textOverflow"> {"United States, New York City (JFK)"} </option>
+                <option id={"Heathrow Airport"} value={"Heathrow Airport (LHR)"} className="textOverflow"> {"United Kingdom, London (LHR)"} </option>  
+        </datalist>
     }
 
     e = e[k]

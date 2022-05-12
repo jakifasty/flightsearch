@@ -25,8 +25,13 @@ function Homepage(props) {
   const [airportsPromiseState] = React.useState({});
   const [flightPromiseState] = React.useState({});
   const [, reRender] = React.useState();
+  const [displayAmount, setDisplayAmount] = React.useState(null)
 
   const data = require('../data/airports.json')
+
+  var scrollEnd = false;
+  var scrollTypeAuto =  false;
+  const [sortType,setSortType] = React.useState(null)
 
 
   //TODO add return airports functionality
@@ -52,7 +57,8 @@ function Homepage(props) {
     setAdults(props.model.amountAdults);
     setYouths(props.model.amountYouths);
     setTripType(props.model.tripType);
-    setSortingType(props.model.sortingType);
+    setDisplayAmount(props.model.displayAmount)
+    setSortType(props.model.sortType)
   }
 
   function searchAirportACB(searchText) {
@@ -175,26 +181,57 @@ function Homepage(props) {
   function searchACB() {
 
 
-    if (props.model.tripType === props.model.oneWay)
+    if (props.model.tripType === props.model.oneWay){
       try {
         let data = props.model.makeData();
         resolveFlight(getOffers(data));
       } catch (error) {
         console.log(error);
       }
-    else if (props.model.tripType === props.model.roundTrip)
+    }
+    else if (props.model.tripType === props.model.roundTrip){
       try {
         let data = props.model.makeRoundTripData();
         resolveFlight(getOffers(data));
       } catch (error) {
         console.log(error);
       }
+    }
   }
 
   function changeFlightOnClickACB(flight) {
     props.model.setCurrentFlight(flight.id);
   }
 
+  function setScrollEndACB(){
+    if ((window.innerHeight + Math.ceil(window.pageYOffset)) >= document.body.offsetHeight && !scrollEnd) {
+        scrollEnd = true;
+        if(scrollTypeAuto){
+            setDisplayAmountACB('auto')
+        }
+    }else if((window.innerHeight + Math.ceil(window.pageYOffset)) <= document.body.offsetHeight -10 && scrollEnd){
+        scrollEnd = false;
+
+    }
+ }
+ function setDisplayAmountACB(amount){
+  if(amount === 'auto' ){
+      if(scrollEnd){
+      props.model.setDisplayAmount(props.model.displayAmount + 10)
+      //component.searchParams.offset += 0
+      }
+  }
+  else if(amount === 'autoEnable'){
+    scrollTypeAuto = true
+  }else{
+      scrollTypeAuto = false
+      props.model.setDisplayAmount(parseInt(amount))
+  }
+}
+
+function setSortTypeACB(type){
+  props.model.setSortType(type)
+}
   return <div> < HomepageFormView
   onChangeAmountPeople = {
     onChangeAmountPeopleACB
@@ -207,9 +244,6 @@ function Homepage(props) {
   }
   onSelectTripType = {
     onSelectTripTypeACB
-  }
-  onSelectSortingType = {
-    onSelectSortingTypeACB
   }
   onSelectFromDate = {
     onSelectFromDateACB
@@ -241,12 +275,10 @@ function Homepage(props) {
   tripType = {
     props.model.tripType
   }
-  sortingType = {
-    props.model.sortingType
-  }
   airportResults = {
     choosenAirport
   }
+
   /> {
     promiseNoData({
         promise: flightPromiseState.promise,
@@ -258,6 +290,21 @@ function Homepage(props) {
       }
     onChooseFlight = {
       changeFlightOnClickACB
+    }
+    onScrollEnd= {
+      setScrollEndACB
+    }
+    setDisplayAmount = {
+      setDisplayAmountACB
+    }
+    setSortType = {
+      setSortTypeACB
+    }
+    sortType = {
+      props.model.sortType
+    }
+    displayAmount = {
+      props.model.displayAmount
     }
     />
   }</div>

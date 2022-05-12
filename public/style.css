@@ -1,3 +1,39 @@
+/* Animations */
+@-webkit-keyframes fadein {
+  from {bottom: 0; opacity: 0;}
+  to {bottom: 30px; opacity: 1;}
+}
+
+@keyframes fadein {
+  from {bottom: 0; opacity: 0;}
+  to {bottom: 30px; opacity: 1;}
+}
+
+@-webkit-keyframes fadeout {
+  from {bottom: 30px; opacity: 1;}
+  to {bottom: 0; opacity: 0;}
+}
+
+@keyframes fadeout {
+  from {bottom: 30px; opacity: 1;}
+  to {bottom: 0; opacity: 0;}
+}
+@keyframes glowing {
+  0% {
+    background-color: #fcd440;
+    box-shadow: 0 0 3px #fcd440;
+  }
+  50% {
+    background-color: #fcd440;
+    box-shadow: 0 0 10px #fcd440;
+  }
+  100% {
+    background-color: #ffffc9;
+    box-shadow: 0 0 3px #ffffc9;
+  }
+}
+
+
 /* Booking view */
 /* 64ac15 */
 /* 64ac15 */
@@ -7,20 +43,29 @@
   box-sizing: border-box;
 }
 
+.centr {
+  text-align: center;
+}
+
+#check {
+  text-align: center;
+  color : #53A567FF;
+}
+
 .btnBk {
   font-weight: bold;
 }
 
 .btnBk:hover {
-  background-color: #ffcf66;
+  background-color: #cce4ef;
 }
 .btnBk:active {
-  background-color: #f0a500;
+  background-color: #56A8CBFF;
   transform: translateY(4px);
 }
 
 h4 {
-  color: #f0a500;
+  color: #56A8CBFF;
 }
 .inpt,
 .rad + label,
@@ -44,10 +89,10 @@ h4 {
   border-color: #bd8200;
 }
 .inpt:focus + .input-icon i {
-  color: #f0a500;
+  color: #56A8CBFF;
 }
 .inpt:focus + .input-icon:after {
-  border-right-color: #f0a500;
+  border-right-color: #56A8CBFF;
 }
 .rad {
   display: none;
@@ -75,7 +120,7 @@ h4 {
 .inpt:checked + label:before,
 .dropbtn2:focus,
 .dropbtn2:active {
-  background-color: #f0a500;
+  background-color: #56A8CBFF;
   color: #fff;
   border-color: #bd8200;
 }
@@ -127,7 +172,7 @@ h4 {
   outline: 0;
 }
 .dropbtn2 option {
-  background-color: #f0a500;
+  background-color: #56A8CBFF;
   color: #fff;
 }
 .input-group {
@@ -214,7 +259,7 @@ h4 {
 .col-third:last-of-type {
   padding-right: 0;
 }
-@media only screen and (max-width: 540px) {
+@media only screen and (max-width: 1040px) {
   .col-half {
     width: 100%;
     padding-right: 0;
@@ -246,7 +291,6 @@ h4 {
 }
 
 .dropdown {
-  position: relative;
   display: inline-block;
 }
 
@@ -254,7 +298,6 @@ h4 {
   display: none;
   position: absolute;
   background-color: #f1f1f1;
-  min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1;
 }
@@ -310,7 +353,7 @@ h4 {
 }
 
 .mainBackground {
-  background: #56A8CBFF;
+  background: #56a8cb;
   width: auto;
 }
 
@@ -321,20 +364,15 @@ h4 {
   red: #DA291CFF
   */
 .input-flex-container {
-  padding-left: 5px;
-  padding-right: 4px;
-  padding-top: 2px;
-  padding-bottom: 2px;
   background: #53A567FF;
   justify-content: center;
   display: flex;
-  width: auto;
   flex-wrap: nowrap;
 }
 
-.input-flex-container .inpt {
+.input-flex-container input {
   text-align: center;
-  width: 100%;
+  width:30%;
   line-height: 20px;
   /*font-size: 20px;*/
 }
@@ -347,64 +385,65 @@ h1 {
   margin-top: 0;
 }
 
-.sidebar {
-  flex: 0.1;
-  min-width: 100px;
+
+.sideContent{
+
 }
 
-.mainContent {
-  flex: 0.9;
-  overflow: auto;
-  width: auto;
-}
-
-.tr {
-  padding-top: 2px;
-  padding-bottom: 2px;
-  background: rgb(240, 241, 241);
+.flexParent {
+  overflow:hidden;
   display: flex;
-  justify-content: center;
-  align-items: stretch;
-  width: auto;
+  flex-wrap:nowrap;
 }
+
+.sideContent .sidebar{
+  display: none;
+  width: 100%;
+  height: 100%;
+  background-color: #fcd440;
+  flex: 0%;
+  /*
+  transform: translate3d(400px, 0, 0);
+  -webkit-transform: translate3d(400px, 0, 0);
+  -webkit-transition: transform 2s ease;
+  */
+}
+
+.sideContent .show{
+  display: inline-block;
+  /*
+  -webkit-transform: translate3d(0, 0, 0);
+  -webkit-transition: transform 2s ease;
+  */
+}
+
+
+.mainContent{
+  flex: 1;
+  display: inline-block;
+  background-color: #53A567FF;
+}
+
 
 .flightResults {
   margin: 4px;
-  
-  background-color: lightskyblue;
-  text-align: center;
-  vertical-align: baseline;
-  
-  display: block;
-  padding-top: 50px;
-  padding-right: 30px;
-  padding-bottom: 50px;
-  padding-left: 80px;
-  
-}
 
-.flightDetails {
-  margin: 4px;
-  
   background-color: lightskyblue;
   text-align: left;
   vertical-align: baseline;
-  
+  cursor: pointer;
   display: block;
   padding-top: 50px;
-  padding-right: 30px;
+  padding-right: 20px;
   padding-bottom: 50px;
-  padding-left: 80px;
-  
-}
+  padding-left: 20px;
 
-.td {
-  text-align: left;
-  background-color: lightgray;
-  width: 300px;
-  border: 15px solid green;
-  padding: 50px;
-  margin: 20px;
+}
+.flightResults div {
+  display: inline-block;
+  padding-right: 20px;
+  padding-left: 20px;
+
 }
 
 .searchButton {
@@ -434,7 +473,7 @@ h1 {
 }
 
 .search-input {
-  flex: 100%;
+  flex: 50%;
   width: auto;
 }
 
@@ -444,10 +483,12 @@ h1 {
 }
 
 .search-submit {
-  position: relative;
-  display: inline-block;
   flex: 50%;
   width: auto;
+}
+
+.search-results{
+  flex: 1;
 }
 
 @media (max-width: 600px) {
@@ -461,6 +502,12 @@ h1 {
     flex: 0%;
     flex-wrap: wrap;
   }
+  .flexParent{
+    flex-wrap: wrap-reverse;
+  }
+  .sideContent{
+    width:100%;
+  }
 }
 
 .infoSquare{
@@ -473,3 +520,60 @@ h1 {
   margin: 20px;
 }
 
+
+.float{
+  text-decoration: none;
+	position:fixed;
+	width:40px;
+	height:40px;
+	top:30px;
+	right:40px;
+	background-color:#fcd440;
+	color: black;
+	border-radius:50px;
+	text-align:center;
+	box-shadow: 2px 2px 3px #999;
+}
+.glowing-float{
+  text-decoration: none;
+	position:fixed;
+	width:40px;
+	height:40px;
+	top:30px;
+	right:40px;
+	background-color:#fcd440;
+	color: black;
+	border-radius:50px;
+	text-align:center;
+	box-shadow: 2px 2px 3px #999;
+  animation: glowing 1300ms infinite;
+}
+.my-float{
+	margin-top:22px;
+}
+
+
+/* Extra spice */
+.snackbar {
+  visibility: hidden; /* Hidden by default. Visible on click */
+  min-width: 250px; /* Set a default minimum width */
+  margin-left: -125px; /* Divide value of min-width by 2 */
+  background-color: #333; /* Black background color */
+  color: #fff; /* White text color */
+  text-align: center; /* Centered text */
+  border-radius: 2px; /* Rounded borders */
+  padding: 16px; /* Padding */
+  position: fixed; /* Sit on top of the screen */
+  z-index: 1; /* Add a z-index if needed */
+  left: 50%; /* Center the snackbar */
+  bottom: 30px; /* 30px from the bottom */
+}
+
+/* Show the snackbar when clicking on a button (class added with JavaScript) */
+.snackbar.show {
+  visibility: visible; /* Show the snackbar */
+  /* Add animation: Take 0.5 seconds to fade in and out the snackbar.
+  However, delay the fade out process for 2.5 seconds */
+  -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
