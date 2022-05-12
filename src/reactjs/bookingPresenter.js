@@ -28,9 +28,8 @@ export default function Booking (props){
     }
   }
 
-  // Not used anymore as it is no longer persistent.
   function addBookingACB() {
-    //console.log("Booking Presenter - Adding flight");
+    console.log("Booking Presenter - Adding flight");
     //props.model.addToMenu(props.model.currentDishPromiseState.data);
     //props.model.
   }
