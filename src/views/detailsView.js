@@ -2,15 +2,15 @@ function DetailsView(props){
   
   console.log("here value flighData");
   console.log(props.flightData);
-  let numOfHops = props.flightData.data.slices[0].segments.length;
+  let numOfHops = props.flightData.data.slices[0].segments.length - 1;
 
   function clickAddToCartCB(flight){
-    return props.onAddToFinalList(flight);
-		//window.location.hash="#booking";
+    return props.onAddToFinalList(flight); //this add the flight to the list and Firebase
 	}
 
-  function clickRemoveFromCart(flight){ 
-    return props.searchFlights(flight);
+  function clickBookCB(flight){ 
+    window.location.hash="#booking";
+    return props.searchFlights(flight); //this add the flight to the list and Firebase
   }
 
   function setToReturnACB() {
@@ -49,9 +49,9 @@ function DetailsView(props){
             <p>{"Departure time: " + props.flightData.data.slices[0].segments[index].departing_at}</p>
             <p>{"Destination time: " + props.flightData.data.slices[0].segments[index].arriving_at}</p>
             <p>{"Duration: " + props.flightData.data.slices[0].segments[index].duration}</p>
-
           </div>
   }
+
   let index = 0;
   return  <div>
             <h1>Details about chosen flights:</h1>
@@ -76,8 +76,9 @@ function DetailsView(props){
 
                 <td></td>
               </div>
-                {listFlightDetailsCB(index)}
-                {listFlightDetailsCB(index+1)}
+                  {listFlightDetailsCB(index)}
+                  {/*listFlightDetailsCB(index)*/}
+                  {listFlightDetailsCB(numOfHops)}
             </div>
             
             <tr>
@@ -86,11 +87,9 @@ function DetailsView(props){
             {/*JSON.stringify(props.flightData.conditions.change_before_departure)*/}
             {/*JSON.stringify(props.flightData.slices[0].segments[0].operating_carrier.iata_code)*/}
             </tr>
-            <div>
-              <button type="button" onClick={setToReturnACB}>Return to search</button>
-              <button type="button" onClick={clickAddToCartCB} disabled={props.isFlightInCart}>Add to cart</button>
-              <button type="button" onClick={clickAddToCartCB} disabled={props.isFlightInCart}>Book</button>
-            </div>
+            <button className="searchButton" onClick={clickAddToCartCB} disabled={props.isFlightInCart}>Add to cart</button>
+            <button className="searchButton" onClick={clickBookCB} disabled={false}>Book</button>
+            <button className="searchButton" onClick={setToReturnACB}>Return to search</button>
           </div>
 }
 
