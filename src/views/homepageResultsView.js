@@ -1,6 +1,5 @@
 function HomepageResultsView(props){
 
-  var searchType = 'Price'
   function listResultsCB(flight){
 
     console.log(flight)

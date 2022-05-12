@@ -10,7 +10,6 @@ function HomepageFormView(props) {
         props.onSelectTripType(event.target.value)
     }
 
-    //TODO Move or rewrite these logic checks if possible
     function fromTextInputACB(event) {
         if (event.target.value.length > 3) {
             let indexOfPar=event.target.value.indexOf("(");
@@ -31,7 +30,6 @@ function HomepageFormView(props) {
         props.onSelectReturnDate(event.target.value)
     }
 
-    //TODO Move or rewrite these logic checks if possible
     function toTextInputACB(event) {
         let indexOfPar=event.target.value.indexOf("(");
         let airportCode = (event.target.value.substring(indexOfPar+1, indexOfPar+4));
@@ -48,7 +46,6 @@ function HomepageFormView(props) {
         props.onSearch();
     }
 
-    //TODO move this (Date) to apropriate place(Most likely model)
     var date = new Date()
     var today = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate()
     var twoYearsAfterToday = (parseInt(today.split("-")[0]) + 2) + today.slice(today.indexOf("-"), today.length)
