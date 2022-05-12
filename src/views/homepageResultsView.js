@@ -118,7 +118,7 @@ function HomepageResultsView(props){
 
     switch(props.sortType){
       case 'Price':
-        return compareCB(flight1.total_amount, flight2.total_amount)
+        return compareCB(parseFloat(flight1.total_amount), parseFloat(flight2.total_amount))
       case 'Hops':
         return compareCB(flight1.slices[0].segments.length, flight2.slices[0].segments.length)
       case 'Duration':
