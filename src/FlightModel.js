@@ -20,6 +20,7 @@ function isValid(id) {
 
 class FlightModel {
   constructor(flights) {
+    this.billing_user = {name: "nothing", lastname: "nothing", email: "paeri015@gmail.com"};
     this.sessionId = null;
     if(flights){
       this.flights = flights;
@@ -222,7 +223,7 @@ class FlightModel {
     }
     this.notifyObservers(payload)
   }
-  
+
   setSearchQuery(q) {
     this.searchParams.query = q;
     this.notifyObservers();
