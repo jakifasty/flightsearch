@@ -135,17 +135,20 @@ function Homepage(props) {
   }
 
   function onSelectFromDateACB(date) {
-  //  if (compareDates(date, props.model.deptDate) || props.model.tripType === props.model.oneWay) {
-      console.log(date);
-      props.model.setDeptDate(date)
-  //  }
+    /*if (compareDates(date, props.model.deptDate) || props.model.tripType === props.model.oneWay) {
+        //console.log(date);
+    }
+    */
+    props.model.setDeptDate(date)
   }
 
   function onSelectReturnDateACB(date) {
-    //if (compareDates(props.model.returnDate, date)) {
+    /*if (compareDates(props.model.returnDate, date)) {
       console.log(date);
-      props.model.setReturnDate(date)
-    //}
+    }
+    */
+    props.model.setReturnDate(date)
+
   }
 
   function onSelectTripTypeACB(type) {
@@ -154,27 +157,29 @@ function Homepage(props) {
 
   //TODO
   function isReadyForSearchACB() {
+    var correctDateLength = 10
 
     function checkRest() {
-
-    }
-
-    if (props.model.amountAdults + props.model.amountYouths > 0) {
-      if (props.model.tripType === props.model.oneWay) {
-        if (props.model.fromAirport !== '') {
-
+      if (props.model.amountAdults + props.model.amountYouths > 0) {
+        if (props.model.fromAirport !== '' && props.model.toAirport !== '') {
+          if(props.model.fromAirport !== props.model.toAirport){
+            return true
+          }
         }
-      } else if (props.model.tripType === props.model.roundTrip) {
-
-      } else {
-        return false;
       }
+      return false
+    }
+    
+    if (props.model.tripType === props.model.oneWay) {
+      return checkRest() && (props.model.deptDate.length === correctDateLength)
+    } else if (props.model.tripType === props.model.roundTrip) {
+      return checkRest()  && (props.model.deptDate.length === correctDateLength) && (props.model.returnDate.length === correctDateLength)
+    } else {
+      return false;
     }
   }
 
   function searchACB() {
-
-
     if (props.model.tripType === props.model.oneWay){
       try {
         let data = props.model.makeData();
@@ -212,7 +217,6 @@ function Homepage(props) {
   if(amount === 'auto' ){
       if(scrollEnd){
       props.model.setDisplayAmount(props.model.displayAmount + 10)
-      //component.searchParams.offset += 0
       }
   }
   else if(amount === 'autoEnable'){

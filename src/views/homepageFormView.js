@@ -10,10 +10,6 @@ function HomepageFormView(props) {
         props.onSelectTripType(event.target.value)
     }
 
-    function sendMail() {
-        console.log("TODO")
-    }
-
     //TODO Move or rewrite these logic checks if possible
     function fromTextInputACB(event) {
         if (event.target.value.length > 3) {
@@ -101,7 +97,7 @@ function HomepageFormView(props) {
                 </div>
               </div>
               <div className="search-submit">
-                <button className="searchButton" onClick={clickSearchACB}>
+                <button disabled={!props.isValidRequest()}className="searchButton" onClick={clickSearchACB}>
                 Search
                 <img className="landing-animation" src="https://icon-library.com/images/airplane-mode-icon/airplane-mode-icon-27.jpg" height="auto" alt="">
                 </img>
@@ -140,7 +136,7 @@ function getAirportList(e) {
             {e.map(function (airport) {
                 var key = Object.keys(airport)
                 airport = airport[key]
-                return <option id={airport.airportName} value={airport.airportName + " ("+key+")"} className="textOverflow">{airport.country + ", " + airport.region + " (" + key + ")"}</option>
+                return <option key={key} id={airport.airportName} value={airport.airportName + " ("+key+")"} className="textOverflow">{airport.country + ", " + airport.region + " (" + key + ")"}</option>
             }
             )}
         </datalist>
