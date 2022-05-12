@@ -446,6 +446,21 @@ h1 {
 
 }
 
+.flightDetails {
+  margin: 4px;
+  
+  background-color: lightskyblue;
+  text-align: left;
+  vertical-align: baseline;
+  
+  display: block;
+  padding-top: 50px;
+  padding-right: 30px;
+  padding-bottom: 50px;
+  padding-left: 80px;
+  
+}
+
 .searchButton {
   padding: 10px 32px;
   width: 100%;
