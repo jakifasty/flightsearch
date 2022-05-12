@@ -11,7 +11,6 @@ require("./navigation.js")
 require("./utils.js")
 
 function App(props) {
-  console.log(props.model.flights.length);
   return (
     <div>
       <div>

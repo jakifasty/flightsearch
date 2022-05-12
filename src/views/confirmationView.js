@@ -18,7 +18,7 @@ function confirmationView(props) {
 
 	return (
 		<div className="container">
-				<div className="row">
+				<div className="row" id="booking-confirmation">
 					<div> <h2 className="centr"> Booking Successful </h2> </div>
 					<div> <h1 id="check"> &#10004; </h1></div>
 					<div><h4 className="header4 centr"> <p>Thank you for your reservation.</p>
@@ -30,10 +30,14 @@ function confirmationView(props) {
 					<div className="row">
 						<div className="input-group">
 								<div className="div-row confButton">
-									<button className="inpt col-half btnBk" onClick={handlePrintACB}>Print This Page</button>
-									<button className="inpt col-half btnBk" onClick={handleCancelACB}>Go Home</button>
+									<button className="inpt col-third btnBk" onClick={handlePrintACB}>Print This Page</button>
+									<button className="inpt col-third btnBk" onClick={ev => {props.sendEmail('success@simulator.amazonses.com', "Name")}}>Send Mail</button>
+									<button className="inpt col-third btnBk" onClick={handleCancelACB}>Go Home</button>
 								</div>
 						</div>
+					</div>
+					<div id="snackbar">
+					Email sent successfully
 					</div>
 
 		</div>
