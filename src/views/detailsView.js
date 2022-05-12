@@ -1,9 +1,6 @@
 function DetailsView(props){
 
-
-  //console.log("here value flighData");
-  //console.log(props.flightData);
-  let numOfHops = props.flightData.data.slices[0].segments.length - 1;
+  let numOfStops = props.flightData.data.slices[0].segments.length - 1; //
   let index = 0;
 
   function clickBookCB(flight){
@@ -41,18 +38,31 @@ function DetailsView(props){
     valueTravel = "specific ducuments required";
   }
 
-  function listFlightDetailsCB(index) {
+  function listFlightDetailsCB(index, flighData) {
 
-    return <div>
-            <h2>{"Flight " + props.flightData.data.slices[0].segments[index].operating_carrier.iata_code + " " + props.flightData.data.slices[0].segments[index].operating_carrier_flight_number}</h2>
-            <h3>{props.flightData.data.slices[0].segments[index].origin.city_name + " " + props.flightData.data.slices[0].segments[index].origin.iata_code + " (Terminal " + props.flightData.data.slices[0].segments[index].origin_terminal + ") - " + props.flightData.data.slices[0].segments[index].destination.city_name + " " + props.flightData.data.slices[0].segments[index].destination.iata_code + " (Terminal " + props.flightData.data.slices[0].segments[index].destination_terminal + ") "}</h3>
-            <span>{"Country of origin: " + props.flightData.data.slices[0].segments[index].origin.iata_country_code}</span>
-            <p><span>{"Country of destination: " + props.flightData.data.slices[0].segments[index].destination.iata_country_code}</span></p>
-            <span>{"Aircraft type: " + props.flightData.data.slices[0].segments[index].aircraft.name}</span>
-            <p>{"Departure time: " + props.flightData.data.slices[0].segments[index].departing_at}</p>
-            <p>{"Destination time: " + props.flightData.data.slices[0].segments[index].arriving_at}</p>
-            <p>{"Duration: " + props.flightData.data.slices[0].segments[index].duration}</p>
-          </div>
+    return  <div>
+              <h2>{"Flight " + props.flightData.data.slices[0].segments[index].operating_carrier.iata_code + " " + props.flightData.data.slices[0].segments[index].operating_carrier_flight_number}</h2>
+              <h3>{props.flightData.data.slices[0].segments[index].origin.city_name + " " + props.flightData.data.slices[0].segments[index].origin.iata_code + " - " + props.flightData.data.slices[0].segments[index].destination.city_name + " " + props.flightData.data.slices[0].segments[index].destination.iata_code}</h3>
+              <span>{"Country of origin: " + props.flightData.data.slices[0].segments[index].origin.iata_country_code}</span>
+              <p><span>{"Country of destination: " + props.flightData.data.slices[0].segments[index].destination.iata_country_code}</span></p>
+              <span>{"Aircraft type: " + props.flightData.data.slices[0].segments[index].aircraft.name}</span>
+              <p>{"Departure time: " + props.flightData.data.slices[0].segments[index].departing_at}</p>
+              <p>{"Destination time: " + props.flightData.data.slices[0].segments[index].arriving_at}</p>
+              <p>{"Duration: " + props.flightData.data.slices[0].segments[index].duration}</p>
+            </div>
+
+          {/*<div>
+            <h2>{"Flight " + flightData.data.slices[0].segments[index].operating_carrier.iata_code + " " + flightData.data.slices[0].segments[index].operating_carrier_flight_number}</h2>
+            <h3>{flightData.data.slices[0].segments[index].origin.city_name + " " + flightData.data.slices[0].segments[index].origin.iata_code + " - " + flightData.data.slices[0].segments[index].destination.city_name + " " + flightData.data.slices[0].segments[index].destination.iata_code}</h3>
+            <span>{"Country of origin: " + flightData.data.slices[0].segments[index].origin.iata_country_code}</span>
+            <p><span>{"Country of destination: " + flightData.data.slices[0].segments[index].destination.iata_country_code}</span></p>
+            <span>{"Aircraft type: " + flightData.data.slices[0].segments[index].aircraft.name}</span>
+            <p>{"Departure time: " + flightData.data.slices[0].segments[index].departing_at}</p>
+            <p>{"Destination time: " + flightData.data.slices[0].segments[index].arriving_at}</p>
+            <p>{"Duration: " + flightData.data.slices[0].segments[index].duration}</p>
+          </div> */}
+
+
   }
 
 
@@ -79,9 +89,9 @@ function DetailsView(props){
 
                 <td></td>
               </div>
-                  {/*props.flightData.data.map(listFlightDetailsCB)*/}
-                  {listFlightDetailsCB(index)}
-                  {listFlightDetailsCB(numOfHops)}
+                  {props.flightData.data.map(listFlightDetailsCB)}
+                  {/*listFlightDetailsCB(index)*/}
+                  {/*listFlightDetailsCB(numOfStops)*/}
             </div>
 
             <tr>

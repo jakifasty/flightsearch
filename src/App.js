@@ -18,8 +18,8 @@ function App(props) {
         {/*<Show hash="#sidebar"><SidebarFirebase model={props.model}/></Show>*/}
       </div>
       <div>
-        <div class="flexParent">
-          <div class="mainContent">
+        <div className="flexParent">
+          <div className="mainContent">
           <Show hash="#homepage">{<Homepage model={props.model}/>}</Show>
           <Show hash="#details"><Details model={props.model}/></Show>
           <Show hash="#booking"><Booking model={props.model}/></Show>
