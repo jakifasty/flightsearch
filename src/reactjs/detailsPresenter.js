@@ -9,7 +9,6 @@ export default function Details(props) {
   const [, setPromise]=React.useState(null);
   const [, setError]=React.useState(null);
 
-
   function observerACB() {
     setPromiseData(props.model.currentFlightPromiseState.data)
     setPromise(props.model.currentFlightPromiseState.promise)
@@ -17,8 +16,7 @@ export default function Details(props) {
   }
 
   function wasCreatedACB() {
-    //var airports = require('../data/airports.json')
-    //setData(airports)
+
     observerACB();
     props.model.addObserver(observerACB);
     return function isTakenDownACB() {

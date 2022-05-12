@@ -13,8 +13,7 @@ export default function Globe(props) {
     setPromise(props.model.flightsPromiseState.error)
   }
   function wasCreatedACB() {
-    //var airports = require('../data/airports.json')
-    //setData(airports)
+
     observerACB();
     props.model.addObserver(observerACB);
     return function isTakenDownACB() {

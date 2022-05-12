@@ -20,7 +20,6 @@ function Homepage(props) {
   const [, setAdults] = React.useState(null);
   const [, setYouths] = React.useState(null);
   const [, setTripType] = React.useState(null);
-  const [, setSortingType] = React.useState(null);
   const [choosenAirport, setAirport] = React.useState([]);
   const [airportsPromiseState] = React.useState({});
   const [flightPromiseState] = React.useState({});
@@ -33,8 +32,6 @@ function Homepage(props) {
   var scrollTypeAuto =  false;
   const [sortType,setSortType] = React.useState(null)
 
-
-  //TODO add return airports functionality
   function resolveAirports(promise) {
     resolvePromise(promise, airportsPromiseState,
       function promiseStateChangedACB() {
@@ -67,7 +64,6 @@ function Homepage(props) {
       return (airport[search] != undefined)
     }
 
-    //TODO cleanup/make more efficent
     if (searchText.length > 1) {
       var search = searchText.substring(0, 2).toLocaleUpperCase()
       var airports = data.filter(airport => isValidAirportCB(airport, search))
@@ -82,8 +78,7 @@ function Homepage(props) {
   }
 
   function wasCreatedACB() {
-    //var airports = require('../data/airports.json')
-    //setData(airports)
+
     observerACB();
     props.model.addObserver(observerACB);
     return function isTakenDownACB() {
@@ -136,21 +131,11 @@ function Homepage(props) {
   }
 
   function onSelectFromDateACB(date) {
-    /*if (compareDates(date, props.model.deptDate) || props.model.tripType === props.model.oneWay) {
-        //console.log(date);
-    }
-    */
     props.model.setDeptDate(date)
   }
 
   function onSelectReturnDateACB(date) {
-    /*if (compareDates(props.model.returnDate, date)) {
-      console.log(date);
-    }
-    */
-
     props.model.setReturnDate(date)
-
   }
 
   function onSelectTripTypeACB(type) {
@@ -161,8 +146,6 @@ function Homepage(props) {
     props.model.setSortingType(type)
   }
 
-
-  //TODO
   function isReadyForSearchACB() {
     var correctDateLength = 10
 
@@ -206,7 +189,6 @@ function Homepage(props) {
   }
 
   function changeFlightOnClickACB(flight) {
-    //console.log(flight.id);
     props.model.setCurrentFlight(flight.id);
   }
 
