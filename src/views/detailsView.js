@@ -33,9 +33,17 @@ function DetailsView(props){
     valueTravel = "specific ducuments required";
   }
 
+  let flightTime = props.flightData.data.slices[0].duration
+  if(flightTime.startsWith("PT")){
+    flightTime = flightTime.substring(2)
+  }
+  else{
+    flightTime = flightTime.substring(1).replace("T","")
+  }
+
   function listFlightDetailsCB(segment) {
 
-    return  <div>
+    return  <div key={segment.id}>
               <h2>{"Flight " + segment.operating_carrier.iata_code + " " + segment.operating_carrier_flight_number}</h2>
               <h3>{segment.origin.city_name + " " + segment.origin.iata_code + " - " + segment.destination.city_name + " " + segment.destination.iata_code}</h3>
               <span>{"Country of origin: " + segment.origin.iata_country_code}</span>
@@ -43,7 +51,7 @@ function DetailsView(props){
               <span>{"Aircraft type: " + segment.aircraft.name}</span>
               <p>{"Departure time: " + segment.departing_at}</p>
               <p>{"Destination time: " + segment.arriving_at}</p>
-              <p>{"Duration: " + segment.duration}</p>
+              <p>{"Duration: " + flightTime}</p>
             </div> 
   }
 

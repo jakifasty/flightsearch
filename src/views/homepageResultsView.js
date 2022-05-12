@@ -50,8 +50,12 @@ function HomepageResultsView(props){
           {flight.total_amount + " " + flight.total_currency + "    "}
         </div>
         <div>
-          {"Hops " + flight.slices[0].segments.length}
+          {(flight.slices[0].segments.length - 1) + "layovers"}
         </div>
+        <div>
+          {flight.slices[0].segments.length + "hops"}
+        </div>
+
       </span>
     );
   }

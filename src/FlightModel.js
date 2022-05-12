@@ -1,13 +1,10 @@
 import resolvePromise from "./resolvePromise.js";
 
 import {
-  createPassenger,
   createPassengers
 } from "./utils.js"
 
 import {
-  getAirportsInCity,
-  getOffers,
   getFlightDetails
 } from "./flightSearches.js";
 
@@ -31,7 +28,7 @@ class FlightModel {
     }
     this.flightsPromiseState = {data: {}};
     this.nrCurrentFlights = 0;
-    //Not sure why these were added
+
     this.oneWay = "One";
     this.roundTrip = "Round";
     this.passengers = [];
@@ -113,7 +110,6 @@ class FlightModel {
     if(this.flights.filter(checkIfExistsCB).length > 0){
       //it is already in list
     }else{
-      //add to list
       this.flights = [...this.flights, data]
       let payload = {addedFlight: data.data.id}
       this.nrCurrentFlights = this.flights.length;
@@ -146,26 +142,22 @@ class FlightModel {
   notifyNewSession(){
     const theModel = this;
     function notifyACB() {theModel.notifyObservers(null);};
-    resolvePromise(firebaseSessionPromise(this.sessionId), this.flightsPromiseState, notifyACB);
-    console.log("welcome new session")
+    resolvePromise(firebaseSessionPromise(this.sessionId), this.flightsPromiseState, notifyACB); //welcome new session
     let payload = {setSessionId: {id: this.sessionId, status: "active", timestamp: Date.now()}}
     this.notifyObservers(payload);
   }
   notifyContinueSession(){
     const theModel = this;
     function notifyACB() {theModel.notifyObservers(null);};
-    resolvePromise(firebaseSessionPromise(this.sessionId), this.flightsPromiseState, notifyACB);
-    console.log("welcome back")
+    resolvePromise(firebaseSessionPromise(this.sessionId), this.flightsPromiseState, notifyACB); //welcome back
     let payload = {continueSessionId: {id: this.sessionId, status: "active", timestamp: Date.now()}}
     this.notifyObservers(payload);
   }
   
   setCurrentFlight(id){
       const theModel = this;
-      function notifyACB() {theModel.notifyObservers(null);};
-      console.log("setting current flight");
+      function notifyACB() {theModel.notifyObservers(null);}; //setting current flight
       this.currentFlight = id;
-      console.log(this.currentFlight);
       resolvePromise(getFlightDetails(id), this.currentFlightPromiseState, notifyACB);
       var payload = {
         setCurrentFlight: id
