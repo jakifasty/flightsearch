@@ -8,7 +8,7 @@ export default function Details(props) {
   const [, setPromiseData]=React.useState(null);
   const [, setPromise]=React.useState(null);
   const [, setError]=React.useState(null);
-  const [, setCurrentFlight] = React.useState(null);
+
 
   function observerACB() {
     setPromiseData(props.model.currentFlightPromiseState.data)
@@ -38,7 +38,9 @@ export default function Details(props) {
                 error: props.model.currentFlightPromiseState.error
               }) ||
             <DetailsView
-              flightData = {props.model.currentFlightPromiseState.data} onAddToFinalList={addToFinalListACB}
+              flightData = {props.model.currentFlightPromiseState.data}
+              onAddToFinalList={addToFinalListACB}
+              isFlightInList = {props.model.isCurrentFlightInList()}
             />}
           </div>
           );

@@ -91,6 +91,18 @@ class FlightModel {
   nrFlights(){
     return this.flights.length;
   }
+  isCurrentFlightInList(){
+    let currentFlight = this.currentFlight;
+    function checkIfExistsCB(dataToCompare){
+      if (dataToCompare.data.id == currentFlight){
+        return true;
+      }else{
+        return false;
+      }
+    }
+    let filteredList = this.flights.filter(checkIfExistsCB);
+    return filteredList.length == 0? false : true
+  }
   addToFinalList(data){
     function checkIfExistsCB(dataToCompare){
       return dataToCompare.data.id === data.data.id? true : false;
@@ -151,7 +163,9 @@ class FlightModel {
     }else{
       const theModel = this;
       function notifyACB() {theModel.notifyObservers(null);};
+      console.log("setting current flight");
       this.currentFlight = id;
+      console.log(this.currentFlight);
       resolvePromise(getFlightDetails(id), this.currentFlightPromiseState, notifyACB);
       var payload = {
         setCurrentFlight: id
@@ -224,7 +238,7 @@ class FlightModel {
     }
     this.notifyObservers(payload)
   }
-  
+
   setSearchQuery(q) {
     this.searchParams.query = q;
     this.notifyObservers();

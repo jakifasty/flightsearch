@@ -20,6 +20,7 @@ function Homepage(props) {
   const [, setAdults] = React.useState(null);
   const [, setYouths] = React.useState(null);
   const [, setTripType] = React.useState(null);
+  const [, setSortingType] = React.useState(null);
   const [choosenAirport, setAirport] = React.useState([]);
   const [airportsPromiseState] = React.useState({});
   const [flightPromiseState] = React.useState({});
@@ -155,6 +156,11 @@ function Homepage(props) {
     props.model.setTripType(type)
   }
 
+  function onSelectSortingTypeACB(type){
+    props.model.setSortingType(type)
+  }
+
+
   //TODO
   function isReadyForSearchACB() {
     var correctDateLength = 10
@@ -199,6 +205,7 @@ function Homepage(props) {
   }
 
   function changeFlightOnClickACB(flight) {
+    //console.log(flight.id);
     props.model.setCurrentFlight(flight.id);
   }
 

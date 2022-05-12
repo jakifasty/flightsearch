@@ -48,7 +48,6 @@ function HomepageFormView(props) {
         props.onSearch();
     }
 
-
     //TODO move this (Date) to apropriate place(Most likely model)
     var date = new Date()
     var today = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate()
@@ -110,7 +109,6 @@ function HomepageFormView(props) {
         </div>
 
     );
-
 }
 
 
