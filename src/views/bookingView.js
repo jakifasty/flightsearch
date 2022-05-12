@@ -230,15 +230,7 @@ function bookingView(props) {
 					</div>
 					<p><small>*PayPal payment is currently disabled. We are sorry for the inconvenicence.</small></p>
 			</div>
-
-
-
-
-
-
     );
-
 }
-
 
 export default bookingView;

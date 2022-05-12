@@ -20,6 +20,7 @@ function Homepage(props) {
   const [, setAdults] = React.useState(null);
   const [, setYouths] = React.useState(null);
   const [, setTripType] = React.useState(null);
+  const [, setSortingType] = React.useState(null);
   const [choosenAirport, setAirport] = React.useState([]);
   const [airportsPromiseState] = React.useState({});
   const [flightPromiseState] = React.useState({});
@@ -30,6 +31,7 @@ function Homepage(props) {
 
   var scrollEnd = false;
   var scrollTypeAuto =  false;
+  const [sortType,setSortType] = React.useState(null)
 
 
   //TODO add return airports functionality
@@ -56,6 +58,7 @@ function Homepage(props) {
     setYouths(props.model.amountYouths);
     setTripType(props.model.tripType);
     setDisplayAmount(props.model.displayAmount)
+    setSortType(props.model.sortType)
   }
 
   function searchAirportACB(searchText) {
@@ -150,6 +153,11 @@ function Homepage(props) {
     props.model.setTripType(type)
   }
 
+  function onSelectSortingTypeACB(type){
+    props.model.setSortingType(type)
+  }
+
+
   //TODO
   function isReadyForSearchACB() {
 
@@ -192,6 +200,7 @@ function Homepage(props) {
   }
 
   function changeFlightOnClickACB(flight) {
+    //console.log(flight.id);
     props.model.setCurrentFlight(flight.id);
   }
 
@@ -219,6 +228,10 @@ function Homepage(props) {
       scrollTypeAuto = false
       props.model.setDisplayAmount(parseInt(amount))
   }
+}
+
+function setSortTypeACB(type){
+  props.model.setSortType(type)
 }
   return <div> < HomepageFormView
   onChangeAmountPeople = {
@@ -282,11 +295,17 @@ function Homepage(props) {
     onScrollEnd= {
       setScrollEndACB
     }
-    displayAmount = {
-      props.model.displayAmount
-    }
     setDisplayAmount = {
       setDisplayAmountACB
+    }
+    setSortType = {
+      setSortTypeACB
+    }
+    sortType = {
+      props.model.sortType
+    }
+    displayAmount = {
+      props.model.displayAmount
     }
     />
   }</div>

@@ -45,6 +45,8 @@ class FlightModel {
 
     this.tripType = "One"
 
+    this.sortType = "Price"
+
     this.searchResultsPromiseState = {};
     this.observers = [];
     this.searchParams = {
@@ -89,6 +91,18 @@ class FlightModel {
   }
   nrFlights(){
     return this.flights.length;
+  }
+  isCurrentFlightInList(){
+    let currentFlight = this.currentFlight;
+    function checkIfExistsCB(dataToCompare){
+      if (dataToCompare.data.id == currentFlight){
+        return true;
+      }else{
+        return false;
+      }
+    }
+    let filteredList = this.flights.filter(checkIfExistsCB);
+    return filteredList.length == 0? false : true
   }
   addToFinalList(data){
     function checkIfExistsCB(dataToCompare){
@@ -150,7 +164,9 @@ class FlightModel {
     }else{
       const theModel = this;
       function notifyACB() {theModel.notifyObservers(null);};
+      console.log("setting current flight");
       this.currentFlight = id;
+      console.log(this.currentFlight);
       resolvePromise(getFlightDetails(id), this.currentFlightPromiseState, notifyACB);
       var payload = {
         setCurrentFlight: id
@@ -228,10 +244,20 @@ class FlightModel {
     this.searchParams.query = q;
     this.notifyObservers();
   }
+
   setSearchType(t) {
     this.searchParams.type = t;
     this.notifyObservers();
   }
+
+  setSortType(t) {
+    this.sortType = t
+    var payload = {
+      sortType : t
+    }
+    this.notifyObservers(payload)
+  }
+
   doSearch(params) {
     const theModel = this;
 

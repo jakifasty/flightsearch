@@ -1,25 +1,19 @@
 function DetailsView(props){
-  console.log("here value flighData");
-  console.log(props.flightData);
-  console.log(props.flightData.data.passenger_identity_documents_required);
 
-  //console.log("Flight:")
-  //let flightTime = parseInt(flight.slices[0].duration, 16); //convert from minutes in hexadecimal to hours in decimal
-  //props.flightData.slices[0].segments.forEach(ele => {
-    /*console.log("New:")
-    console.log(ele)
-    console.log(ele.duration)
-    console.log(ele.arriving_at)
-    console.log(ele.departing_at)*/
-  //});
 
-  function clickAddToCartCB(flight){
-    return props.onAddToFinalList(flight);
-		//window.location.hash="#booking";
-	}
+  //console.log("here value flighData");
+  //console.log(props.flightData);
+  let numOfHops = props.flightData.data.slices[0].segments.length - 1;
+  let index = 0;
 
-  function clickRemoveFromCart(flight){
-    return props.searchFlights(flight);
+  function clickBookCB(flight){
+    window.location.hash="#booking";
+    return props.searchFlights(flight); //this add the flight to the list and Firebase
+  }
+
+
+  function clickAddToSideCB(flight){
+    props.onAddToFinalList(flight);
   }
 
   function setToReturnACB() {
@@ -47,38 +41,58 @@ function DetailsView(props){
     valueTravel = "specific ducuments required";
   }
 
-  return  <div >
-            <h1>Details about chosen flight {props.flightData.data.slices[0].segments[0].operating_carrier.iata_code + " " + props.flightData.data.slices[0].segments[0].operating_carrier_flight_number} :</h1> {/*props.flightData.slices[0].segments[0].operating_carrier.iata_code + props.flightData.slices[0].segments[0].operating_carrier_flight_number*/}
+  function listFlightDetailsCB(index) {
 
-            <div className="flightResults">
+    return <div>
+            <h2>{"Flight " + props.flightData.data.slices[0].segments[index].operating_carrier.iata_code + " " + props.flightData.data.slices[0].segments[index].operating_carrier_flight_number}</h2>
+            <h3>{props.flightData.data.slices[0].segments[index].origin.city_name + " " + props.flightData.data.slices[0].segments[index].origin.iata_code + " (Terminal " + props.flightData.data.slices[0].segments[index].origin_terminal + ") - " + props.flightData.data.slices[0].segments[index].destination.city_name + " " + props.flightData.data.slices[0].segments[index].destination.iata_code + " (Terminal " + props.flightData.data.slices[0].segments[index].destination_terminal + ") "}</h3>
+            <span>{"Country of origin: " + props.flightData.data.slices[0].segments[index].origin.iata_country_code}</span>
+            <p><span>{"Country of destination: " + props.flightData.data.slices[0].segments[index].destination.iata_country_code}</span></p>
+            <span>{"Aircraft type: " + props.flightData.data.slices[0].segments[index].aircraft.name}</span>
+            <p>{"Departure time: " + props.flightData.data.slices[0].segments[index].departing_at}</p>
+            <p>{"Destination time: " + props.flightData.data.slices[0].segments[index].arriving_at}</p>
+            <p>{"Duration: " + props.flightData.data.slices[0].segments[index].duration}</p>
+          </div>
+  }
+
+
+  return  <div>
+            <h1>Details about chosen flights:</h1>
+
+            <div className="flightDetails">
               <div>
-                <span>{/*props.flightData*/}{/*JSON.stringify(props.flightData)*/}</span>
+                <img src={"https://content.r9cdn.net/rimg/provider-logos/airlines/v/"+props.flightData.data.slices[0].segments[0].operating_carrier.iata_code+".png?crop=false&width=100&height=90&fallback=default1.png"} alt=""></img>
+
+                <p>{"Name of the company: " + props.flightData.data.owner.name}</p>
+
+                <p>{"Documents required to travel: " + valueTravel}</p>
+
+                <span>{"Flying from: " + props.flightData.data.slices[0].origin.city_name + " " + props.flightData.data.slices[0].origin.iata_code + " - " + props.flightData.data.slices[0].origin.iata_country_code}</span>
+                <p><span>{"Flying to: " + props.flightData.data.slices[0].destination.city_name + " " + props.flightData.data.slices[0].destination.iata_code + " - " + props.flightData.data.slices[0].destination.iata_country_code}</span></p>
+
+                <p>{"Total base: " + props.flightData.data.base_amount + " " + props.flightData.data.base_currency}</p>
+                <p>{"Total taxes: " + props.flightData.data.tax_amount + " " + props.flightData.data.tax_currency}</p>
+
+                <p>{"Total CO2 emissions: " + props.flightData.data.total_emissions_kg + " kg"}</p>
+
+                <p><span>{"Number of connections: " + (props.flightData.data.slices[0].segments.length - 1)}</span></p>
+
+                <td></td>
               </div>
-              <div>
-                <table>
-                  <td><span>{"Name of the company: " + props.flightData.data.owner.name}</span></td>
-                  <span>{"Available services: " + props.flightData.data.available_services}</span>
-                  <td><span>{"Documents required to travel: " + valueTravel}</span></td>
-                  <span>{"Passengers type: " + props.flightData.data.passengers.type}</span>
-                  <td><span>{"Country of origin: " + props.flightData.data.slices[0].origin.iata_country_code}</span></td>
-                  <span>{"Country of destination: " + props.flightData.data.slices[0].destination.iata_country_code}</span>
-                  <td><span>{"Total taxes: " + props.flightData.data.tax_amount + " " + props.flightData.data.tax_currency}</span>   </td>
-                  <span>{"Total kg of CO2 emissions: " + props.flightData.data.total_emissions_kg}</span>
-                  <td><span>{"Aircraft type: " + props.flightData.data.slices[0].segments[0].aircraft.name}</span></td>
-                <span>{"Fare basis code: " + props.flightData.data.slices[0].segments[0].passengers[0].fare_basis_code}</span>
-                </table>
-              </div>
+                  {/*props.flightData.data.map(listFlightDetailsCB)*/}
+                  {listFlightDetailsCB(index)}
+                  {listFlightDetailsCB(numOfHops)}
             </div>
+
             <tr>
             {/*JSON.stringify(props.flightData)*/}
             {/*JSON.stringify(props.flightData.conditions.change_before_departure)*/}
             {/*JSON.stringify(props.flightData.conditions.change_before_departure)*/}
             {/*JSON.stringify(props.flightData.slices[0].segments[0].operating_carrier.iata_code)*/}
             </tr>
-            <div>
-              <button type="button" onClick={clickAddToCartCB} disabled={props.isFlightInCart}>Add to cart</button>
-              <button type="button" onClick={setToReturnACB}>Return to search</button>
-            </div>
+            <button className="searchButton" onClick={clickAddToSideCB} disabled={props.isFlightInList}>Add to sidelist</button>
+            <button className="searchButton" onClick={clickBookCB} disabled={false}>Book</button>
+            <button className="searchButton" onClick={setToReturnACB} disabled={false}>Return to search</button>
           </div>
 }
 
