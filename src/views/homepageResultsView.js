@@ -3,22 +3,20 @@ function HomepageResultsView(props){
   var searchType = 'Price'
   function listResultsCB(flight){
 
-    console.log(props.flight);
-
-    let flightTime = flight.slices[0].duration
+    console.log(flight)
+    
+    let flightTime = flight.slices[0].duration;
     if(flightTime.startsWith("PT")){
       flightTime = flightTime.substring(2)
     }
     else{
       flightTime = flightTime.substring(1).replace("T","")
     }
-
-    //let terminal = flight.slices[0].segments[0].
-
+      
     return (
       <span className="flightResults" key={flight.id} onClick={function (event){window.location.hash="#details"; props.onChooseFlight(flight)}}>
         <div>
-          <img src={"https://content.r9cdn.net/rimg/provider-logos/airlines/v/"+flight.slices[0].segments[0].operating_carrier.iata_code+".png?crop=false&width=100&height=90&fallback=default1.png"} alt=""></img>
+          <img src={"https://content.r9cdn.net/rimg/provider-logos/airlines/v/"+flight.slices[0].segments[0].marketing_carrier.iata_code+".png?crop=false&width=100&height=90&fallback=default1.png"} alt=""></img>
         </div>
         <div>
           {flight.owner.name + "    " }
@@ -35,7 +33,7 @@ function HomepageResultsView(props){
           {flight.slices[0].origin.name  + "    " }
         </div>
         <div>
-          {flight.slices[0].destination.name + "    " }
+          {flight.slices[0].destination.name  + "    " }
         </div>
 
         <div>
@@ -43,7 +41,7 @@ function HomepageResultsView(props){
         </div>
 
         <div>
-          {"Flight " + flight.slices[0].segments[0].operating_carrier.iata_code + flight.slices[0].segments[0].operating_carrier_flight_number}
+          {"Flight " + flight.slices[0].segments[0].marketing_carrier.iata_code + flight.slices[0].segments[0].marketing_carrier_flight_number}
         </div>
 
         <div>

@@ -1,7 +1,5 @@
 function DetailsView(props){
 
-  console.log(props.flightData)
-
   function clickBookCB(flight){
     window.location.hash="#booking";
     props.onAddToFinalList(flight);
@@ -37,6 +35,8 @@ function DetailsView(props){
 
   function listFlightDetailsCB(segment) {
 
+    let numOfStops = segment.length - 1 ;
+
     let flightTime = segment.duration
     if(flightTime.startsWith("PT")){
       flightTime = flightTime.substring(2)
@@ -45,9 +45,16 @@ function DetailsView(props){
       flightTime = flightTime.substring(1).replace("T","")
     }
 
+    let originTerminalAvailability = segment.origin_terminal;
+    let destinationTerminalAvailability = segment.destination_terminal;
+
+    if(!(originTerminalAvailability == "null")){originTerminalAvailability = 'not available';}
+      
+    if(!(destinationTerminalAvailability == 'null')){destinationTerminalAvailability = 'not available';}
+
     return  <div key={segment.id}>
-              <h2>{"Flight " + segment.operating_carrier.iata_code + " " + segment.operating_carrier_flight_number}</h2>
-              <h3>{segment.origin.city_name + " " + segment.origin.iata_code + " - " + segment.destination.city_name + " " + segment.destination.iata_code}</h3>
+              <h2>{"Flight " + segment.marketing_carrier.iata_code + " " + segment.marketing_carrier_flight_number}</h2>
+              <h3>{segment.origin.city_name + " " + segment.origin.iata_code + " (Terminal " + originTerminalAvailability + ")"+ " - " + segment.destination.city_name +  " " + segment.destination.iata_code + " (Terminal " + destinationTerminalAvailability + ")"}</h3>
               <span>{"Country of origin: " + segment.origin.iata_country_code}</span>
               <p><span>{"Country of destination: " + segment.destination.iata_country_code}</span></p>
               <span>{"Aircraft type: " + segment.aircraft.name}</span>
@@ -57,14 +64,18 @@ function DetailsView(props){
             </div> 
   }
 
+  console.log(props.flightData.data.slices[0])
+
   return  <div>
             <h1>Details about chosen flights:</h1>
 
             <div className="flightDetails">
               <div>
-                <img src={"https://content.r9cdn.net/rimg/provider-logos/airlines/v/"+props.flightData.data.slices[0].segments[0].operating_carrier.iata_code+".png?crop=false&width=100&height=90&fallback=default1.png"} alt=""></img>
+                <img src={"https://content.r9cdn.net/rimg/provider-logos/airlines/v/" + props.flightData.data.slices[0].segments[0].marketing_carrier.iata_code+".png?crop=false&width=100&height=90&fallback=default1.png"} alt=""></img>
 
-                <p>{"Name of the company: " + props.flightData.data.owner.name}</p>
+                <p>{"Flight company: " + props.flightData.data.slices[0].segments[0].marketing_carrier.name}</p>
+
+                <p>{"Flight operator: " + props.flightData.data.slices[0].segments[0].operating_carrier.name}</p>
 
                 <p>{"Documents required to travel: " + valueTravel}</p>
 
