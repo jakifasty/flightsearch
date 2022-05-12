@@ -8,7 +8,7 @@ function DetailsView(props){
 
   function clickBookCB(flight){
     window.location.hash="#booking";
-    return props.searchFlights(flight); //this add the flight to the list and Firebase
+    props.onAddToFinalList(flight);
   }
 
 
@@ -76,20 +76,11 @@ function DetailsView(props){
                 <p>{"Total CO2 emissions: " + props.flightData.data.total_emissions_kg + " kg"}</p>
 
                 <p><span>{"Number of connections: " + (props.flightData.data.slices[0].segments.length - 1)}</span></p>
-
-                <td></td>
               </div>
                   {/*props.flightData.data.map(listFlightDetailsCB)*/}
                   {listFlightDetailsCB(index)}
                   {listFlightDetailsCB(numOfHops)}
             </div>
-
-            <tr>
-            {/*JSON.stringify(props.flightData)*/}
-            {/*JSON.stringify(props.flightData.conditions.change_before_departure)*/}
-            {/*JSON.stringify(props.flightData.conditions.change_before_departure)*/}
-            {/*JSON.stringify(props.flightData.slices[0].segments[0].operating_carrier.iata_code)*/}
-            </tr>
             <button className="searchButton" onClick={clickAddToSideCB} disabled={props.isFlightInList}>Add to sidelist</button>
             <button className="searchButton" onClick={clickBookCB} disabled={false}>Book</button>
             <button className="searchButton" onClick={setToReturnACB} disabled={false}>Return to search</button>
