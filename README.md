@@ -98,7 +98,7 @@ Of course, no flight search will serve all as needs may be different. But provid
 
 ### Built With
 
-This section should list any major frameworks/libraries used to bootstrap your project. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
+This section should lists frameworks used:
 
 * [React.js](https://reactjs.org/)
 
@@ -108,15 +108,14 @@ This section should list any major frameworks/libraries used to bootstrap your p
 <!-- GETTING STARTED -->
 ## Getting Started
 
-This is an example of how you may give instructions on setting up your project locally.
 To get a local copy up and running follow these simple example steps.
 
 ### Install
 
-Follow these steps to get the app up and working locally
-
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
+1. Get a firebase API Key at [firebase.com](https://firebase.google.com/)
+2. Get a duffel test API Key at [firebase.com](https://duffel.com/)
+3. For extra functionality such as simple email service (SES) checkout Amazon Web Services at [aws.amazon.com](https://aws.amazon.com/)
+4. Clone the repo
    ```sh
    git clone https://github.com/your_username_/Project-Name.git
    ```
@@ -227,9 +226,9 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 <!-- CONTACT -->
 ## Contact
 
-Your Name - [@your_twitter](https://twitter.com/your_username) - email@example.com
+Your Name - [email](mailto:pateriks@kth.se) - pateriks@kth.se
 
-Project Link: [https://github.com/your_username/repo_name](https://github.com/your_username/repo_name)
+Project Link: [https://gits-15.sys.kth.se/javierre/flightsearch](https://gits-15.sys.kth.se/javierre/flightsearch)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -238,16 +237,10 @@ Project Link: [https://github.com/your_username/repo_name](https://github.com/yo
 <!-- ACKNOWLEDGMENTS -->
 ## Acknowledgments
 
-Use this space to list resources you find helpful and would like to give credit to. I've included a few of my favorites to kick things off!
+This project has used help from
 
-* [Choose an Open Source License](https://choosealicense.com)
-* [GitHub Emoji Cheat Sheet](https://www.webpagefx.com/tools/emoji-cheat-sheet)
-* [Malven's Flexbox Cheatsheet](https://flexbox.malven.co/)
-* [Malven's Grid Cheatsheet](https://grid.malven.co/)
-* [Img Shields](https://shields.io)
-* [GitHub Pages](https://pages.github.com)
-* [Font Awesome](https://fontawesome.com)
-* [React Icons](https://react-icons.github.io/react-icons/search)
+* [KTH Course DH2642](https://www.kth.se/kurs-pm/DH2642/om-kurs-pm)
+* [AWS SES tutorial for Node.js](https://betterprogramming.pub/how-to-send-emails-with-node-js-using-amazon-ses-8ae38f6312e4)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
