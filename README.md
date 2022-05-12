@@ -113,7 +113,7 @@ To get a local copy up and running follow these simple example steps.
 ### Install
 
 1. Get a firebase API Key at [firebase.com](https://firebase.google.com/)
-2. Get a duffel test API Key at [firebase.com](https://duffel.com/)
+2. Get a duffel test API Key at [duffel.com](https://duffel.com/)
 3. For extra functionality such as simple email service (SES) checkout Amazon Web Services at [aws.amazon.com](https://aws.amazon.com/)
 4. Clone the repo
    ```sh
