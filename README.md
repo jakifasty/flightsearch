@@ -102,7 +102,6 @@ This section should list any major frameworks/libraries used to bootstrap your p
 
 * [React.js](https://reactjs.org/)
 * [React Project](https://reactjs.org/docs/create-a-new-react-app.html)
-* 
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -120,10 +119,41 @@ Npm
 * npm
   ```sh
   npm install npm@latest -g
+* npm three
+  ```sh
+  npm install --save three
+  ```
+  ```
+* npm react-globe.gl
+  ```sh
+  npm i react-globe.gl
   ```
 
-### Installation
-
+* npm react-helmet
+  ```sh
+  npm i react-helmet
+  ```
+* npm react react-dom
+  ```sh
+  npm install react react-dom
+  ```
+* npm uuid4
+  ```sh
+  npm install uuid4
+  ```
+* npm react-cookie
+  ```sh
+  npm install react-cookie
+  ```
+* npm firebase@8.10.1
+  ```sh
+  npm install firebase@8.10.1
+  ```
+* npm aws
+  ```sh
+  npm install -s aws-sdk
+  ```
+  
 _Below is an example of how you can instruct your audience on installing and setting up your app. This template doesn't rely on any external dependencies or services._
 
 1. Get a free API Key at [https://example.com](https://example.com)
@@ -230,14 +260,14 @@ Use this space to list resources you find helpful and would like to give credit 
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/javierre/flightsearch.svg?style=for-the-badge
+[contributors-shield]: https://img.shields.io/github/contributors/pateriks/flightsearch.svg?style=for-the-badge
 [contributors-url]: https://gits-15.sys.kth.se/javierre/flightsearch/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/javierre/flightsearch.svg?style=for-the-badge
+[forks-shield]: https://img.shields.io/github/forks/pateriks/flightsearch.svg?style=for-the-badge
 [forks-url]: https://gits-15.sys.kth.se/javierre/flightsearch/network/members
-[stars-shield]: https://img.shields.io/github/stars/javierre/flightsearch.svg?style=for-the-badge
+[stars-shield]: https://img.shields.io/github/stars/pateriks/flightsearch.svg?style=for-the-badge
 [stars-url]: https://gits-15.sys.kth.se/javierre/flightsearch/stargazers
-[issues-shield]: https://img.shields.io/github/issues/javierre/flightsearch.svg?style=for-the-badge
+[issues-shield]: https://img.shields.io/github/issues/pateriks/flightsearch.svg?style=for-the-badge
 [issues-url]: https://gits-15.sys.kth.se/javierre/flightsearch/issues
-[license-shield]: https://img.shields.io/github/license/javierre/flightsearch.svg?style=for-the-badge
+[license-shield]: https://img.shields.io/github/license/pateriks/flightsearch.svg?style=for-the-badge
 [license-url]: https://gits-15.sys.kth.se/javierre/flightsearch/main/LICENSE.txt
 [product-screenshot]: images/screenshot.png
