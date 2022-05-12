@@ -30,12 +30,10 @@ function DetailsView(props){
     valueTravel = "no ducuments required";
   }
   else{
-    valueTravel = "specific ducuments required";
+    valueTravel = "specific documents required";
   }
 
   function listFlightDetailsCB(segment) {
-
-    let numOfStops = segment.length - 1 ;
 
     let flightTime = segment.duration
     if(flightTime.startsWith("PT")){
@@ -54,7 +52,7 @@ function DetailsView(props){
 
     return  <div key={segment.id}>
               <h2>{"Flight " + segment.marketing_carrier.iata_code + " " + segment.marketing_carrier_flight_number}</h2>
-              <h3>{segment.origin.city_name + " " + segment.origin.iata_code + " (Terminal " + originTerminalAvailability + ")"+ " - " + segment.destination.city_name +  " " + segment.destination.iata_code + " (Terminal " + destinationTerminalAvailability + ")"}</h3>
+              <h3>{segment.origin.city_name + " " + segment.origin.iata_code + " - " + segment.destination.city_name +  " " + segment.destination.iata_code}</h3>
               <span>{"Country of origin: " + segment.origin.iata_country_code}</span>
               <p><span>{"Country of destination: " + segment.destination.iata_country_code}</span></p>
               <span>{"Aircraft type: " + segment.aircraft.name}</span>
@@ -63,8 +61,6 @@ function DetailsView(props){
               <p>{"Duration: " + flightTime}</p>
             </div> 
   }
-
-  console.log(props.flightData.data.slices[0])
 
   return  <div>
             <h1>Details about chosen flights:</h1>
