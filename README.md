@@ -257,5 +257,5 @@ This project has used help from
 [issues-shield]: https://img.shields.io/github/issues/pateriks/flightsearch.svg?style=for-the-badge
 [issues-url]: https://gits-15.sys.kth.se/javierre/flightsearch/issues
 [license-shield]: https://img.shields.io/github/license/pateriks/flightsearch.svg?style=for-the-badge
-[license-url]: https://gits-15.sys.kth.se/javierre/flightsearch/LICENSE.txt
+[license-url]: https://gits-15.sys.kth.se/javierre/flightsearch/blob/main/LICENSE.txt
 [product-screenshot]: screenshot.png
