@@ -44,7 +44,7 @@ class FlightModel {
 
     this.tripType = "One"
 
-    this.sortType = "Hops"
+    this.sortType = "Price"
 
     this.searchResultsPromiseState = {};
     this.observers = [];

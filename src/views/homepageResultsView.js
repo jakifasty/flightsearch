@@ -68,11 +68,11 @@ function HomepageResultsView(props){
     }
 
     function compareTimeCB(x,y){
-
       function timeSizeCB(time){
         let day = "D"
         let hour = "H"
         let min = "M"
+        let size = ""
         if(time.indexOf(day) !== -1){
           return 3
         }
@@ -82,8 +82,8 @@ function HomepageResultsView(props){
         if(time.indexOf(min) !== -1){
           return 1
         }
-        console.log(time.indexOf("Y"))
-        console.log(time.indexOf("P"))
+
+        return parseInt(size)
       }
       timeSizeCB(x)
       const re = /[^0-9]/g
@@ -91,8 +91,8 @@ function HomepageResultsView(props){
       var ySize=timeSizeCB(y)
       x =x.replace(re, " ").trim().split(" ").map(e => parseInt(e))
       y =y.replace(re, " ").trim().split(" ").map(e => parseInt(e))
-
-      if( xSize === ySize){
+      
+      if( x.length === y.length){
         for(var i=0;i<x.length;i++){
           if(x[i]<y[i]){
              return -1
@@ -102,15 +102,17 @@ function HomepageResultsView(props){
               continue
             }
             else{
-              console.log("Special")
               return 0
             }
           }
           return 1
-
         }
       }else{
-        return compareCB(x.length,y.length)
+        if(xSize === ySize){
+          return compareCB(x[0],y[0])
+        }else{
+          return compareCB(xSize,ySize)
+        }
       }
     }
 
@@ -121,7 +123,6 @@ function HomepageResultsView(props){
         return compareCB(flight1.slices[0].segments.length, flight2.slices[0].segments.length)
       case 'Duration':
         var i = compareTimeCB(flight1.slices[0].duration, flight2.slices[0].duration)
-        console.log(i)
         return i
       default:
         break;
@@ -156,7 +157,7 @@ function onScrollACB(){
               <option value='Hops'> Hops </option>
               <option value='Duration'> Duration </option>
             </select>
-            {props.results.data.offers.sort(sortACB).slice(0,props.displayAmount).map(listResultsCB)}
+            {props.results.data.offers.sort(sortACB).slice(0,(props.displayAmount > props.results.data.offers.length ? props.results.data.offers.length : props.displayAmount)).map(listResultsCB)}
           </div>
   );
 }
