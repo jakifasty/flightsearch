@@ -11,7 +11,7 @@ function DetailsView(props){
 
   function clickBookCB(flight){ 
     window.location.hash="#booking";
-    return props.searchFlights(flight); //this add the flight to the list and Firebase
+    return props.onAddToFinalList(flight); //this add the flight to the list and Firebase
   }
 
   function setToReturnACB() {
@@ -26,7 +26,6 @@ function DetailsView(props){
     details.append(props.flightData.slices[0].segments[0].operating_carrier_flight_number);
     details.append(" ");
     details.append(props.flightData.owner.name);
-    //props.flightData.slices[0].segments[0].operating_carrier.iata_code + props.flightData.slices[0].segments[0].operating_carrier_flight_number+props.flightData.owner.name
   }catch(e){
     details = "undefined field in flight data";
   }
@@ -53,7 +52,6 @@ function DetailsView(props){
           </div>
   }
 
-  
   return  <div>
             <h1>Details about chosen flights:</h1>
             
@@ -82,12 +80,8 @@ function DetailsView(props){
                   {listFlightDetailsCB(numOfHops)}
             </div>
             
-            <tr>
-            {/*JSON.stringify(props.flightData)*/}
-            {/*JSON.stringify(props.flightData.conditions.change_before_departure)*/}
-            {/*JSON.stringify(props.flightData.conditions.change_before_departure)*/}
-            {/*JSON.stringify(props.flightData.slices[0].segments[0].operating_carrier.iata_code)*/}
-            </tr>
+            <tr></tr>
+
             <button className="searchButton" onClick={clickAddToCartCB} disabled={props.isFlightInCart}>Add to cart</button>
             <button className="searchButton" onClick={clickBookCB} disabled={false}>Book</button>
             <button className="searchButton" onClick={setToReturnACB} disabled={false}>Return to search</button>
