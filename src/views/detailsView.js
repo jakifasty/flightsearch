@@ -2,7 +2,8 @@ function DetailsView(props){
 
   let numOfStops = props.flightData.data.slices[0].segments.length - 1; //
   let i = 0;
-  let index = 0;
+  //let index = 0;
+  console.log(props.flightData);
 
   function clickBookCB(flight){
     window.location.hash="#booking";
@@ -38,32 +39,18 @@ function DetailsView(props){
     valueTravel = "specific ducuments required";
   }
 
-  function listFlightDetailsCB(index, segments) {
+  function listFlightDetailsCB(segment) {
 
-    return <div>
-              <h2>{"Flight " + segments[index].operating_carrier.iata_code + " " + segments[index].operating_carrier_flight_number}</h2>
-              <h3>{segments[index].origin.city_name + " " + segments[index].origin.iata_code + " - " + segments[index].destination.city_name + " " + segments[index].destination.iata_code}</h3>
-              <span>{"Country of origin: " + segments[index].origin.iata_country_code}</span>
-              <p><span>{"Country of destination: " + segments[index].destination.iata_country_code}</span></p>
-              <span>{"Aircraft type: " + segments[index].aircraft.name}</span>
-              <p>{"Departure time: " + segments[index].departing_at}</p>
-              <p>{"Destination time: " + segments[index].arriving_at}</p>
-              <p>{"Duration: " + segments[index].duration}</p>
+    return  <div>
+              <h2>{"Flight " + segment.operating_carrier.iata_code + " " + segment.operating_carrier_flight_number}</h2>
+              <h3>{segment.origin.city_name + " " + segment.origin.iata_code + " - " + segment.destination.city_name + " " + segment.destination.iata_code}</h3>
+              <span>{"Country of origin: " + segment.origin.iata_country_code}</span>
+              <p><span>{"Country of destination: " + segment.destination.iata_country_code}</span></p>
+              <span>{"Aircraft type: " + segment.aircraft.name}</span>
+              <p>{"Departure time: " + segment.departing_at}</p>
+              <p>{"Destination time: " + segment.arriving_at}</p>
+              <p>{"Duration: " + segment.duration}</p>
             </div> 
-
-
-           {/*<div>
-              <h2>{"Flight " + props.flightData.data.slices[0].segments[index].operating_carrier.iata_code + " " + props.flightData.data.slices[0].segments[index].operating_carrier_flight_number}</h2>
-              <h3>{props.flightData.data.slices[i].segments[index].origin.city_name + " " + props.flightData.data.slices[0].segments[index].origin.iata_code + " - " + props.flightData.data.slices[0].segments[index].destination.city_name + " " + props.flightData.data.slices[0].segments[index].destination.iata_code}</h3>
-              <span>{"Country of origin: " + props.flightData.data.slices[i].segments[index].origin.iata_country_code}</span>
-              <p><span>{"Country of destination: " + props.flightData.data.slices[i].segments[index].destination.iata_country_code}</span></p>
-              <span>{"Aircraft type: " + props.flightData.data.slices[i].segments[index].aircraft.name}</span>
-              <p>{"Departure time: " + props.flightData.data.slices[i].segments[index].departing_at}</p>
-              <p>{"Destination time: " + props.flightData.data.slices[i].segments[index].arriving_at}</p>
-              <p>{"Duration: " + props.flightData.data.slices[i].segments[index].duration}</p>
-            </div>*/}
-
-          
   }
 
   return  <div>
@@ -87,10 +74,8 @@ function DetailsView(props){
 
                 <p><span>{"Number of connections: " + (props.flightData.data.slices[0].segments.length - 1)}</span></p>
               </div>
-                  {props.flightData.data.slices[0].map(listFlightDetailsCB)}
-                  {/*listFlightDetailsCB(index)*/}
-                  {/*listFlightDetailsCB(numOfStops)*/}
-            </div>
+                  {props.flightData.data.slices[0].segments.map(listFlightDetailsCB)}
+              </div>
             <button className="searchButton" onClick={clickAddToSideCB} disabled={props.isFlightInList}>Add to sidelist</button>
             <button className="searchButton" onClick={clickBookCB} disabled={false}>Book</button>
             <button className="searchButton" onClick={setToReturnACB} disabled={false}>Return to search</button>
