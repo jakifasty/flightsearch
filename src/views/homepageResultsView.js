@@ -1,8 +1,6 @@
 function HomepageResultsView(props){
 
   function listResultsCB(flight){
-
-    console.log(flight)
     
     let flightTime = flight.slices[0].duration;
     if(flightTime.startsWith("PT")){
@@ -56,7 +54,6 @@ function HomepageResultsView(props){
         <div>
           {flight.slices[0].segments.length + " hop(s)"}
         </div>
-
       </span>
     );
   }
@@ -135,8 +132,8 @@ function HomepageResultsView(props){
   }
 
 function onScrollACB(){
-  //props.onScrollEnd()
- }
+  //nothing to do
+}
 
  function onSelectDisplayAmountACB(event){
   props.setDisplayAmount(event.target.value)
