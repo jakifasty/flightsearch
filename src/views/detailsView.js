@@ -3,6 +3,7 @@ function DetailsView(props){
   console.log("here value flighData");
   console.log(props.flightData);
   let numOfHops = props.flightData.data.slices[0].segments.length - 1;
+  let index = 0;
 
   function clickAddToCartCB(flight){
     return props.onAddToFinalList(flight); //this add the flight to the list and Firebase
@@ -52,7 +53,7 @@ function DetailsView(props){
           </div>
   }
 
-  let index = 0;
+  
   return  <div>
             <h1>Details about chosen flights:</h1>
             
@@ -76,8 +77,8 @@ function DetailsView(props){
 
                 <td></td>
               </div>
+                  {/*props.flightData.data.map(listFlightDetailsCB)*/}
                   {listFlightDetailsCB(index)}
-                  {/*listFlightDetailsCB(index)*/}
                   {listFlightDetailsCB(numOfHops)}
             </div>
             
