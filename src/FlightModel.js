@@ -1,15 +1,17 @@
 import resolvePromise from "./resolvePromise.js";
+
 import {
   createPassenger,
   createPassengers
 } from "./utils.js"
+
 import {
   getAirportsInCity,
   getOffers,
   getFlightDetails
 } from "./flightSearches.js";
+
 import {firebaseSessionPromise, updateModelFromFirebase} from "./firebaseModel.js"
-//import {getFlightDetails} from "./flightSearches"
 /* This is an example of a JavaScript class.
    The Model keeps only abstract data and has no notions of graohics or interaction
 */
@@ -140,7 +142,7 @@ class FlightModel {
       this.sessionId = null;
     }
   }
-  //TODO: the data from the promise should be used in sidebar
+
   notifyNewSession(){
     const theModel = this;
     function notifyACB() {theModel.notifyObservers(null);};
@@ -157,11 +159,8 @@ class FlightModel {
     let payload = {continueSessionId: {id: this.sessionId, status: "active", timestamp: Date.now()}}
     this.notifyObservers(payload);
   }
-  //Not sure if this functionality is still needed but keep it for now
+  
   setCurrentFlight(id){
-    if(!id || id == this.currentFlight){
-        //nothing to do here yet
-    }else{
       const theModel = this;
       function notifyACB() {theModel.notifyObservers(null);};
       console.log("setting current flight");
@@ -172,7 +171,6 @@ class FlightModel {
         setCurrentFlight: id
       }
       this.notifyObservers(payload)
-    }
   }
 
   setDeptDate(date) {

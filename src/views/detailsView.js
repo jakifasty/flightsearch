@@ -1,15 +1,9 @@
 function DetailsView(props){
 
-  let numOfStops = props.flightData.data.slices[0].segments.length - 1; //
-  let i = 0;
-  //let index = 0;
-  console.log(props.flightData);
-
   function clickBookCB(flight){
     window.location.hash="#booking";
     props.onAddToFinalList(flight);
   }
-
 
   function clickAddToSideCB(flight){
     props.onAddToFinalList(flight);
@@ -73,6 +67,7 @@ function DetailsView(props){
                 <p>{"Total CO2 emissions: " + props.flightData.data.total_emissions_kg + " kg"}</p>
 
                 <p><span>{"Number of connections: " + (props.flightData.data.slices[0].segments.length - 1)}</span></p>
+                <div></div>
               </div>
                   {props.flightData.data.slices[0].segments.map(listFlightDetailsCB)}
               </div>
