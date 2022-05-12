@@ -14,8 +14,8 @@ function DetailsView(props){
   //});
 
   function clickAddToCartCB(flight){
-    return props.onAddToFinalList(flight);
-		//window.location.hash="#booking";
+    //return props.onAddToFinalList(flight);
+		window.location.hash="#booking";
 	}
 
   function clickRemoveFromCart(flight){
