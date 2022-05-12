@@ -98,10 +98,9 @@ Of course, no flight search will serve all as needs may be different. But provid
 
 ### Built With
 
-This section should list any major frameworks/libraries used to bootstrap your project. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
+This section should lists frameworks used:
 
 * [React.js](https://reactjs.org/)
-* [React Project](https://reactjs.org/docs/create-a-new-react-app.html)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -109,25 +108,36 @@ This section should list any major frameworks/libraries used to bootstrap your p
 <!-- GETTING STARTED -->
 ## Getting Started
 
-This is an example of how you may give instructions on setting up your project locally.
 To get a local copy up and running follow these simple example steps.
 
 ### Install
-  
-Follow these steps to get the app up and working locally
 
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
+1. Get a firebase API Key at [firebase.com](https://firebase.google.com/)
+2. Get a duffel test API Key at [duffel.com](https://duffel.com/)
+3. For extra functionality such as simple email service (SES) checkout Amazon Web Services at [aws.amazon.com](https://aws.amazon.com/)
+4. Clone the repo
    ```sh
-   git clone https://github.com/your_username_/Project-Name.git
+   git clone git@gits-15.sys.kth.se:javierre/flightsearch.git
    ```
-3. Install NPM packages
+4. Create a react app 
+_For more details, please refer to the [Documentation](https://reactjs.org/docs/create-a-new-react-app.html)_; It sets up your development environment so that you can use the latest JavaScript features, provides a nice developer experience, and optimizes your app for production. You’ll need to have Node >= 14.0.0 and npm >= 5.6 on your machine. To create a project, run:
+   ```sh
+   npx create-react-app my-app
+   ```
+   
+5. Copy the files from flightsearch folder to my-app
+6. Navigate to the app in the console
+   ```sh
+   cd my-app
+   ```
+8. Install NPM packages
    ```sh
    npm install
    ```
-4. Enter your API in `config.js`
-   ```js
-   const API_KEY = 'ENTER YOUR API';
+7. Enter your API in `src/apiConfig.js` `src/firebaseConfig.js` `src/awsConfig.js`
+8. Start the app
+   ```sh
+   npm start
    ```
 
 <p align="right">(<a href="#top">back to top</a>)</p>
@@ -137,9 +147,7 @@ Follow these steps to get the app up and working locally
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
-
-_For more examples, please refer to the [Documentation](https://example.com)_
+To be written
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -183,18 +191,6 @@ This is a list of the packages that is used in this project exept react
   npm install -s aws-sdk
   ```
 
-<!-- ROADMAP -->
-## Roadmap
-
-- [x] Add Changelog
-- [x] Add back to top links
-- [ ] Add Additional Templates w/ Examples
-- [ ] Add "components" document to easily copy & paste sections of the readme
-- [ ] Multi-language Support
-    - [ ] Chinese
-    - [ ] Spanish
-
-See the [open issues](https://github.com/othneildrew/Best-README-Template/issues) for a full list of proposed features (and known issues).
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -230,9 +226,9 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 <!-- CONTACT -->
 ## Contact
 
-Your Name - [@your_twitter](https://twitter.com/your_username) - email@example.com
+Your Name - [email](mailto:pateriks@kth.se) - pateriks@kth.se
 
-Project Link: [https://github.com/your_username/repo_name](https://github.com/your_username/repo_name)
+Project Link: [https://gits-15.sys.kth.se/javierre/flightsearch](https://gits-15.sys.kth.se/javierre/flightsearch)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -241,16 +237,10 @@ Project Link: [https://github.com/your_username/repo_name](https://github.com/yo
 <!-- ACKNOWLEDGMENTS -->
 ## Acknowledgments
 
-Use this space to list resources you find helpful and would like to give credit to. I've included a few of my favorites to kick things off!
+This project has used help from
 
-* [Choose an Open Source License](https://choosealicense.com)
-* [GitHub Emoji Cheat Sheet](https://www.webpagefx.com/tools/emoji-cheat-sheet)
-* [Malven's Flexbox Cheatsheet](https://flexbox.malven.co/)
-* [Malven's Grid Cheatsheet](https://grid.malven.co/)
-* [Img Shields](https://shields.io)
-* [GitHub Pages](https://pages.github.com)
-* [Font Awesome](https://fontawesome.com)
-* [React Icons](https://react-icons.github.io/react-icons/search)
+* [KTH Course DH2642](https://www.kth.se/kurs-pm/DH2642/om-kurs-pm)
+* [AWS SES tutorial for Node.js](https://betterprogramming.pub/how-to-send-emails-with-node-js-using-amazon-ses-8ae38f6312e4)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -267,5 +257,5 @@ Use this space to list resources you find helpful and would like to give credit 
 [issues-shield]: https://img.shields.io/github/issues/pateriks/flightsearch.svg?style=for-the-badge
 [issues-url]: https://gits-15.sys.kth.se/javierre/flightsearch/issues
 [license-shield]: https://img.shields.io/github/license/pateriks/flightsearch.svg?style=for-the-badge
-[license-url]: https://gits-15.sys.kth.se/javierre/flightsearch/main/LICENSE.txt
+[license-url]: https://gits-15.sys.kth.se/javierre/flightsearch/blob/main/LICENSE.txt
 [product-screenshot]: screenshot.png
