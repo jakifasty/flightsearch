@@ -1,7 +1,7 @@
 function DetailsView(props){
-  console.log("here value flighData");
-  console.log(props.flightData);
-  console.log(props.flightData.data.passenger_identity_documents_required);
+  //console.log("here value flighData");
+  //console.log(props.flightData);
+  //console.log(props.flightData.data.passenger_identity_documents_required);
 
   //console.log("Flight:")
   //let flightTime = parseInt(flight.slices[0].duration, 16); //convert from minutes in hexadecimal to hours in decimal
@@ -12,6 +12,9 @@ function DetailsView(props){
     console.log(ele.arriving_at)
     console.log(ele.departing_at)*/
   //});
+  function clickAddToSideCB(flight){
+    props.onAddToFinalList(flight);
+  }
 
   function clickAddToCartCB(flight){
     //return props.onAddToFinalList(flight);
@@ -76,7 +79,8 @@ function DetailsView(props){
             {/*JSON.stringify(props.flightData.slices[0].segments[0].operating_carrier.iata_code)*/}
             </tr>
             <div>
-              <button type="button" onClick={clickAddToCartCB} disabled={props.isFlightInCart}>Add to cart</button>
+              <button type="button" onClick={clickAddToSideCB} disabled={props.isFlightInList}>Add to sidelist</button>
+              <button type="button" onClick={clickAddToCartCB}>Book</button>
               <button type="button" onClick={setToReturnACB}>Return to search</button>
             </div>
           </div>

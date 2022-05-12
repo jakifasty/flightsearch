@@ -194,6 +194,7 @@ function Homepage(props) {
   }
 
   function changeFlightOnClickACB(flight) {
+    //console.log(flight.id);
     props.model.setCurrentFlight(flight.id);
   }
 
