@@ -1,9 +1,5 @@
 function confirmationView(props) {
 
-	function printPageACB() {
-		window.print();
-	}
-
 	function generateID (){
         return Math.random().toString(36).slice(2);
   };

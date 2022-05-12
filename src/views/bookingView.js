@@ -12,15 +12,11 @@ function bookingView(props) {
 	let valEmail = false;
 
 
-
 	function handleCancelACB(event) {
         window.location.hash = "#homepage";
   }
 
 	function handleBookingACB(event) {
-				//props.onAddBooking();
-				//console.log(inpName +" "+ inpEmail +" " + inpCard + " " + inpCVC);
-				//console.log(isDisabled());
 
 				if (isDisabled()===true) {
         	window.location.hash = "#confirmation";
@@ -31,9 +27,7 @@ function bookingView(props) {
 				}
   }
 
-
 	function keyPressACB(event) {
-		//console.log(event.charCode>=48 && event.charCode<=57);
 		return event.charCode>=48 && event.charCode<=57;
 	}
 
@@ -42,13 +36,11 @@ function bookingView(props) {
 	}
 
 	function ValidateEmail(event) {
-		//console.log("Validate email " + event.target.value);
+		
 	 	if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(event.target.value)) {
-			//console.log(true);
 			valEmail = true;
 	    return (true);
 	  }
-		//console.log(false);
 		valEmail = false;
 	  return (false);
 	}
@@ -61,8 +53,6 @@ function bookingView(props) {
 
 // Would be better with React, but we are keeping the views dumb, so using React only for presenters
 	function keyPressUpACB(event) {
-		//console.log(event.target.id);
-		//console.log(inpName + " " +inpEmail);
 
 		if (event.target.value == "") {
 			if(event.target.id==="inptName") {
@@ -78,12 +68,8 @@ function bookingView(props) {
 				inpCVC = false;
 			}
 
-			/*if(!inpName || !inpEmail || !inpCard)
-				//document.getElementById('btnFinish').disabled = true;
-				this.setState({ disabled: true });*/
   	}
 	  else {
-			//console.log(inpName + " " +inpEmail);
 				if(event.target.id==="inptName") {
 					inpName = true;
 				}
@@ -97,10 +83,6 @@ function bookingView(props) {
 				if(event.target.id==="inptCVC") {
 					inpCVC = true;
 				}
-			/*if(inpName && inpEmail && inpCard)
-	    	//document.getElementById('btnFinish').disabled = false;
-				document.getElementById('btnFinish').removeAttribute('disabled');*/
-			//	this.setState({ disabled: false })
 	  }
 }
 
