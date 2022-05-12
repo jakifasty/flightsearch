@@ -3,6 +3,8 @@ function HomepageResultsView(props){
   var searchType = 'Price'
   function listResultsCB(flight){
 
+    console.log(props.flight);
+
     let flightTime = flight.slices[0].duration
     if(flightTime.startsWith("PT")){
       flightTime = flightTime.substring(2)
@@ -10,6 +12,8 @@ function HomepageResultsView(props){
     else{
       flightTime = flightTime.substring(1).replace("T","")
     }
+
+    //let terminal = flight.slices[0].segments[0].
 
     return (
       <span className="flightResults" key={flight.id} onClick={function (event){window.location.hash="#details"; props.onChooseFlight(flight)}}>
@@ -50,10 +54,10 @@ function HomepageResultsView(props){
           {flight.total_amount + " " + flight.total_currency + "    "}
         </div>
         <div>
-          {(flight.slices[0].segments.length - 1) + "layovers"}
+          {(flight.slices[0].segments.length - 1) + " layover(s)"}
         </div>
         <div>
-          {flight.slices[0].segments.length + "hops"}
+          {flight.slices[0].segments.length + " hop(s)"}
         </div>
 
       </span>
@@ -134,7 +138,7 @@ function HomepageResultsView(props){
   }
 
 function onScrollACB(){
-  props.onScrollEnd()
+  //props.onScrollEnd()
  }
 
  function onSelectDisplayAmountACB(event){

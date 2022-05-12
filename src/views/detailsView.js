@@ -1,5 +1,7 @@
 function DetailsView(props){
 
+  console.log(props.flightData)
+
   function clickBookCB(flight){
     window.location.hash="#booking";
     props.onAddToFinalList(flight);
@@ -33,15 +35,15 @@ function DetailsView(props){
     valueTravel = "specific ducuments required";
   }
 
-  let flightTime = props.flightData.data.slices[0].duration
-  if(flightTime.startsWith("PT")){
-    flightTime = flightTime.substring(2)
-  }
-  else{
-    flightTime = flightTime.substring(1).replace("T","")
-  }
-
   function listFlightDetailsCB(segment) {
+
+    let flightTime = segment.duration
+    if(flightTime.startsWith("PT")){
+      flightTime = flightTime.substring(2)
+    }
+    else{
+      flightTime = flightTime.substring(1).replace("T","")
+    }
 
     return  <div key={segment.id}>
               <h2>{"Flight " + segment.operating_carrier.iata_code + " " + segment.operating_carrier_flight_number}</h2>
@@ -74,7 +76,7 @@ function DetailsView(props){
 
                 <p>{"Total CO2 emissions: " + props.flightData.data.total_emissions_kg + " kg"}</p>
 
-                <p><span>{"Number of connections: " + (props.flightData.data.slices[0].segments.length - 1)}</span></p>
+                <p><span>{"Number of layovers: " + (props.flightData.data.slices[0].segments.length - 1)}</span></p>
                 <div></div>
               </div>
                   {props.flightData.data.slices[0].segments.map(listFlightDetailsCB)}
