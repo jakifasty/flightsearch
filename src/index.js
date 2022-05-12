@@ -13,7 +13,7 @@ function hours (nrHours){
   const twoHours = 1000 * 60 * 60 * nrHours;
 }
 var now = Date.now();
-const twoHoursAgo = now - 30 * 60 * 1000; //30 min
+const thirtyMinutesAgo = now - 30 * 60 * 1000; //30 min
 
 function ReactRoot(){
   const [model, setModel]= React.useState(new FlightModel());
@@ -27,7 +27,7 @@ function ReactRoot(){
           //            " - Time two hours ago: " + twoHoursAgo + " = " + (response.val().timestamp-twoHoursAgo));
           //timestamp is the time when session was active. twoHoursAgo is the timestamp as it was 2 hours ago.
           //if the timestamp of the session is lesser than that of two hours ago the session will no longer be valid.
-          if(!response.exists() || response.val().timestamp < twoHoursAgo){
+          if(!response.exists() || response.val().timestamp < thirtyMinutesAgo){
             removeCookie('sessionId');
             let sessionId = uuidv4();
             setCookie('sessionId', sessionId, { maxAge: hours(2) })
