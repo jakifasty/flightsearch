@@ -57,9 +57,19 @@ function sendMailACB(recipientEmail, name){
         }
       },
     };
+    function myFunction() {
+      // Get the snackbar DIV
+      var x = document.getElementById("snackbar");
+
+      // Add the "show" class to DIV
+      x.className = "show";
+
+      // After 3 seconds, remove the show class from DIV
+      setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+    }
     AWS_SES.sendEmail(params, function(err, data) {
-       if (err) console.log(err, err.stack); // an error occurred
-       else     console.log(data);           // successful response
+       if (err) {console.log(err, err.stack);} // an error occurred
+       else     {console.log(data); myFunction()}        // successful response
     });
   }
 
