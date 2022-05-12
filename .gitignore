@@ -12,6 +12,7 @@ _deps
 **/node_modules
 **/*~
 dist
+*/build
 package-lock.json
 **/labfiles
 **/src/NotChanged
