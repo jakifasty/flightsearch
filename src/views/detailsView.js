@@ -90,7 +90,7 @@ function DetailsView(props){
             </tr>
             <button className="searchButton" onClick={clickAddToCartCB} disabled={props.isFlightInCart}>Add to cart</button>
             <button className="searchButton" onClick={clickBookCB} disabled={false}>Book</button>
-            <button className="searchButton" onClick={setToReturnACB}>Return to search</button>
+            <button className="searchButton" onClick={setToReturnACB} disabled={false}>Return to search</button>
           </div>
 }
 
