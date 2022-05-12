@@ -1,6 +1,5 @@
 import React from "react";
 import ConfirmationView from "../views/confirmationView.js";
-import resolvePromise from "../resolvePromise";
 import promiseNoData from "../promiseNoData";
 
   const SES_CONFIG = {
@@ -16,7 +15,6 @@ import promiseNoData from "../promiseNoData";
   const [, setPromise]=React.useState(null);
   const [, setError]=React.useState(null);
 
-
   function observerACB() {
     setPromiseData(props.model.currentFlightPromiseState.data)
     setPromise(props.model.currentFlightPromiseState.promise)
@@ -24,8 +22,6 @@ import promiseNoData from "../promiseNoData";
   }
 
   function wasCreatedACB() {
-    //var airports = require('../data/airports.json')
-    //setData(airports)
 
     observerACB();
     props.model.addObserver(observerACB);
@@ -34,10 +30,9 @@ import promiseNoData from "../promiseNoData";
     }
   }
 
-
 function sendMailACB(recipientEmail, name){
     let params = {
-      Source: 'phimusic21@gmail.com',//needs to be validated by amazon
+      Source: 'phimusic21@gmail.com', //needs to be validated by amazon
       Destination: {
         ToAddresses: [
           props.model.billing_user.email //wait for production access and this can "whatever"
@@ -73,8 +68,6 @@ function sendMailACB(recipientEmail, name){
     });
   }
 
-  //console.log("Loading confirmation");
-
   React.useEffect(wasCreatedACB, []);
   return (<div>{
           promiseNoData({
@@ -85,9 +78,6 @@ function sendMailACB(recipientEmail, name){
           <ConfirmationView
           flightData = {props.model.currentFlightPromiseState.data}
           sendEmail = {sendMailACB}
-
-
-
           />}
           </div>
         );

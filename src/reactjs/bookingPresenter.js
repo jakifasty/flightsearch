@@ -11,7 +11,6 @@ export default function Booking (props){
   const [, setPromise]=React.useState(null);
   const [, setError]=React.useState(null);
 
-
   function observerACB() {
     setPromiseData(props.model.currentFlightPromiseState.data)
     setPromise(props.model.currentFlightPromiseState.promise)
@@ -19,8 +18,6 @@ export default function Booking (props){
   }
 
   function wasCreatedACB() {
-    //var airports = require('../data/airports.json')
-    //setData(airports)
     observerACB();
     props.model.addObserver(observerACB);
     return function isTakenDownACB() {
@@ -30,8 +27,6 @@ export default function Booking (props){
 
   function addBookingACB() {
     console.log("Booking Presenter - Adding flight");
-    //props.model.addToMenu(props.model.currentDishPromiseState.data);
-    //props.model.
   }
 
   React.useEffect(wasCreatedACB, []);
@@ -44,8 +39,6 @@ export default function Booking (props){
           <BookingView
           flightData = {props.model.currentFlightPromiseState.data}
           onAddBooking = {addBookingACB}
-
-
           />}
           </div>
         );
