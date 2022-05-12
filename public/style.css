@@ -372,6 +372,21 @@ h1 {
   margin: 4px;
   
   background-color: lightskyblue;
+  text-align: center;
+  vertical-align: baseline;
+  
+  display: block;
+  padding-top: 50px;
+  padding-right: 30px;
+  padding-bottom: 50px;
+  padding-left: 80px;
+  
+}
+
+.flightDetails {
+  margin: 4px;
+  
+  background-color: lightskyblue;
   text-align: left;
   vertical-align: baseline;
   

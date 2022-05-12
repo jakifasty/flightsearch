@@ -42,10 +42,10 @@ function HomepageResultsView(props){
           </td>
 
           <td>
-            {flight.slices[0].origin.name + ", Terminal " + flight.slices[0].origin_terminal + "    "}
+            {flight.slices[0].origin.name + ", Terminal " + flight.slices[0].segments[0].origin_terminal + "    "}
           </td>
           <td>
-            {flight.slices[0].destination.name + ", Terminal " + flight.slices[0].destination_terminal + "    "}
+            {flight.slices[0].destination.name + ", Terminal " + flight.slices[0].segments[0].destination_terminal + "    "}
           </td>
 
           <td>
