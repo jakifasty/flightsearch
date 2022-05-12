@@ -38,11 +38,11 @@ function DetailsView(props){
     valueTravel = "specific ducuments required";
   }
 
-  function listFlightDetailsCB(index) {
+  function listFlightDetailsCB(index, segments) {
 
     return <div>
               <h2>{"Flight " + segments[index].operating_carrier.iata_code + " " + segments[index].operating_carrier_flight_number}</h2>
-              <h3>{segments[index].origin.city_name + " " + slices[0].segments[index].origin.iata_code + " - " + segments[index].destination.city_name + " " + segments[index].destination.iata_code}</h3>
+              <h3>{segments[index].origin.city_name + " " + segments[index].origin.iata_code + " - " + segments[index].destination.city_name + " " + segments[index].destination.iata_code}</h3>
               <span>{"Country of origin: " + segments[index].origin.iata_country_code}</span>
               <p><span>{"Country of destination: " + segments[index].destination.iata_country_code}</span></p>
               <span>{"Aircraft type: " + segments[index].aircraft.name}</span>
