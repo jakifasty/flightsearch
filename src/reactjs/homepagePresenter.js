@@ -15,7 +15,7 @@ export default
 function Homepage(props) {
   const [, setFrom] = React.useState(null);
   const [, setTo] = React.useState(null);
-  const [, setFromDate] = React.useState(null);
+  const [, setDeptDate] = React.useState(null);
   const [, setReturnDate] = React.useState(null);
   const [, setAdults] = React.useState(null);
   const [, setYouths] = React.useState(null);
@@ -52,7 +52,7 @@ function Homepage(props) {
   function observerACB() {
     setFrom(props.model.fromAirport);
     setTo(props.model.toAirport)
-    setFromDate(props.model.fromDate)
+    setDeptDate(props.model.deptDate)
     setReturnDate(props.model.returnDate)
     setAdults(props.model.amountAdults);
     setYouths(props.model.amountYouths);
@@ -148,6 +148,7 @@ function Homepage(props) {
       console.log(date);
     }
     */
+
     props.model.setReturnDate(date)
 
   }

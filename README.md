@@ -81,12 +81,12 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+[![Product Name Screen Shot][product-screenshot]](https://dh2642-flightsearch.firebaseapp.com/#homepage)
 
 There are many great flight searches; however, we didn't find one that really suited our needs so we started create this one.
 
 Here's why:
-* A project that does what it should without distractions
+* A flight search that does what it should without distractions
 * You shouldn't be doing the same tasks over and over repeating a search.
 * You should implement DRY principles to the rest of your life :smile:
 
@@ -123,12 +123,10 @@ Npm
   ```sh
   npm install --save three
   ```
-  ```
 * npm react-globe.gl
   ```sh
   npm i react-globe.gl
   ```
-
 * npm react-helmet
   ```sh
   npm i react-helmet
@@ -270,4 +268,4 @@ Use this space to list resources you find helpful and would like to give credit 
 [issues-url]: https://gits-15.sys.kth.se/javierre/flightsearch/issues
 [license-shield]: https://img.shields.io/github/license/pateriks/flightsearch.svg?style=for-the-badge
 [license-url]: https://gits-15.sys.kth.se/javierre/flightsearch/main/LICENSE.txt
-[product-screenshot]: images/screenshot.png
+[product-screenshot]: screenshot.png
