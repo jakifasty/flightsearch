@@ -270,4 +270,4 @@ Use this space to list resources you find helpful and would like to give credit 
 [issues-url]: https://gits-15.sys.kth.se/javierre/flightsearch/issues
 [license-shield]: https://img.shields.io/github/license/pateriks/flightsearch.svg?style=for-the-badge
 [license-url]: https://gits-15.sys.kth.se/javierre/flightsearch/main/LICENSE.txt
-[product-screenshot]: images/screenshot.png
+[product-screenshot]: screenshot.png
