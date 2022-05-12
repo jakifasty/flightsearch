@@ -90,7 +90,7 @@ function DetailsView(props){
             {/*JSON.stringify(props.flightData.conditions.change_before_departure)*/}
             {/*JSON.stringify(props.flightData.slices[0].segments[0].operating_carrier.iata_code)*/}
             </tr>
-            <button className="searchButton" onClick={clickAddToSideCB} disabled={props.isFlightInList}>Add to cart</button>
+            <button className="searchButton" onClick={clickAddToSideCB} disabled={props.isFlightInList}>Add to sidelist</button>
             <button className="searchButton" onClick={clickBookCB} disabled={false}>Book</button>
             <button className="searchButton" onClick={setToReturnACB} disabled={false}>Return to search</button>
           </div>
