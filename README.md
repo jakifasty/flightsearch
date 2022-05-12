@@ -117,7 +117,7 @@ To get a local copy up and running follow these simple example steps.
 3. For extra functionality such as simple email service (SES) checkout Amazon Web Services at [aws.amazon.com](https://aws.amazon.com/)
 4. Clone the repo
    ```sh
-   git clone https://github.com/your_username_/Project-Name.git
+   git clone git@gits-15.sys.kth.se:javierre/flightsearch.git
    ```
 4. Create a react app 
 _For more details, please refer to the [Documentation](https://reactjs.org/docs/create-a-new-react-app.html)_; It sets up your development environment so that you can use the latest JavaScript features, provides a nice developer experience, and optimizes your app for production. You’ll need to have Node >= 14.0.0 and npm >= 5.6 on your machine. To create a project, run:
