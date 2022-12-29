@@ -226,7 +226,10 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 <!-- CONTACT -->
 ## Contact
 
-Your Name - [email](mailto:pateriks@kth.se) - pateriks@kth.se
+Patrik - [email](mailto:pateriks@kth.se) - pateriks@kth.se
+Borja - [email](mailto:javierre@kth.se) - javierre@kth.se
+Diana - [email](mailto:culincu@kth.se) - culincu@kth.se
+
 
 Project Link: [https://gits-15.sys.kth.se/javierre/flightsearch](https://gits-15.sys.kth.se/javierre/flightsearch)
 
